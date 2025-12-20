@@ -1,0 +1,384 @@
+[2025-12-18T08:39:41.407Z] ✅ MongoDB connected successfully
+[2025-12-18T08:39:41.987Z] ✅ Background worker started
+[2025-12-18T08:39:41.996Z] 🚀 Server running on http://localhost:5000
+[2025-12-18T08:42:38.881Z] ✅ MongoDB connected successfully
+[2025-12-18T08:42:39.422Z] ✅ Background worker started
+[2025-12-18T08:42:39.430Z] 🚀 Server running on http://localhost:5000
+[2025-12-18T08:46:04.251Z] ✅ MongoDB connected successfully
+[2025-12-18T08:46:04.777Z] ✅ Background worker started
+[2025-12-18T08:46:04.787Z] 🚀 Server running on http://localhost:5000
+[2025-12-18T08:47:26.959Z] [ROUTER] ⚠️ Failed to add to queue: Redis connection is reconnecting
+[2025-12-18T08:47:26.960Z] [ROUTER] 🔄 Redis unavailable, processing immediate task directly...
+[2025-12-18T08:47:30.866Z] [PROCESSOR] ✅ Task 903e18f5-48cb-472a-af21-f4e7b062f879 finished: 0 sent, 2 failed
+[2025-12-18T08:49:51.066Z] [ROUTER] ⚠️ Failed to add to queue: Redis connection is reconnecting
+[2025-12-18T08:49:51.067Z] [ROUTER] 🔄 Redis unavailable, processing immediate task directly...
+[2025-12-18T08:49:51.616Z] [PROCESSOR] ✅ Task 3f0e9e74-eac6-4376-a6fb-a0de168e9c33 finished: 0 sent, 2 failed
+[2025-12-18T08:50:51.617Z] [ROUTER] ⚠️ Failed to add to queue: Redis connection is reconnecting
+[2025-12-18T08:50:51.618Z] [ROUTER] 🔄 Redis unavailable, processing immediate task directly...
+[2025-12-18T08:50:52.054Z] [PROCESSOR] ✅ Task 7c5686d6-0d06-42bf-ba68-743b420db134 finished: 0 sent, 2 failed
+[2025-12-18T10:15:51.857Z] ✅ MongoDB connected successfully
+[2025-12-18T10:15:52.389Z] ✅ Background worker started
+[2025-12-18T10:15:52.400Z] 🚀 Server running on http://localhost:5000
+[2025-12-18T10:26:10.581Z] [ROUTER] ⚠️ Failed to add to queue: Redis connection is reconnecting
+[2025-12-18T10:26:10.583Z] [ROUTER] 🔄 Redis unavailable, processing immediate task directly...
+[2025-12-18T10:26:14.213Z] [PROCESSOR] ✅ Task f17bb9d1-71aa-4be4-86b8-00b4a5526c4d finished: 2 sent, 0 failed
+[2025-12-18T10:29:07.285Z] [ROUTER] ⚠️ Failed to add to queue: Redis connection is reconnecting
+[2025-12-18T10:29:11.334Z] [ROUTER] ⚠️ Failed to add to queue: Redis connection is reconnecting
+[2025-12-18T10:29:19.909Z] [ROUTER] ⚠️ Failed to add to queue: Redis connection is reconnecting
+[2025-12-18T10:32:36.492Z] [ROUTER] ⚠️ Failed to add to queue: Redis connection is reconnecting
+[2025-12-18T10:32:36.494Z] [ROUTER] 🔄 Redis unavailable, processing immediate task directly...
+[2025-12-18T10:32:39.915Z] [PROCESSOR] ✅ Task 0c6ca938-b0da-4943-a1dd-ae0ee08aeb41 finished: 2 sent, 0 failed
+[2025-12-18T10:38:37.311Z] [ROUTER] ⚠️ Failed to add to queue: Redis connection is reconnecting
+[2025-12-18T10:38:37.313Z] [ROUTER] 🔄 Redis unavailable, processing immediate task directly...
+[2025-12-18T10:38:37.334Z] [PROCESSOR] ✅ Task 28a48900-126a-4369-992e-35ae67abc123 finished: 0 sent, 2 failed
+[2025-12-18T10:46:36.522Z] ✅ MongoDB connected successfully
+[2025-12-18T10:46:37.314Z] ✅ Background worker started
+[2025-12-18T10:46:37.327Z] 🚀 Server running on http://localhost:5000
+[2025-12-18T10:46:41.593Z] ✅ MongoDB connected successfully
+[2025-12-18T10:46:42.224Z] ✅ Background worker started
+[2025-12-18T10:46:42.237Z] 🚀 Server running on http://localhost:5000
+[2025-12-18T10:51:11.748Z] ✅ MongoDB connected successfully
+[2025-12-18T10:51:12.490Z] ✅ Background worker started
+[2025-12-18T10:51:12.502Z] 🚀 Server running on http://localhost:5000
+[2025-12-18T10:51:15.412Z] ✅ MongoDB connected successfully
+[2025-12-18T10:51:16.109Z] ✅ Background worker started
+[2025-12-18T10:51:16.121Z] 🚀 Server running on http://localhost:5000
+[2025-12-18T10:51:44.697Z] ✅ MongoDB connected successfully
+[2025-12-18T10:51:45.330Z] ✅ Background worker started
+[2025-12-18T10:51:45.356Z] 🚀 Server running on http://localhost:5000
+[2025-12-18T10:53:17.659Z] [ROUTER] ⚠️ Failed to add to queue: Redis connection is reconnecting
+[2025-12-18T10:53:17.662Z] [ROUTER] ⏰ Redis unavailable, scheduling task in-process with delay 102338ms...
+[2025-12-18T10:55:00.009Z] [ROUTER] ⏰ In-process scheduler triggering task 97887e72-7de6-429c-80e7-9f48c36e1bb9
+[2025-12-18T10:55:04.130Z] [PROCESSOR] ✅ Task 97887e72-7de6-429c-80e7-9f48c36e1bb9 finished: 2 sent, 0 failed
+[2025-12-18T10:58:07.577Z] [ROUTER] ⚠️ Failed to add to queue: Redis connection is reconnecting
+[2025-12-18T10:58:07.580Z] [ROUTER] 🔄 Redis unavailable, processing immediate task directly (in-process)...
+[2025-12-18T10:58:11.819Z] ✅ MongoDB connected successfully
+[2025-12-18T10:58:12.494Z] ✅ Background worker started
+[2025-12-18T10:58:12.506Z] 🚀 Server running on http://localhost:5000
+[2025-12-18T10:58:22.452Z] ✅ MongoDB connected successfully
+[2025-12-18T10:58:23.050Z] ✅ Background worker started
+[2025-12-18T10:58:23.059Z] 🚀 Server running on http://localhost:5000
+[2025-12-18T12:17:27.098Z] [ROUTER] ⚠️ Failed to add to queue: Redis connection is reconnecting
+[2025-12-18T12:17:27.101Z] [ROUTER] 🔄 Redis unavailable, processing immediate task directly (in-process)...
+[2025-12-18T12:17:31.200Z] [PROCESSOR] ✅ Task c6b895bc-d978-46d7-9598-9f975aea3443 finished: 2 sent, 0 failed
+[2025-12-19T06:24:32.183Z] ✅ MongoDB connected successfully
+[2025-12-19T06:24:40.052Z] ✅ Background worker started
+[2025-12-19T06:24:40.064Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T06:31:35.210Z] ✅ MongoDB connected successfully
+[2025-12-19T06:31:35.652Z] ✅ Background worker started
+[2025-12-19T06:31:35.660Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T06:31:53.939Z] ✅ MongoDB connected successfully
+[2025-12-19T06:31:54.380Z] ✅ Background worker started
+[2025-12-19T06:31:54.388Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T06:32:14.570Z] ✅ MongoDB connected successfully
+[2025-12-19T06:32:15.048Z] ✅ Background worker started
+[2025-12-19T06:32:15.056Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T06:32:35.673Z] ✅ MongoDB connected successfully
+[2025-12-19T06:32:36.138Z] ✅ Background worker started
+[2025-12-19T06:32:36.146Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T06:41:04.762Z] ✅ MongoDB connected successfully
+[2025-12-19T06:41:05.191Z] ✅ Background worker started
+[2025-12-19T06:41:05.198Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T06:50:24.727Z] ✅ MongoDB connected successfully
+[2025-12-19T06:50:25.207Z] ✅ Background worker started
+[2025-12-19T06:50:25.217Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T06:54:09.008Z] [ROUTER] 📝 Task 47e49afe-c435-4e0d-a44e-de5ee3f88e06 added to queue (delay: 0ms)
+[2025-12-19T06:54:12.507Z] [PROCESSOR] ✅ Task 47e49afe-c435-4e0d-a44e-de5ee3f88e06 finished: 2 sent, 0 failed
+[2025-12-19T06:55:34.518Z] [ROUTER] 📝 Task 79219e11-38c4-4c21-bdde-70c34b8f9264 added to queue (delay: 85487ms)
+[2025-12-19T06:57:03.637Z] [PROCESSOR] ⏳ Task 79219e11-38c4-4c21-bdde-70c34b8f9264 has 1h expiry. Scheduling deletion...
+[2025-12-19T06:57:03.640Z] [PROCESSOR] ✅ Task 79219e11-38c4-4c21-bdde-70c34b8f9264 finished: 2 sent, 0 failed
+[2025-12-19T07:02:38.315Z] ✅ MongoDB connected successfully
+[2025-12-19T07:02:38.839Z] ✅ Background worker started
+[2025-12-19T07:02:38.847Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T07:03:43.437Z] [ROUTER] 📝 Task 00ed723e-bc66-4e43-af2c-f06c9b4b59c0 added to queue (delay: 0ms)
+[2025-12-19T07:03:44.027Z] [PROCESSOR] ✅ Task 00ed723e-bc66-4e43-af2c-f06c9b4b59c0 finished: 0 sent, 2 failed
+[2025-12-19T07:04:10.074Z] ✅ MongoDB connected successfully
+[2025-12-19T07:04:10.667Z] ✅ Background worker started
+[2025-12-19T07:04:10.677Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T07:04:23.162Z] ✅ MongoDB connected successfully
+[2025-12-19T07:04:23.628Z] ✅ Background worker started
+[2025-12-19T07:04:23.638Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T07:35:49.123Z] [ROUTER] 📝 Task 8c1e8a41-4be8-4e81-93ee-de88b2301791 added to queue (delay: 0ms)
+[2025-12-19T07:35:49.700Z] [PROCESSOR] ✅ Task 8c1e8a41-4be8-4e81-93ee-de88b2301791 finished: 0 sent, 2 failed
+[2025-12-19T10:24:14.697Z] ✅ MongoDB connected successfully
+[2025-12-19T10:24:22.838Z] ✅ Background worker started
+[2025-12-19T10:24:22.847Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T10:27:44.365Z] [ROUTER] 📝 Task 1e2408ca-e6b7-4845-b3d0-03b8d80c8124 added to queue (delay: 0ms)
+[2025-12-19T10:27:44.428Z] [PROCESSOR] ✅ Task 1e2408ca-e6b7-4845-b3d0-03b8d80c8124 finished: 0 sent, 2 failed
+[2025-12-19T10:30:42.497Z] [ROUTER] 📝 Task b4e62938-3284-4f55-b5f5-564b305618fa added to queue (delay: 0ms)
+[2025-12-19T10:30:42.519Z] [PROCESSOR] ✅ Task b4e62938-3284-4f55-b5f5-564b305618fa finished: 0 sent, 1 failed
+[2025-12-19T10:31:53.872Z] ✅ MongoDB connected successfully
+[2025-12-19T10:31:54.413Z] ✅ Background worker started
+[2025-12-19T10:31:54.424Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T10:32:10.933Z] [ROUTER] 📝 Task 5c49aeae-740e-472d-b2c1-2783315d7fc8 added to queue (delay: 0ms)
+[2025-12-19T10:32:11.230Z] [PROCESSOR] ✅ Task 5c49aeae-740e-472d-b2c1-2783315d7fc8 finished: 0 sent, 1 failed
+[2025-12-19T10:32:50.200Z] [ROUTER] 📝 Task 85873de0-ebac-4893-b55c-734ed02c3fc8 added to queue (delay: 0ms)
+[2025-12-19T10:32:50.974Z] [PROCESSOR] ✅ Task 85873de0-ebac-4893-b55c-734ed02c3fc8 finished: 0 sent, 1 failed
+[2025-12-19T10:34:53.361Z] ✅ MongoDB connected successfully
+[2025-12-19T10:34:53.867Z] ✅ Background worker started
+[2025-12-19T10:34:53.876Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T10:35:55.705Z] [ROUTER] 📝 Task 9b5d4e19-ebd0-4b37-b563-55ff2d46a2aa added to queue (delay: 0ms)
+[2025-12-19T10:35:58.881Z] [PROCESSOR] ✅ Task 9b5d4e19-ebd0-4b37-b563-55ff2d46a2aa finished: 1 sent, 0 failed
+[2025-12-19T10:36:28.498Z] [ROUTER] 📝 Task b8af63f1-df6f-4754-8a91-48545a9eeeb8 added to queue (delay: 0ms)
+[2025-12-19T10:36:28.524Z] [PROCESSOR] ✅ Task b8af63f1-df6f-4754-8a91-48545a9eeeb8 finished: 0 sent, 1 failed
+[2025-12-19T10:37:54.651Z] ✅ MongoDB connected successfully
+[2025-12-19T10:37:57.495Z] ✅ MongoDB connected successfully
+[2025-12-19T10:37:57.996Z] ✅ Background worker started
+[2025-12-19T10:37:58.007Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T10:38:08.140Z] [ROUTER] 📝 Task 345e8c72-e34b-486e-be57-33e1182eeaf1 added to queue (delay: -8135ms)
+[2025-12-19T10:38:13.903Z] [PROCESSOR] ❌ Task 345e8c72-e34b-486e-be57-33e1182eeaf1 failed: 400: ACCESS_TOKEN_INVALID (caused by auth.ImportBotAuthorization)
+[2025-12-19T10:40:22.933Z] ✅ MongoDB connected successfully
+[2025-12-19T10:40:23.386Z] ✅ Background worker started
+[2025-12-19T10:40:23.395Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T10:42:22.637Z] [ROUTER] 📝 Task d148fcbc-f29f-4e9b-8e19-0cdd368cd594 added to queue (delay: 37369ms)
+[2025-12-19T10:43:00.314Z] [PROCESSOR] ✅ Task d148fcbc-f29f-4e9b-8e19-0cdd368cd594 finished: 0 sent, 3 failed
+[2025-12-19T10:46:30.052Z] ✅ MongoDB connected successfully
+[2025-12-19T10:46:30.624Z] ✅ Background worker started
+[2025-12-19T10:46:30.637Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T10:47:01.523Z] [ROUTER] 📝 Task 7e930b0f-4b52-45f2-809b-2f63e62ea972 added to queue (delay: -1518ms)
+[2025-12-19T10:47:02.436Z] [PROCESSOR] ✅ Task 7e930b0f-4b52-45f2-809b-2f63e62ea972 finished: 0 sent, 3 failed
+[2025-12-19T10:49:16.830Z] [ROUTER] 📝 Task b658720b-4b2c-447f-beb1-0938d03eeb6f added to queue (delay: 0ms)
+[2025-12-19T10:49:22.047Z] [PROCESSOR] ❌ Task b658720b-4b2c-447f-beb1-0938d03eeb6f failed: 400: ACCESS_TOKEN_INVALID (caused by auth.ImportBotAuthorization)
+[2025-12-19T10:50:07.224Z] [ROUTER] 📝 Task b5e96dc1-80a8-4bb8-8e05-bf6aca7337fb added to queue (delay: 0ms)
+[2025-12-19T10:50:09.705Z] [PROCESSOR] ✅ Task b5e96dc1-80a8-4bb8-8e05-bf6aca7337fb finished: 1 sent, 2 failed
+[2025-12-19T10:51:10.537Z] [ROUTER] 📝 Task 9ad1a510-12c8-4869-8ce1-47a3dd5a8254 added to queue (delay: 0ms)
+[2025-12-19T10:51:11.159Z] [PROCESSOR] ✅ Task 9ad1a510-12c8-4869-8ce1-47a3dd5a8254 finished: 0 sent, 2 failed
+[2025-12-19T10:55:00.476Z] ✅ MongoDB connected successfully
+[2025-12-19T10:55:00.935Z] ✅ Background worker started
+[2025-12-19T10:55:00.945Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T10:55:32.521Z] ✅ MongoDB connected successfully
+[2025-12-19T10:55:33.007Z] ✅ Background worker started
+[2025-12-19T10:55:33.016Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T10:58:16.404Z] [ROUTER] 📝 Task cede7837-2086-4765-8073-b2e53989c50c added to queue (delay: 0ms)
+[2025-12-19T10:58:17.149Z] [PROCESSOR] ✅ Task cede7837-2086-4765-8073-b2e53989c50c finished: 0 sent, 2 failed
+[2025-12-19T10:59:47.248Z] [ROUTER] 📝 Task 2c263245-8011-4b07-bc23-e29639db9cfa added to queue (delay: 0ms)
+[2025-12-19T10:59:47.782Z] [PROCESSOR] ✅ Task 2c263245-8011-4b07-bc23-e29639db9cfa finished: 0 sent, 2 failed
+[2025-12-19T11:00:56.931Z] ✅ MongoDB connected successfully
+[2025-12-19T11:00:57.494Z] ✅ Background worker started
+[2025-12-19T11:00:57.502Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T11:01:56.979Z] [ROUTER] 📝 Task e9371d35-ecaf-4207-a862-6d8de409a36e added to queue (delay: 0ms)
+[2025-12-19T11:01:57.563Z] [PROCESSOR] ✅ Task e9371d35-ecaf-4207-a862-6d8de409a36e finished: 0 sent, 2 failed
+[2025-12-19T11:02:14.739Z] [ROUTER] 📝 Task 190cc392-9207-44cc-b762-8bd9de753903 added to queue (delay: 0ms)
+[2025-12-19T11:02:15.231Z] [PROCESSOR] ✅ Task 190cc392-9207-44cc-b762-8bd9de753903 finished: 0 sent, 2 failed
+[2025-12-19T11:04:12.876Z] ✅ MongoDB connected successfully
+[2025-12-19T11:04:13.505Z] ✅ Background worker started
+[2025-12-19T11:04:13.520Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T11:05:29.100Z] ✅ MongoDB connected successfully
+[2025-12-19T11:05:29.588Z] ✅ Background worker started
+[2025-12-19T11:05:29.600Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T11:06:56.530Z] ✅ MongoDB connected successfully
+[2025-12-19T11:06:57.025Z] ✅ Background worker started
+[2025-12-19T11:06:57.035Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T11:08:49.084Z] ✅ MongoDB connected successfully
+[2025-12-19T11:08:49.580Z] ✅ Background worker started
+[2025-12-19T11:08:49.588Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T11:09:32.404Z] ✅ MongoDB connected successfully
+[2025-12-19T11:09:32.983Z] ✅ Background worker started
+[2025-12-19T11:09:32.996Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T11:10:36.042Z] ✅ MongoDB connected successfully
+[2025-12-19T11:10:36.636Z] ✅ Background worker started
+[2025-12-19T11:10:36.647Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T11:11:38.891Z] ✅ MongoDB connected successfully
+[2025-12-19T11:11:39.521Z] ✅ Background worker started
+[2025-12-19T11:11:39.532Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T11:12:44.210Z] ✅ MongoDB connected successfully
+[2025-12-19T11:12:44.742Z] ✅ Background worker started
+[2025-12-19T11:12:44.753Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T11:13:35.110Z] ✅ MongoDB connected successfully
+[2025-12-19T11:13:35.685Z] ✅ Background worker started
+[2025-12-19T11:13:35.695Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T11:14:25.157Z] ✅ MongoDB connected successfully
+[2025-12-19T11:14:25.679Z] ✅ Background worker started
+[2025-12-19T11:14:25.688Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T11:16:04.731Z] ✅ MongoDB connected successfully
+[2025-12-19T11:16:05.310Z] ✅ Background worker started
+[2025-12-19T11:16:05.320Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T11:17:42.735Z] [ROUTER] 📝 Task 38b7f013-497b-45e5-9b3f-7163a81689f3 added to queue (delay: 0ms)
+[2025-12-19T11:17:43.854Z] [PROCESSOR] ✅ Task 38b7f013-497b-45e5-9b3f-7163a81689f3 finished: 0 sent, 3 failed
+[2025-12-19T11:19:34.928Z] [ROUTER] 📝 Task 760cd205-1c5a-472f-85bd-04987f40a667 added to queue (delay: 0ms)
+[2025-12-19T11:19:37.382Z] [PROCESSOR] ✅ Task 760cd205-1c5a-472f-85bd-04987f40a667 finished: 1 sent, 2 failed
+[2025-12-19T11:21:12.278Z] ✅ MongoDB connected successfully
+[2025-12-19T11:21:12.951Z] ✅ Background worker started
+[2025-12-19T11:21:12.962Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T11:22:49.620Z] [ROUTER] 📝 Task e16c1e03-549e-4671-a98e-4df1ba7cafdd added to queue (delay: 0ms)
+[2025-12-19T11:22:50.979Z] [PROCESSOR] ✅ Task e16c1e03-549e-4671-a98e-4df1ba7cafdd finished: 0 sent, 3 failed
+[2025-12-19T11:23:04.836Z] ✅ MongoDB connected successfully
+[2025-12-19T11:23:05.377Z] ✅ Background worker started
+[2025-12-19T11:23:05.389Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T11:24:06.927Z] ✅ MongoDB connected successfully
+[2025-12-19T11:24:07.518Z] ✅ Background worker started
+[2025-12-19T11:24:07.529Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T11:26:45.291Z] ✅ MongoDB connected successfully
+[2025-12-19T11:26:45.903Z] ✅ Background worker started
+[2025-12-19T11:26:45.913Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T11:28:34.403Z] [ROUTER] 📝 Task d458af03-fa0c-4f4f-bb3e-3dcbe38fa199 added to queue (delay: 0ms)
+[2025-12-19T11:28:38.091Z] [PROCESSOR] ❌ Task d458af03-fa0c-4f4f-bb3e-3dcbe38fa199 failed: 400: ACCESS_TOKEN_INVALID (caused by auth.ImportBotAuthorization)
+[2025-12-19T11:29:13.156Z] [ROUTER] 📝 Task 3eb69927-01c2-4c5d-aa66-85810b1d9c1f added to queue (delay: 0ms)
+[2025-12-19T11:29:16.365Z] [PROCESSOR] ✅ Task 3eb69927-01c2-4c5d-aa66-85810b1d9c1f finished: 1 sent, 2 failed
+[2025-12-19T11:30:11.132Z] [ROUTER] 📝 Task 0faf31c0-e459-4406-b926-24c2395158e6 added to queue (delay: 0ms)
+[2025-12-19T11:30:14.154Z] [PROCESSOR] ✅ Task 0faf31c0-e459-4406-b926-24c2395158e6 finished: 1 sent, 2 failed
+[2025-12-19T11:33:25.674Z] [ROUTER] 📝 Task 30b1b1b2-b032-4c2b-85f5-0308ca95a01e added to queue (delay: 0ms)
+[2025-12-19T11:33:27.858Z] [PROCESSOR] ✅ Task 30b1b1b2-b032-4c2b-85f5-0308ca95a01e finished: 1 sent, 0 failed
+[2025-12-19T11:35:48.266Z] [ROUTER] 📝 Task 494c6d64-2ef0-4023-b6cd-07e4d83ccb69 added to queue (delay: 0ms)
+[2025-12-19T11:35:48.962Z] [PROCESSOR] ✅ Task 494c6d64-2ef0-4023-b6cd-07e4d83ccb69 finished: 0 sent, 1 failed
+[2025-12-19T11:38:11.326Z] ✅ MongoDB connected successfully
+[2025-12-19T11:38:11.897Z] ✅ Background worker started
+[2025-12-19T11:38:11.909Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T11:38:41.952Z] ✅ MongoDB connected successfully
+[2025-12-19T11:38:42.528Z] ✅ Background worker started
+[2025-12-19T11:38:42.539Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T11:40:50.817Z] ✅ MongoDB connected successfully
+[2025-12-19T11:40:51.428Z] ✅ Background worker started
+[2025-12-19T11:40:51.439Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T11:52:40.153Z] ✅ MongoDB connected successfully
+[2025-12-19T11:52:40.804Z] ✅ Background worker started
+[2025-12-19T11:52:40.818Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T11:53:31.597Z] [ROUTER] 📝 Task 1c4d3c7d-407d-41a4-bed9-cd27b16730cc added to queue (delay: 0ms)
+[2025-12-19T11:53:36.860Z] [PROCESSOR] ✅ Task 1c4d3c7d-407d-41a4-bed9-cd27b16730cc finished: 0 sent, 5 failed
+[2025-12-19T11:54:09.935Z] [ROUTER] 📝 Task 124f1044-4445-4759-8e1e-83364f36c934 added to queue (delay: 0ms)
+[2025-12-19T11:54:11.742Z] [PROCESSOR] ✅ Task 124f1044-4445-4759-8e1e-83364f36c934 finished: 0 sent, 5 failed
+[2025-12-19T11:56:03.348Z] ✅ MongoDB connected successfully
+[2025-12-19T11:56:03.973Z] ✅ Background worker started
+[2025-12-19T11:56:03.985Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:04:08.827Z] [ROUTER] 📝 Task b32357ad-e3c0-4dbf-8868-3a459f4df973 added to queue (delay: 0ms)
+[2025-12-19T12:04:10.782Z] [PROCESSOR] ✅ Task b32357ad-e3c0-4dbf-8868-3a459f4df973 finished: 0 sent, 3 failed
+[2025-12-19T12:05:36.562Z] ✅ MongoDB connected successfully
+[2025-12-19T12:05:37.155Z] ✅ Background worker started
+[2025-12-19T12:05:37.167Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:05:45.484Z] ✅ MongoDB connected successfully
+[2025-12-19T12:05:46.093Z] ✅ Background worker started
+[2025-12-19T12:05:46.107Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:05:51.549Z] ✅ MongoDB connected successfully
+[2025-12-19T12:05:52.184Z] ✅ Background worker started
+[2025-12-19T12:05:52.194Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:09:09.044Z] ✅ MongoDB connected successfully
+[2025-12-19T12:09:09.631Z] ✅ Background worker started
+[2025-12-19T12:09:09.642Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:12:02.542Z] ✅ MongoDB connected successfully
+[2025-12-19T12:12:03.200Z] ✅ Background worker started
+[2025-12-19T12:12:03.211Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:12:11.528Z] ✅ MongoDB connected successfully
+[2025-12-19T12:12:12.167Z] ✅ Background worker started
+[2025-12-19T12:12:12.179Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:13:03.610Z] [ROUTER] 📝 Task 01c0a29e-72be-4ec0-9890-9392f6a3066e added to queue (delay: 0ms)
+[2025-12-19T12:13:07.917Z] [PROCESSOR] ❌ Task 01c0a29e-72be-4ec0-9890-9392f6a3066e failed: Task validation failed: status: `partially_completed` is not a valid enum value for path `status`.
+[2025-12-19T12:26:20.148Z] ✅ MongoDB connected successfully
+[2025-12-19T12:26:20.684Z] ✅ Background worker started
+[2025-12-19T12:26:20.696Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:26:36.376Z] ✅ MongoDB connected successfully
+[2025-12-19T12:26:36.987Z] ✅ Background worker started
+[2025-12-19T12:26:36.996Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:26:49.841Z] ✅ MongoDB connected successfully
+[2025-12-19T12:26:50.381Z] ✅ Background worker started
+[2025-12-19T12:26:50.392Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:27:10.176Z] ✅ MongoDB connected successfully
+[2025-12-19T12:27:10.878Z] ✅ Background worker started
+[2025-12-19T12:27:10.891Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:27:38.265Z] ✅ MongoDB connected successfully
+[2025-12-19T12:27:38.858Z] ✅ Background worker started
+[2025-12-19T12:27:38.869Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:28:45.089Z] [ROUTER] 📝 Task e18b903b-a4f1-4047-a47a-962da9939a51 added to queue (delay: 0ms)
+[2025-12-19T12:28:51.871Z] [PROCESSOR] ❌ Task e18b903b-a4f1-4047-a47a-962da9939a51 failed: Task validation failed: status: `partially_completed` is not a valid enum value for path `status`.
+[2025-12-19T12:29:02.822Z] ✅ MongoDB connected successfully
+[2025-12-19T12:29:03.370Z] ✅ Background worker started
+[2025-12-19T12:29:03.383Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:29:47.649Z] [ROUTER] 📝 Task f0e24007-1bd1-4881-b0c8-d7bd350f8e7d added to queue (delay: 0ms)
+[2025-12-19T12:29:49.516Z] [PROCESSOR] ✅ Task f0e24007-1bd1-4881-b0c8-d7bd350f8e7d finished: 0 sent, 1 failed
+[2025-12-19T12:30:34.327Z] [ROUTER] 📝 Task eac2fb5d-a6ef-4e2f-9f62-47b75e1ce2c3 added to queue (delay: 0ms)
+[2025-12-19T12:30:39.919Z] [PROCESSOR] ❌ Task eac2fb5d-a6ef-4e2f-9f62-47b75e1ce2c3 failed: Task validation failed: status: `partially_completed` is not a valid enum value for path `status`.
+[2025-12-19T12:31:53.599Z] ✅ MongoDB connected successfully
+[2025-12-19T12:31:54.446Z] ✅ Background worker started
+[2025-12-19T12:31:54.459Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:32:33.254Z] ✅ MongoDB connected successfully
+[2025-12-19T12:32:33.786Z] ✅ Background worker started
+[2025-12-19T12:32:33.798Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:33:25.303Z] [ROUTER] 📝 Task 07ac6253-d804-4a2c-8e6b-5cba54dec8c4 added to queue (delay: 0ms)
+[2025-12-19T12:33:32.021Z] [PROCESSOR] ❌ Task 07ac6253-d804-4a2c-8e6b-5cba54dec8c4 failed: Task validation failed: status: `partially_completed` is not a valid enum value for path `status`.
+[2025-12-19T12:35:07.666Z] [ROUTER] 📝 Task 8be8d702-40f6-499c-8d49-c0e72f5aaa9e added to queue (delay: 0ms)
+[2025-12-19T12:35:12.658Z] [PROCESSOR] ❌ Task 8be8d702-40f6-499c-8d49-c0e72f5aaa9e failed: Task validation failed: status: `partially_completed` is not a valid enum value for path `status`.
+[2025-12-19T12:37:12.549Z] ✅ MongoDB connected successfully
+[2025-12-19T12:37:13.151Z] ✅ Background worker started
+[2025-12-19T12:37:13.162Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:38:11.717Z] ✅ MongoDB connected successfully
+[2025-12-19T12:38:12.284Z] ✅ Background worker started
+[2025-12-19T12:38:12.294Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:38:33.775Z] ✅ MongoDB connected successfully
+[2025-12-19T12:38:34.395Z] ✅ Background worker started
+[2025-12-19T12:38:34.407Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:38:41.620Z] ✅ MongoDB connected successfully
+[2025-12-19T12:38:42.206Z] ✅ Background worker started
+[2025-12-19T12:38:42.219Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:39:53.000Z] ✅ MongoDB connected successfully
+[2025-12-19T12:39:53.667Z] ✅ Background worker started
+[2025-12-19T12:39:53.679Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:42:34.630Z] ✅ MongoDB connected successfully
+[2025-12-19T12:42:35.254Z] ✅ Background worker started
+[2025-12-19T12:42:35.264Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:43:30.155Z] ✅ MongoDB connected successfully
+[2025-12-19T12:43:30.706Z] ✅ Background worker started
+[2025-12-19T12:43:30.718Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:44:14.513Z] ✅ MongoDB connected successfully
+[2025-12-19T12:44:15.062Z] ✅ Background worker started
+[2025-12-19T12:44:15.124Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:44:30.510Z] ✅ MongoDB connected successfully
+[2025-12-19T12:44:31.054Z] ✅ Background worker started
+[2025-12-19T12:44:31.066Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:44:54.130Z] ✅ MongoDB connected successfully
+[2025-12-19T12:44:54.684Z] ✅ Background worker started
+[2025-12-19T12:44:54.694Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:48:31.438Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-19T12:48:31.439Z] [ROUTER] Body: {"name":"dfgbf","type":"message","content":"{\"text\":\"fhbfghf\"}","folderIds":"[\"69453f166011d0365283990a\",\"6945388eb6180dc3896b08bb\"]"}
+[2025-12-19T12:48:31.441Z] [ROUTER] File: {"fieldname":"media","originalname":"Isha maam EMRS ANS key 2025 part 1 copy (1).jpg","encoding":"7bit","mimetype":"image/jpeg","destination":"uploads/","filename":"1766148511413-Isha maam EMRS ANS key 2025 part 1 copy (1).jpg","path":"uploads\\1766148511413-Isha maam EMRS ANS key 2025 part 1 copy (1).jpg","size":1582376}
+[2025-12-19T12:48:31.442Z] [ROUTER] ✅ Media detected and saved: /uploads/1766148511413-Isha maam EMRS ANS key 2025 part 1 copy (1).jpg
+[2025-12-19T12:48:31.495Z] [ROUTER] 📝 Task 8f769fd3-9f11-4e16-8243-1166999d44e4 added to queue (delay: 0ms)
+[2025-12-19T12:48:40.547Z] [PROCESSOR] ❌ Task 8f769fd3-9f11-4e16-8243-1166999d44e4 failed: Task validation failed: status: `partially_completed` is not a valid enum value for path `status`.
+[2025-12-19T12:49:12.559Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-19T12:49:12.560Z] [ROUTER] Body: {"name":"hjukhujf","type":"poll","content":{"pollQuestion":"fghfghNew Question","pollOptions":["fhgfhOption A","jfgjfgjOption B"],"correctOption":0,"pollExplanation":""},"folderIds":["69453f166011d0365283990a","6945388eb6180dc3896b08bb"],"scheduledAt":null}
+[2025-12-19T12:49:12.561Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-19T12:49:12.576Z] [ROUTER] 📝 Task a9608c7c-0318-4ef2-b99c-6304875a6048 added to queue (delay: 0ms)
+[2025-12-19T12:49:16.132Z] [PROCESSOR] ✅ Task a9608c7c-0318-4ef2-b99c-6304875a6048 finished: 0 sent, 4 failed
+[2025-12-19T12:50:36.999Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-19T12:50:37.001Z] [ROUTER] Body: {"name":"hjmhj","type":"poll","content":{"pollQuestion":"New Question","pollOptions":["Option A","Option B"],"correctOption":0,"pollExplanation":""},"folderIds":["69453f166011d0365283990a","6945388eb6180dc3896b08bb"],"scheduledAt":"2025-12-19T12:50:00.000Z"}
+[2025-12-19T12:50:37.002Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-19T12:50:37.018Z] [ROUTER] 📝 Task 450dd7ae-9eb3-43ce-87cb-4859bf747acf added to queue (delay: -37016ms)
+[2025-12-19T12:50:41.436Z] [PROCESSOR] ✅ Task 450dd7ae-9eb3-43ce-87cb-4859bf747acf finished: 0 sent, 4 failed
+[2025-12-19T12:56:20.172Z] ✅ MongoDB connected successfully
+[2025-12-19T12:56:20.804Z] ✅ Background worker started
+[2025-12-19T12:56:20.816Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T12:57:29.009Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-19T12:57:29.010Z] [ROUTER] Body: {"name":"hyukuh","type":"poll","content":{"pollQuestion":"New Question","pollOptions":["Option A","Option B","Option C"],"correctOption":0,"pollExplanation":""},"folderIds":["69453f166011d0365283990a","6945388eb6180dc3896b08bb"],"scheduledAt":null}
+[2025-12-19T12:57:29.013Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-19T12:57:29.061Z] [ROUTER] 📝 Task 89877d73-d4d6-4e14-9efc-60c66eb7a92b added to queue (delay: 0ms)
+[2025-12-19T12:57:32.059Z] [PROCESSOR] ✅ Task 89877d73-d4d6-4e14-9efc-60c66eb7a92b finished: 0 sent, 4 failed
+[2025-12-19T12:58:54.356Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-19T12:58:54.357Z] [ROUTER] Body: {"name":"kuy","type":"poll","content":{"pollQuestion":"New Question","pollOptions":["Option A","Option B"],"correctOption":0,"pollExplanation":""},"folderIds":["69453f166011d0365283990a","6945388eb6180dc3896b08bb"],"scheduledAt":"2025-12-19T12:58:00.000Z"}
+[2025-12-19T12:58:54.358Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-19T12:58:54.373Z] [ROUTER] 📝 Task c3de33e5-1a99-4c2d-8b17-2058a7404d8f added to queue (delay: -54371ms)
+[2025-12-19T12:58:59.338Z] [PROCESSOR] ✅ Task c3de33e5-1a99-4c2d-8b17-2058a7404d8f finished: 1 sent, 3 failed
+[2025-12-19T13:08:42.710Z] ✅ MongoDB connected successfully
+[2025-12-19T13:08:43.359Z] ✅ Background worker started
+[2025-12-19T13:08:43.371Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T13:08:52.751Z] ✅ MongoDB connected successfully
+[2025-12-19T13:08:53.255Z] ✅ Background worker started
+[2025-12-19T13:08:53.267Z] 🚀 Server running on http://localhost:5000
+[2025-12-19T13:09:00.400Z] ✅ MongoDB connected successfully
+[2025-12-19T13:09:00.850Z] ✅ Background worker started
+[2025-12-19T13:09:00.858Z] 🚀 Server running on http://localhost:5000
+[2025-12-20T06:36:13.472Z] ✅ MongoDB connected successfully
+[2025-12-20T06:36:21.871Z] ✅ Background worker started
+[2025-12-20T06:36:21.882Z] 🚀 Server running on http://localhost:5000
+[2025-12-20T06:37:16.546Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T06:37:16.547Z] [ROUTER] Body: {"name":"htgb","type":"message","content":"{\"text\":\"fgbf\"}","folderIds":"[\"69453f166011d0365283990a\",\"6945388eb6180dc3896b08bb\"]"}
+[2025-12-20T06:37:16.548Z] [ROUTER] File: {"fieldname":"media","originalname":"Isha maam EMRS ANS key 2025 part 1 copy (1).jpg","encoding":"7bit","mimetype":"image/jpeg","destination":"uploads/","filename":"1766212636521-Isha maam EMRS ANS key 2025 part 1 copy (1).jpg","path":"uploads\\1766212636521-Isha maam EMRS ANS key 2025 part 1 copy (1).jpg","size":1582376}
+[2025-12-20T06:37:16.549Z] [ROUTER] ✅ Media detected and saved: /uploads/1766212636521-Isha maam EMRS ANS key 2025 part 1 copy (1).jpg
+[2025-12-20T06:37:16.594Z] [ROUTER] 📝 Task f827817d-af0a-4c99-9ba3-70b6891d008f added to queue (delay: 0ms)
+[2025-12-20T06:37:34.622Z] [PROCESSOR] ✅ Task f827817d-af0a-4c99-9ba3-70b6891d008f finished: 1 sent, 3 failed
+[2025-12-20T06:48:56.050Z] ✅ MongoDB connected successfully
+[2025-12-20T06:48:56.768Z] ✅ Background worker started
+[2025-12-20T06:48:56.779Z] 🚀 Server running on http://localhost:5000
+[2025-12-20T07:34:18.022Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T07:34:18.024Z] [ROUTER] Body: {"name":"gegerg","type":"message","content":"{\"text\":\"ergrdgvdf\"}","folderIds":"[\"6946516cae67a92212fbffc0\"]"}
+[2025-12-20T07:34:18.025Z] [ROUTER] File: {"fieldname":"media","originalname":"Isha maam EMRS ANS key 2025 part 1 copy (1).jpg","encoding":"7bit","mimetype":"image/jpeg","destination":"uploads/","filename":"1766216057988-Isha maam EMRS ANS key 2025 part 1 copy (1).jpg","path":"uploads\\1766216057988-Isha maam EMRS ANS key 2025 part 1 copy (1).jpg","size":1582376}
+[2025-12-20T07:34:18.027Z] [ROUTER] ✅ Media detected and saved: /uploads/1766216057988-Isha maam EMRS ANS key 2025 part 1 copy (1).jpg
+[2025-12-20T07:34:18.053Z] [ROUTER] 📝 Task 71167bc7-91f4-4f37-aa61-7faa6b49bb6a added to queue (delay: 0ms)
+[2025-12-20T07:34:23.463Z] [PROCESSOR] ✅ Task 71167bc7-91f4-4f37-aa61-7faa6b49bb6a finished: 1 sent, 0 failed

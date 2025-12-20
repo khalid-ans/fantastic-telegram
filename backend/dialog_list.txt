@@ -1,0 +1,238 @@
+DIALOG LIST:
+Name: KK | ID: 6667886102 | Type: User
+Name: Bottttt | ID: -1003635220309 | Type: Channel/Supergroup
+Name: Telegram | ID: 777000 | Type: User
+Name: GrowDealz - Shopping Deals & Offers | ID: -1001293749899 | Type: Channel/Supergroup
+Name: DEALS 4 U | ID: -1002450708994 | Type: Channel/Supergroup
+Name: CouponzGuru India 🇮🇳 | ID: -1001433756370 | Type: Channel/Supergroup
+Name: Krishan Kumar - Jobs & Internships Updates | ID: -1001515619731 | Type: Channel/Supergroup
+Name: Freshershunt - Off Campus Drive Updates | ID: -1001242584289 | Type: Channel/Supergroup
+Name: Offerzone 2.0 | ID: -1001315464303 | Type: Channel/Supergroup
+Name: TechSchoool | ID: -1001987032592 | Type: Channel/Supergroup
+Name: Testing group 2 | ID: -1003672332229 | Type: Channel/Supergroup
+Name: Testing group 2 | ID: -5026402991 | Type: BasicGroup
+Name: Testing group 1 | ID: -1002508188906 | Type: Channel/Supergroup
+Name: Testing group 1 | ID: -5099839599 | Type: BasicGroup
+Name: Teaching Pariksha Bot | ID: 8502452024 | Type: User
+Name: Xtylishanmol4 | ID: -1002042308282 | Type: Channel/Supergroup
+Name: Teaching Pariksha | ID: -1001855885690 | Type: Channel/Supergroup
+Name: Test2 | ID: -5044671892 | Type: BasicGroup
+Name: test channel | ID: -1003575871416 | Type: Channel/Supergroup
+Name: Test1 | ID: -5034108527 | Type: BasicGroup
+Name: Tricky Man | ID: -1001241397760 | Type: Channel/Supergroup
+Name: Khatarnak [loot Deals & offers] | ID: -1001569086954 | Type: Channel/Supergroup
+Name: Prodigy InfoTech | ID: -1001738265951 | Type: Channel/Supergroup
+Name: TheSanskaarSingh | ID: -1001545863801 | Type: Channel/Supergroup
+Name: Temp Mail ✉️ Official Bot | ID: 863661281 | Type: User
+Name: TRiPpyyyy!! | ID: 6690776532 | Type: User
+Name: Satish Arya 2 | ID: 8593726358 | Type: User
+Name: ⏤͟͞MᴏDxPremium ⸙ | ID: -1002054483344 | Type: Channel/Supergroup
+Name: RawDataBot | ID: 1916477054 | Type: User
+Name: BotFather | ID: 93372553 | Type: User
+Name: Jitu Dewanji | ID: 8521715279 | Type: User
+Name: Aslam Bhaie. Bhanda | ID: 8558571175 | Type: User
+Name: NFX Media | ID: -1002486555263 | Type: Channel/Supergroup
+Name: Vikas | ID: 8512693146 | Type: User
+Name: Channel Actions Bot - Join Approver (Auto Approve Join Requests) | ID: 5201868231 | Type: User
+Name: Devansh Pallotti | ID: 8485116632 | Type: User
+Name: Pooja Rathod | ID: 5877149826 | Type: User
+Name: STUDY MATERIAL - Placement Jobs & Materials | ID: -1001660667694 | Type: Channel/Supergroup
+Name:  | ID: 8585031530 | Type: User
+Name: TCS CODEVITA SEASON 13 SOLUTIONS | ID: -1001798889342 | Type: Channel/Supergroup
+Name: Tannu Girhipunje | ID: 8245934479 | Type: User
+Name: B | ID: 8349743808 | Type: User
+Name: Bhushan Bhure | ID: 8273100480 | Type: User
+Name: Sahil Lohkar | ID: 8445206569 | Type: User
+Name: Sameer Dahake Palloti | ID: 8496008495 | Type: User
+Name: Chandu Bamhn4 | ID: 7854489459 | Type: User
+Name: Dhiraj Bhau | ID: 8322665641 | Type: User
+Name: Kaveri Bhure | ID: 8334556823 | Type: User
+Name: Instagram Hackery | ID: 8210157335 | Type: User
+Name: Divya St | ID: 8478205252 | Type: User
+Name: Vinit | ID: 8227985979 | Type: User
+Name: Protection Bot⚡️ | ID: 5733454338 | Type: User
+Name:  | ID: 8366927852 | Type: User
+Name: nicole eveline | ID: -1002875475935 | Type: Channel/Supergroup
+Name: Disha Svp | ID: 8384880972 | Type: User
+Name: Auto Request Accepter Bot🤖 | ID: 8119623891 | Type: User
+Name: 1⃣ Auto Accept Request Bot | ID: 5517391747 | Type: User
+Name: Bhaskar Tyre. Pauni | ID: 8051555504 | Type: User
+Name: Nyajul | ID: 8488930655 | Type: User
+Name:  | ID: 8266540087 | Type: User
+Name: Automatic Request Accept Bot | ID: 6244487007 | Type: User
+Name:  | ID: 6094790765 | Type: User
+Name: selokar Anmol | ID: 8037802846 | Type: User
+Name: Painter Gadi | ID: 7834520541 | Type: User
+Name: Tanushri Kawade | ID: 8441123511 | Type: User
+Name:  | ID: 6674099056 | Type: User
+Name: Meraj | ID: 8333921327 | Type: User
+Name: Shubhangi Kailas Bhure | ID: 7976377180 | Type: User
+Name:  | ID: 7934530756 | Type: User
+Name: Maami | ID: 8166642983 | Type: User
+Name:  | ID: 7781653962 | Type: User
+Name: Sabina Raigard | ID: 7891621848 | Type: User
+Name: Dhruv bhai | ID: 7717738391 | Type: User
+Name: Tailar Akot | ID: 7551666752 | Type: User
+Name: Bharat Tyre | ID: 7320894942 | Type: User
+Name:  | ID: 6512021490 | Type: User
+Name: kavde Parmanand | ID: 7243045693 | Type: User
+Name: Sayyed | ID: 8192767334 | Type: User
+Name:  | ID: 5789080823 | Type: User
+Name:  | ID: 8111675738 | Type: User
+Name: Maksud Lakhni | ID: 7982122406 | Type: User
+Name: Gakare Mam | ID: 7391165969 | Type: User
+Name: Achal Jambulkar | ID: 7915092803 | Type: User
+Name: Mahtab B. tums | ID: 7680900829 | Type: User
+Name:  | ID: 7689986821 | Type: User
+Name: Majda Khala | ID: 7190077722 | Type: User
+Name: Yash(Petyachu) | ID: 7770181924 | Type: User
+Name: Aman Bhai. Deor | ID: 8077563638 | Type: User
+Name: Badrul Nagpur | ID: 7880162397 | Type: User
+Name: Alauddin Bhaiy | ID: 7660314235 | Type: User
+Name: Prediction King Rohit Bhai | ID: -1002023506828 | Type: Channel/Supergroup
+Name: Moin Kamti | ID: 8088373571 | Type: User
+Name: Telegram Premium | ID: -1001798673537 | Type: Channel/Supergroup
+Name: Gadha Kawre | ID: 8177777647 | Type: User
+Name:  | ID: 7329004433 | Type: User
+Name: Vaishnavi Chakole 2 | ID: 7895008612 | Type: User
+Name: Priyanshu Mate | ID: 7570510037 | Type: User
+Name: Sandy Bhai | ID: 7668257514 | Type: User
+Name: bhure Ganesh | ID: 7528948084 | Type: User
+Name: LAXMI MUTKURE | ID: 7948499510 | Type: User
+Name: Bhumesh🎃 | ID: 1329359334 | Type: User
+Name: Manges Uke | ID: 7245132298 | Type: User
+Name: Ainul | ID: 7890793648 | Type: User
+Name: Doodh Wale Bhayya Green City | ID: 8085268676 | Type: User
+Name: Shabnam | ID: 7699039219 | Type: User
+Name: Bots Updates Channel #ProSearchBots | ID: -1001839154827 | Type: Channel/Supergroup
+Name: Gos | ID: 7847869011 | Type: User
+Name: Kauru babu | ID: 7898440428 | Type: User
+Name: Safina | ID: 7462156875 | Type: User
+Name: Munna Mamu | ID: 7639675336 | Type: User
+Name: Satish Arya Prospect | ID: 7656625377 | Type: User
+Name: Soniya Prospect | ID: 7982196926 | Type: User
+Name: Coding Resources | ID: -1001607401764 | Type: Channel/Supergroup
+Name: Patil 2BHK Harshal Flat | ID: 7569010369 | Type: User
+Name: Reshma St | ID: 7666553491 | Type: User
+Name: Kapil | ID: 7978777234 | Type: User
+Name:  | ID: 8196176181 | Type: User
+Name: Raksha 2 | ID: 7463232840 | Type: User
+Name: Kamal bhaii | ID: 1119842095 | Type: User
+Name:  | ID: 7671965754 | Type: User
+Name: Ikhar Sir | ID: 7855731207 | Type: User
+Name: puna Sanju | ID: 8072485121 | Type: User
+Name: Shreya Patil | ID: 8199838566 | Type: User
+Name: Chamat Mam | ID: 7712879352 | Type: User
+Name: Lebar | ID: 7921354849 | Type: User
+Name: Dinesh | ID: 7556317062 | Type: User
+Name: Vaibhav Bhayya | ID: 7894919629 | Type: User
+Name: Ruchika Svp | ID: 8155834708 | Type: User
+Name: Nisar Bhai Khapri | ID: 7947024445 | Type: User
+Name: Adobe X GeeksforGeeks: GenSolve Hackathon | ID: -1002203767069 | Type: Channel/Supergroup
+Name: Bhavik St | ID: 7535836235 | Type: User
+Name: Dunedar | ID: 7899073161 | Type: User
+Name: Prince Bedi | ID: 7439735692 | Type: User
+Name: Vishal Dhabekar | ID: 7067291401 | Type: User
+Name: Anjali | ID: 6593183689 | Type: User
+Name: Chhaparya | ID: 7290549161 | Type: User
+Name: Kadir Mamu | ID: 7225772676 | Type: User
+Name: Kiran St | ID: 7116287730 | Type: User
+Name: [F] Fullstack 30 Days Masterclass 16Aug24 | ID: -1002198780722 | Type: Channel/Supergroup
+Name: ISHANT | ID: 1660014155 | Type: User
+Name: 2026 Batch CDC SVPCET | ID: -1001843883878 | Type: Channel/Supergroup
+Name: Auto Joining Request & Pending Request Approval Bot | ID: 6430909732 | Type: User
+Name: Nityay 2 | ID: 6992153512 | Type: User
+Name: Naznin | ID: 7003780860 | Type: User
+Name: Munna Chichar. Rice | ID: 7032155307 | Type: User
+Name: Asis | ID: 6998345613 | Type: User
+Name: Golu | ID: 7354556586 | Type: User
+Name: Mustafa Bh. R | ID: 7458698043 | Type: User
+Name: Chaitanya Ssv | ID: 7457541852 | Type: User
+Name: MESRAM KISHOR | ID: 7443251209 | Type: User
+Name: Halima | ID: 6941256597 | Type: User
+Name:  | ID: 7407645278 | Type: User
+Name:  | ID: 7246900098 | Type: User
+Name: Shradha | ID: 6303978705 | Type: User
+Name: Rohit Cyber Security | ID: 7426567862 | Type: User
+Name: ANIKET | ID: 6853365314 | Type: User
+Name: Ayush Bhai Op | ID: 7278465529 | Type: User
+Name: Dilip yerne | ID: 7289637612 | Type: User
+Name: Print | ID: 6858928879 | Type: User
+Name:  | ID: 6749659235 | Type: User
+Name: Insurance | ID: 7034852725 | Type: User
+Name:  | ID: 6557729246 | Type: User
+Name: Rajashree Mam (EP MS) | ID: 7124332045 | Type: User
+Name: Zaina | ID: 6710976898 | Type: User
+Name: Anurag College Of Pharmacy | ID: 6633041573 | Type: User
+Name: Chandani Raipur | ID: 6930324054 | Type: User
+Name: Chinmay | ID: 7191772358 | Type: User
+Name: Kabari Tyre. Nag | ID: 6957754022 | Type: User
+Name: Achal 2 | ID: 2062414415 | Type: User
+Name: Jitu Lichre | ID: 6491931398 | Type: User
+Name: Tara Buwa | ID: 6856435156 | Type: User
+Name: Anshul Faye | ID: 6334407488 | Type: User
+Name:  | ID: 6753299102 | Type: User
+Name: Raipur Nusrat | ID: 6412004246 | Type: User
+Name: Vinit Vaidya | ID: 7102670522 | Type: User
+Name: Dushant | ID: 7063470197 | Type: User
+Name: Anjum | ID: 6983321080 | Type: User
+Name: Himanshu BHAII | ID: 6933414838 | Type: User
+Name:  | ID: 1998745742 | Type: User
+Name: Lakhni | ID: 6806629555 | Type: User
+Name:  | ID: 7187076511 | Type: User
+Name:  | ID: 7109244361 | Type: User
+Name: Driving Licence Agent | ID: 6887077893 | Type: User
+Name: Manoj Bhanje | ID: 6921710370 | Type: User
+Name:  | ID: 6796556492 | Type: User
+Name:  | ID: 6744490239 | Type: User
+Name: Punam Somnala | ID: 6838308262 | Type: User
+Name:  | ID: 6824167584 | Type: User
+Name:  | ID: 6365596513 | Type: User
+Name: Krish Chakole | ID: 6737264750 | Type: User
+Name: Atharwa Pandaw | ID: 5482754609 | Type: User
+Name: Faizi Bhabhi | ID: 6419444733 | Type: User
+Name: Adar Gatmaidam | ID: 6911913346 | Type: User
+Name: Hashij | ID: 6678025819 | Type: User
+Name:  | ID: 6573828321 | Type: User
+Name: FLAT Malik | ID: 6609919145 | Type: User
+Name: Shamim Ansari | ID: 6438551382 | Type: User
+Name:  | ID: 6884216404 | Type: User
+Name: Saksham | ID: 6466520106 | Type: User
+Name: Poteji Pote | ID: 6053471378 | Type: User
+Name:  | ID: 6309735626 | Type: User
+Name: Shaista | ID: 6661865098 | Type: User
+Name: Sahil Girhepunje | ID: 6543464951 | Type: User
+Name: Lok Agemt | ID: 6854736707 | Type: User
+Name:  | ID: 6910043758 | Type: User
+Name: Kisor. K | ID: 6828299317 | Type: User
+Name: Makade Shevai Machine | ID: 6467301495 | Type: User
+Name:  | ID: 6898776270 | Type: User
+Name: Abhinandan Wahane | ID: 6805496360 | Type: User
+Name: Rupali Mam | ID: 6458326432 | Type: User
+Name: Auto Approve Join Request Bot | ID: 5515949187 | Type: User
+Name: Deshmukh Sir | ID: 6963045239 | Type: User
+Name: Ayush St | ID: 6306953301 | Type: User
+Name:  | ID: 6370141347 | Type: User
+Name: Vibha Shukla Mam | ID: 6534146431 | Type: User
+Name:  | ID: 6850980206 | Type: User
+Name:  | ID: 6417440629 | Type: User
+Name: Neha Pudke Mam | ID: 6830482901 | Type: User
+Name: Sanj svp | ID: 6976691935 | Type: User
+Name:  | ID: 6842209667 | Type: User
+Name: Vaishali Ssv | ID: 6421327969 | Type: User
+Name:  | ID: 6966571814 | Type: User
+Name:  | ID: 6654992678 | Type: User
+Name: Rutuja St | ID: 6664953478 | Type: User
+Name:  | ID: 6342879612 | Type: User
+Name: Swapnil Yerne | ID: 6621354944 | Type: User
+Name:  | ID: 6306692265 | Type: User
+Name: Sajal St | ID: 6613670184 | Type: User
+Name: Srushti Palloti | ID: 6487540024 | Type: User
+Name: Tanvi Svp | ID: 6207293001 | Type: User
+Name: Aachal Palloti | ID: 6077391972 | Type: User
+Name: Aditya Singh | ID: 6602715630 | Type: User
+Name: Atharva Kulkarni | ID: 5998563491 | Type: User
+Name: Avanti DS | ID: 6158936105 | Type: User
+Name: Tina Whatsapp | ID: 6517912683 | Type: User
+Name: Pawan Ukale | ID: 6371043728 | Type: User
+Name:  | ID: 6548488007 | Type: User

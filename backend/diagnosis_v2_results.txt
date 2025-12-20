@@ -1,0 +1,11 @@
+🔍 Starting Diagnosis V2 (Reproduction)...
+✅ Connected
+
+🧪 Test 1: Sending Message to Basic Group -5099839599
+❌ Failed via Direct ID: 400: PEER_ID_INVALID (caused by messages.SendMessage)
+
+🧪 Test 2: Sending Poll with Buffer.from([0]) to 'me'
+✅ Poll Sent Successfully (Buffer.[0])
+
+🧪 Test 3: Sending Poll with Buffer.from('0')
+✅ Poll Sent Successfully (Buffer.from('0'))
