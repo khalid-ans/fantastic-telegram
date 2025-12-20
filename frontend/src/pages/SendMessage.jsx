@@ -2,12 +2,14 @@ import { useState } from 'react'
 import { useQuery, useMutation } from '@tanstack/react-query'
 import { getFolders, scheduleTask } from '../services/api'
 import { Send, Calendar, Clock, CheckCircle2, AlertCircle, Loader2, FolderKanban, Image as ImageIcon, X } from 'lucide-react'
+import TimePicker from '../components/TimePicker'
 
 function SendMessage() {
     const [taskName, setTaskName] = useState('')
     const [message, setMessage] = useState('')
     const [selectedFolders, setSelectedFolders] = useState([])
-    const [scheduledAt, setScheduledAt] = useState('')
+    const [scheduleDate, setScheduleDate] = useState('')
+    const [scheduleTime, setScheduleTime] = useState('12:00 PM')
     const [expiryHours, setExpiryHours] = useState('')
     const [mediaFile, setMediaFile] = useState(null)
     const [success, setSuccess] = useState(false)
@@ -26,7 +28,8 @@ function SendMessage() {
             setTaskName('')
             setMessage('')
             setSelectedFolders([])
-            setScheduledAt('')
+            setScheduleDate('')
+            setScheduleTime('12:00 PM')
             setExpiryHours('')
             setMediaFile(null)
             setTimeout(() => setSuccess(false), 3000)
@@ -54,7 +57,21 @@ function SendMessage() {
         formData.append('type', 'message')
         formData.append('content', JSON.stringify({ text: message }))
         formData.append('folderIds', JSON.stringify(selectedFolders))
-        if (scheduledAt) formData.append('scheduledAt', scheduledAt)
+        // Combine date and time into ISO string
+        if (scheduleDate && scheduleTime) {
+            const [time, period] = scheduleTime.split(' ')
+            const [hourStr, minuteStr] = time.split(':')
+            let hour = parseInt(hourStr)
+            const minute = parseInt(minuteStr)
+
+            // Convert to 24-hour format
+            if (period === 'PM' && hour !== 12) hour += 12
+            if (period === 'AM' && hour === 12) hour = 0
+
+            const scheduledDateTime = new Date(scheduleDate)
+            scheduledDateTime.setHours(hour, minute, 0, 0)
+            formData.append('scheduledAt', scheduledDateTime.toISOString())
+        }
         if (expiryHours) formData.append('expiryHours', expiryHours)
         if (mediaFile) formData.append('media', mediaFile)
 
@@ -155,17 +172,46 @@ function SendMessage() {
                             </p>
                         </div>
 
-                        <div>
-                            <label className="block text-sm font-medium text-dark-300 mb-2">
-                                <Calendar className="w-4 h-4 inline mr-1" />
-                                Schedule (Optional)
-                            </label>
-                            <input
-                                type="datetime-local"
-                                value={scheduledAt}
-                                onChange={(e) => setScheduledAt(e.target.value)}
-                                className="w-full px-4 py-3 rounded-xl bg-dark-900/50 border border-dark-700 focus:border-primary-500 focus:outline-none transition-colors"
-                            />
+                        <div className="space-y-4">
+                            <div>
+                                <label className="block text-sm font-medium text-dark-300 mb-2">
+                                    <Calendar className="w-4 h-4 inline mr-1" />
+                                    Schedule Date (Optional)
+                                </label>
+                                <input
+                                    type="date"
+                                    value={scheduleDate}
+                                    onChange={(e) => setScheduleDate(e.target.value)}
+                                    className="w-full px-4 py-3 rounded-xl bg-dark-900/50 border border-dark-700 focus:border-primary-500 focus:outline-none transition-colors"
+                                />
+                            </div>
+
+                            {scheduleDate && (
+                                <div>
+                                    <label className="block text-sm font-medium text-dark-300 mb-2">
+                                        <Clock className="w-4 h-4 inline mr-1" />
+                                        Schedule Time
+                                    </label>
+                                    <TimePicker
+                                        value={scheduleTime}
+                                        onChange={setScheduleTime}
+                                    />
+                                </div>
+                            )}
+
+                            {scheduleDate && scheduleTime && (
+                                <div className="p-3 rounded-lg bg-primary-500/10 border border-primary-500/20">
+                                    <p className="text-xs text-dark-400 mb-1">Scheduled for:</p>
+                                    <p className="text-sm font-bold text-primary-400">
+                                        {new Date(scheduleDate).toLocaleDateString('en-US', {
+                                            weekday: 'long',
+                                            year: 'numeric',
+                                            month: 'long',
+                                            day: 'numeric'
+                                        })} at {scheduleTime}
+                                    </p>
+                                </div>
+                            )}
                         </div>
 
                         <div>
@@ -175,12 +221,16 @@ function SendMessage() {
                             </label>
                             <input
                                 type="number"
-                                placeholder="e.g., 24 (Leave blank for no expiry)"
+                                step="0.1"
+                                placeholder="e.g., 0.1 (6 min), 0.5 (30 min), 24 (1 day)"
                                 value={expiryHours}
                                 onChange={(e) => setExpiryHours(e.target.value)}
-                                min="1"
+                                min="0.1"
                                 className="w-full px-4 py-3 rounded-xl bg-dark-900/50 border border-dark-700 focus:border-primary-500 focus:outline-none transition-colors"
                             />
+                            <p className="text-xs text-dark-500 mt-1">
+                                Supports decimal values: 0.1 = 6 minutes, 0.5 = 30 minutes, 1 = 1 hour
+                            </p>
                         </div>
                     </div>
                 </div>

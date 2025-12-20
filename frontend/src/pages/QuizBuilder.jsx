@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { useQuery, useMutation } from '@tanstack/react-query'
 import { getFolders, scheduleTask } from '../services/api'
 import { HelpCircle, Wand2, Plus, Trash2, CheckCircle2, Loader2, Upload, Calendar } from 'lucide-react'
+import { wordFileParser } from '../utils/wordFileParser'
+import mammoth from 'mammoth'
 
 function QuizBuilder() {
     const [mode, setMode] = useState('auto')
@@ -31,18 +33,77 @@ function QuizBuilder() {
         }
     })
 
-    const handleFileUpload = (e) => {
+    const handleFileUpload = async (e) => {
         const file = e.target.files[0]
         if (!file) return
-        const reader = new FileReader()
-        reader.onload = (event) => setRawText(event.target.result)
-        reader.readAsText(file)
+
+        const fileName = file.name.toLowerCase()
+
+        // Check if it's a Word document
+        if (fileName.endsWith('.docx') || fileName.endsWith('.doc')) {
+            try {
+                console.log('📄 Reading Word document...')
+                const arrayBuffer = await file.arrayBuffer()
+                const result = await mammoth.extractRawText({ arrayBuffer })
+                setRawText(result.value)
+                console.log('✅ Word document loaded successfully')
+                if (result.messages.length > 0) {
+                    console.warn('⚠️ Mammoth warnings:', result.messages)
+                }
+            } catch (error) {
+                console.error('❌ Error reading Word document:', error)
+                alert('Failed to read Word document. Please try a .txt file or copy-paste the content.')
+            }
+        } else {
+            // Handle text files (.txt, .csv, .md)
+            const reader = new FileReader()
+            reader.onload = (event) => setRawText(event.target.result)
+            reader.readAsText(file)
+        }
     }
 
     const parseRawText = () => {
         if (!rawText.trim()) return
         setIsParsing(true)
 
+        try {
+            // Try custom word file parser first
+            const parsedQuizzes = wordFileParser(rawText)
+
+            if (parsedQuizzes.length > 0) {
+                // Extract scheduled time from first quiz if available (for backward compatibility)
+                const firstQuiz = parsedQuizzes[0]
+                if (firstQuiz.scheduledAt) {
+                    setScheduledTime(new Date(firstQuiz.scheduledAt))
+                }
+
+                // Set quizzes - PRESERVE scheduledAt for individual scheduling
+                setQuizzes(parsedQuizzes.map(q => ({
+                    question: q.question,
+                    options: q.options,
+                    correctOption: q.correctOption,
+                    explanation: q.explanation,
+                    scheduledAt: q.scheduledAt // Preserve individual scheduled time
+                })))
+
+                setMode('preview')
+                console.log(`✅ Parsed ${parsedQuizzes.length} quizzes using custom format`)
+            } else {
+                // Fallback to generic parser
+                console.log('⚠️ Custom parser found no quizzes, trying generic parser...')
+                parseWithGenericParser()
+            }
+        } catch (error) {
+            console.error('❌ Custom parser error:', error)
+            // Fallback to generic parser
+            parseWithGenericParser()
+        }
+
+        setIsParsing(false)
+    }
+
+    // Generic fallback parser (original logic)
+    const parseWithGenericParser = () => {
         // 1. Detect Scheduling
         const scheduleRegex = /scheduled on (\d{1,2}\/\d{1,2}\/\d{4}) at (\d{1,2}(?::\d{2})?\s*(?:AM|PM))/i
         const scheduleMatch = rawText.match(scheduleRegex)
@@ -61,9 +122,7 @@ function QuizBuilder() {
         }
 
         // 2. Split by "Question" or number patterns to find multiple blocks
-        // This is a simple heuristic: split by "Question:" or "Q:" or "1." if double-newline separated
-        // We'll normalize newlines first
-        const blocks = rawText.split(/\n\s*\n/) // Split by empty lines
+        const blocks = rawText.split(/\n\s*\n/)
 
         const newQuizzes = []
 
@@ -82,7 +141,6 @@ function QuizBuilder() {
                     q = trimmed.replace(/^(Question:|Que:|Q:|\d+\.)\s*/i, '').trim()
                     continue
                 } else if (!q && opts.length === 0) {
-                    // Fallback: first line is question
                     q = trimmed
                     continue
                 }
@@ -99,8 +157,8 @@ function QuizBuilder() {
                 }
 
                 // Explanation
-                if (trimmed.match(/^(Explanation:|Exp:)/i)) {
-                    exp = trimmed.replace(/^(Explanation:|Exp:)\s*/i, '').trim()
+                if (trimmed.match(/^(Explanation:|Exp:|Solution:)/i)) {
+                    exp = trimmed.replace(/^(Explanation:|Exp:|Solution:)\s*/i, '').trim()
                     continue
                 }
 
@@ -108,8 +166,7 @@ function QuizBuilder() {
                 const optionMatch = trimmed.match(/^([A-J]\)|[A-J]\.|[1-9]\.|Option\s+\d+:?)\s*(.+)/i)
                 if (optionMatch) {
                     opts.push(optionMatch[2].trim())
-                } else if (opts.length > 0 && !trimmed.match(/^(Answer|Ans|Correct|Explanation|Exp)/i)) {
-                    // Continuation or simple format
+                } else if (opts.length > 0 && !trimmed.match(/^(Answer|Ans|Correct|Explanation|Exp|Solution)/i)) {
                     if (opts.length < 10) opts.push(trimmed)
                 }
             }
@@ -126,7 +183,7 @@ function QuizBuilder() {
             if (quiz) newQuizzes.push(quiz)
         }
 
-        // Fallback: if blocks didn't work (maybe single block text), try parsing whole text
+        // Fallback: if blocks didn't work, try parsing whole text
         if (newQuizzes.length === 0) {
             const quiz = parseBlock(rawText)
             if (quiz) newQuizzes.push(quiz)
@@ -134,10 +191,11 @@ function QuizBuilder() {
 
         if (newQuizzes.length > 0) {
             setQuizzes(newQuizzes)
-            setMode('preview') // Switch to preview checks
+            setMode('preview')
+            console.log(`✅ Parsed ${newQuizzes.length} quizzes using generic parser`)
+        } else {
+            console.log('❌ No quizzes found')
         }
-
-        setIsParsing(false)
     }
 
     const handleManualAdd = () => {
@@ -205,11 +263,17 @@ function QuizBuilder() {
 
             // Schedule all quizzes
             const promises = quizzes.map((quiz, i) => {
-                // Stagger times if scheduled (e.g. 5 mins apart?) 
-                // For now, let's schedule them all at same time (Broadcaster queue handles concurrency)
-                // OR allow user to specify interval? 
-                // Requirement said: "Multiple Quizzes option" - implies bulk upload.
                 const nameSuffix = quizzes.length > 1 ? ` (Part ${i + 1})` : ''
+
+                // Use individual quiz's scheduledAt if available, otherwise use global scheduledTime
+                let quizScheduledTime = null
+                if (quiz.scheduledAt) {
+                    // Quiz has its own scheduled time (from Word file parser)
+                    quizScheduledTime = quiz.scheduledAt
+                } else if (baseTime) {
+                    // Use global scheduled time
+                    quizScheduledTime = baseTime.toISOString()
+                }
 
                 return scheduleMutation.mutateAsync({
                     name: taskName.trim() + nameSuffix,
@@ -221,7 +285,7 @@ function QuizBuilder() {
                         pollExplanation: quiz.explanation
                     },
                     folderIds: selectedFolders,
-                    scheduledAt: baseTime ? baseTime.toISOString() : null
+                    scheduledAt: quizScheduledTime // Use individual scheduled time
                 })
             })
 
@@ -284,7 +348,7 @@ function QuizBuilder() {
                             <div className="flex gap-4">
                                 <label className="flex items-center gap-2 px-4 py-2 rounded-lg bg-dark-800 hover:bg-dark-700 cursor-pointer transition-colors text-sm">
                                     <Upload className="w-4 h-4" /> Upload File
-                                    <input type="file" onChange={handleFileUpload} className="hidden" accept=".txt,.csv,.md" />
+                                    <input type="file" onChange={handleFileUpload} className="hidden" accept=".txt,.csv,.md,.doc,.docx" />
                                 </label>
                                 <button
                                     onClick={parseRawText}
@@ -330,6 +394,19 @@ function QuizBuilder() {
                                                 placeholder="Question text"
                                             />
                                         </div>
+
+                                        {/* Show individual scheduled time if available */}
+                                        {quiz.scheduledAt && (
+                                            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-green-500/10 border border-green-500/20 text-xs">
+                                                <Calendar className="w-3 h-3 text-green-400" />
+                                                <span className="text-green-400 font-medium">
+                                                    Scheduled: {new Date(quiz.scheduledAt).toLocaleString('en-IN', {
+                                                        dateStyle: 'medium',
+                                                        timeStyle: 'short'
+                                                    })}
+                                                </span>
+                                            </div>
+                                        )}
 
                                         <div className="pl-8 space-y-2">
                                             {quiz.options.map((opt, oIdx) => (

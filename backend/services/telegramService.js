@@ -298,20 +298,45 @@ const deleteMessages = async (messages) => {
 
     for (const msg of messages) {
         try {
+            console.log(`🗑️ Attempting to delete message ${msg.messageId} from ${msg.recipientId}`);
+
             // Resolve proper Telegram peer for the stored recipient id
-            // This is more robust than passing the raw string/id directly.
             const peer = await client.getInputEntity(msg.recipientId);
 
-            // deleteMessages takes (peer, [messageIds], { revoke: true })
-            await client.deleteMessages(peer, [msg.messageId], { revoke: true });
+            let result;
+
+            // Check if this is a channel/supergroup or regular chat
+            // Channels and supergroups use InputPeerChannel
+            if (peer.className === 'InputPeerChannel') {
+                console.log(`📢 Deleting from channel/supergroup: ${msg.recipientId}`);
+                result = await client.invoke(
+                    new Api.channels.DeleteMessages({
+                        channel: peer,
+                        id: [msg.messageId]
+                    })
+                );
+            } else {
+                // Regular chats, private messages, and groups use messages.DeleteMessages
+                console.log(`💬 Deleting from regular chat/group: ${msg.recipientId}`);
+                result = await client.invoke(
+                    new Api.messages.DeleteMessages({
+                        id: [msg.messageId],
+                        revoke: true  // This deletes for everyone, not just the sender
+                    })
+                );
+            }
+
+            console.log(`✅ Successfully deleted message ${msg.messageId} from ${msg.recipientId}`, result);
             results.success++;
         } catch (err) {
             const errorMsg = `Failed to delete message ${msg.messageId} for ${msg.recipientId}: ${err.message}`;
-            console.error(errorMsg);
+            console.error('❌', errorMsg);
             results.failed++;
             results.errors.push(errorMsg);
         }
     }
+
+    console.log(`🗑️ Delete operation completed: ${results.success} succeeded, ${results.failed} failed`);
     return results;
 };
 

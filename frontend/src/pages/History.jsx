@@ -135,7 +135,7 @@ function History() {
                                         </span>
                                     </td>
                                     <td className="px-6 py-4 text-right">
-                                        {task.status === 'completed' && task.sentMessages?.length > 0 && (
+                                        {(task.status === 'completed' || task.status === 'partially_completed') && task.sentMessages?.length > 0 && (
                                             <button
                                                 onClick={() => handleUndo(task.taskId)}
                                                 className="p-2 rounded-lg bg-dark-700 hover:bg-red-500/20 text-dark-300 hover:text-red-400 transition-all group"
