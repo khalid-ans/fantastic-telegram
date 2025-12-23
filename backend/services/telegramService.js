@@ -204,13 +204,25 @@ const sendBroadcast = async (recipientIds, type, content) => {
                         let mediaType = 'document'; // Default to document
                         let fieldName = 'document';
 
+                        const stats = fs.statSync(filePath);
+                        const fileSizeInBytes = stats.size;
+                        const ONE_MB = 1024 * 1024;
+                        const MAX_PHOTO_SIZE = 10 * ONE_MB;
+
                         if (['.jpg', '.jpeg', '.png', '.gif', '.webp'].includes(ext)) {
-                            mediaType = 'photo';
-                            fieldName = 'photo';
+                            if (fileSizeInBytes > MAX_PHOTO_SIZE) {
+                                console.log(`⚠️ Image > 10MB (${(fileSizeInBytes / ONE_MB).toFixed(2)} MB), sending as document to bypass limit.`);
+                                mediaType = 'document';
+                                fieldName = 'document';
+                            } else {
+                                mediaType = 'photo';
+                                fieldName = 'photo';
+                            }
                         } else if (['.mp4', '.mov', '.avi'].includes(ext)) {
                             mediaType = 'video';
                             fieldName = 'video';
                         }
+
 
                         endpoint = `${baseUrl}/send${mediaType.charAt(0).toUpperCase() + mediaType.slice(1)}`;
 

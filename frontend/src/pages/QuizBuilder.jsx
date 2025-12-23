@@ -132,9 +132,26 @@ function QuizBuilder() {
             const lines = block.split('\n').filter(l => l.trim())
             let q = '', opts = [], corr = -1, exp = ''
 
+            // Scheduling temp vars
+            let dateStr = null
+            let timeStr = null
+
             for (const line of lines) {
                 const trimmed = line.trim()
                 if (scheduleRegex.test(trimmed)) continue
+
+                // --- 1. Detect Explicit Date/Time lines ---
+                const dateMatch = trimmed.match(/^Date\s*:\s*(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})/i)
+                if (dateMatch) {
+                    dateStr = dateMatch[1].replace(/-/g, '/')
+                    continue
+                }
+
+                const timeMatch = trimmed.match(/^Time\s*:\s*(\d{1,2}:\d{2}\s*(?:AM|PM)?)/i)
+                if (timeMatch) {
+                    timeStr = timeMatch[1].toUpperCase()
+                    continue
+                }
 
                 // Question
                 if (trimmed.match(/^(Question:|Que:|Q:|\d+\.)/i) && !q) {
@@ -164,15 +181,53 @@ function QuizBuilder() {
 
                 // Option
                 const optionMatch = trimmed.match(/^([A-J]\)|[A-J]\.|[1-9]\.|Option\s+\d+:?)\s*(.+)/i)
+
+                // CRITICAL: Ensure we don't treat "Date: ..." as "Option D." etc. 
+                // The generic parser might catch "D. Date:..." if formatted poorly, but mainly we want to avoid
+                // lines that *look* like options but are actually metadata if they slip through.
+                // Here we rely on the fact we already stripped Date/Time lines above with `continue`.
+
                 if (optionMatch) {
                     opts.push(optionMatch[2].trim())
                 } else if (opts.length > 0 && !trimmed.match(/^(Answer|Ans|Correct|Explanation|Exp|Solution)/i)) {
+                    // Fallback for lines that look like options but missing prefix (careful not to add garbage)
                     if (opts.length < 10) opts.push(trimmed)
                 }
             }
 
+            // Calculate ScheduledAt if Date/Time found
+            let scheduledAt = null
+            if (dateStr && timeStr) {
+                try {
+                    // Parse manually or use existing dateTimeFormatter logic if we import it (but this is inside component)
+                    // Simple parse:
+                    const [day, month, year] = dateStr.split('/').map(Number)
+                    const timeParts = timeStr.match(/(\d+):(\d+)\s*(AM|PM)?/i)
+                    if (timeParts) {
+                        let hour = parseInt(timeParts[1])
+                        const minute = parseInt(timeParts[2])
+                        const period = timeParts[3] ? timeParts[3].toUpperCase() : null
+
+                        if (period === 'PM' && hour < 12) hour += 12
+                        if (period === 'AM' && hour === 12) hour = 0
+
+                        // Create date object
+                        const d = new Date(year, month - 1, day, hour, minute)
+                        scheduledAt = d.toISOString()
+                    }
+                } catch (e) {
+                    console.error("Failed to parse schedule inside block", e)
+                }
+            }
+
             if (q && opts.length >= 2) {
-                return { question: q, options: opts, correctOption: Math.max(0, corr), explanation: exp }
+                return {
+                    question: q,
+                    options: opts,
+                    correctOption: Math.max(0, corr),
+                    explanation: exp,
+                    scheduledAt: scheduledAt
+                }
             }
             return null
         }

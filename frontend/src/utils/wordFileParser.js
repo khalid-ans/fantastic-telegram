@@ -42,16 +42,20 @@ const wordFileParser = (rawText) => {
         const qMatch = block.match(/Q\s*\d*\s*\.\s*(.+?)(?=\nA\.)/is);
         const question = qMatch ? qMatch[1].trim() : null;
 
-        const optionMatches = [...block.matchAll(/^([A-D])\s*\.\s*(.+)$/gim)];
+        // Support options A-J (instead of just A-D)
+        const optionMatches = [...block.matchAll(/^([A-J])\s*\.\s*(.+)$/gim)];
 
         let options = {};
         optionMatches.forEach((match) => {
             const letter = match[1].toUpperCase();
             const value = match[2].trim();
-            options[letter] = value;
+            // Ignore if value looks like a Date or Time line (just in case regex is loose)
+            if (!value.match(/^Date:/i) && !value.match(/^Time:/i)) {
+                options[letter] = value;
+            }
         });
 
-        const answerMatch = block.match(/Answer\s*:\s*([A-D])/i);
+        const answerMatch = block.match(/Answer\s*:\s*([A-J])/i);
         const answerLetter = answerMatch ? answerMatch[1].toUpperCase() : null;
 
         const answerText =
@@ -62,12 +66,12 @@ const wordFileParser = (rawText) => {
         );
         const solution = solutionMatch ? solutionMatch[1].trim() : "";
 
-        const dateMatch = block.match(/(\d{1,2})\/(\d{1,2})\/(\d{2,4})/);
-        const date = dateMatch ? dateMatch[0] : null;
+        const dateMatch = block.match(/Date\s*:\s*(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})/i);
+        const date = dateMatch ? `${dateMatch[1]}/${dateMatch[2]}/${dateMatch[3]}` : null;
 
-        const timeMatch = block.match(/(\d{1,2}):(\d{2})\s*(AM|PM)?/i);
+        const timeMatch = block.match(/Time\s*:\s*(\d{1,2}):(\d{2})\s*(AM|PM)?/i);
         const time = timeMatch
-            ? timeMatch[0].replace(/\s+/g, "").toUpperCase()
+            ? timeMatch[0].replace(/Time\s*:\s*/i, "").replace(/\s+/g, "").toUpperCase()
             : null;
 
         const scheduledAt = date && time ? parseAndConvertDate(date, time).UTC : null;

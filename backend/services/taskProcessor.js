@@ -74,11 +74,16 @@ const processTask = async (taskId) => {
             }
         }
 
+        if (results.failed > 0) {
+            log(`⚠️ Errors encountered during task ${taskId}:`);
+            results.errors.forEach(e => log(`   - ${e}`));
+        }
         log(`✅ Task ${taskId} finished: ${results.success} sent, ${results.failed} failed`);
         return results;
 
     } catch (err) {
         log(`❌ Task ${taskId} failed: ` + err.message);
+        if (err.stack) log(err.stack); // Log stack trace if available
 
         await Task.findOneAndUpdate(
             { taskId },

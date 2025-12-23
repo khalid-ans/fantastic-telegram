@@ -456,3 +456,336 @@
 [2025-12-20T09:35:36.266Z] [ROUTER] 📝 Task 7338fcc3-5862-46e6-aa30-2c876e93147f added to queue (delay: 983742ms)
 [2025-12-20T09:35:36.268Z] [ROUTER] 📝 Task 58627e36-3456-400c-95f3-2730e42eda44 added to queue (delay: 1103741ms)
 [2025-12-20T09:40:03.143Z] [PROCESSOR] ✅ Task 106768ff-2f6a-4aa5-b03d-bcb72c579255 finished: 1 sent, 0 failed
+[2025-12-20T09:43:41.276Z] ✅ MongoDB connected successfully
+[2025-12-20T09:43:51.053Z] ✅ Background worker started
+[2025-12-20T09:43:51.064Z] 🚀 Server running on http://localhost:5000
+[2025-12-20T09:45:00.889Z] [PROCESSOR] ✅ Task 9006414c-3e65-485e-8f5e-5c21a1da797c finished: 0 sent, 1 failed
+[2025-12-20T09:50:00.718Z] [PROCESSOR] ✅ Task 05572c2c-42a8-416a-8c7f-987fa245f18d finished: 0 sent, 1 failed
+[2025-12-20T09:52:02.260Z] [PROCESSOR] ✅ Task 7338fcc3-5862-46e6-aa30-2c876e93147f finished: 0 sent, 1 failed
+[2025-12-20T09:54:00.727Z] [PROCESSOR] ✅ Task 58627e36-3456-400c-95f3-2730e42eda44 finished: 0 sent, 1 failed
+[2025-12-20T11:15:06.685Z] ✅ MongoDB connected successfully
+[2025-12-20T11:15:07.435Z] ✅ Background worker started
+[2025-12-20T11:15:07.448Z] 🚀 Server running on http://localhost:5000
+[2025-12-20T11:22:45.219Z] ✅ MongoDB connected successfully
+[2025-12-20T11:22:45.902Z] ✅ Background worker started
+[2025-12-20T11:22:45.973Z] 🚀 Server running on http://localhost:5000
+[2025-12-20T11:25:48.474Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:25:48.475Z] [ROUTER] Body: {"name":"quiz time testing (Part 1)","type":"poll","content":{"pollQuestion":"Who is known as the Father of the Indian Constitution?","pollOptions":["Mahatma Gandhi","B.R. Ambedkar","Jawaharlal Nehru","Sardar Vallabhbhai Patel"],"correctOption":1,"pollExplanation":"Dr. B.R. Ambedkar chaired the Drafting Committee and is widely recognized as the architect of the Constitution of India."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-20T11:26:00.000Z"}
+[2025-12-20T11:25:48.477Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:25:48.487Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:25:48.488Z] [ROUTER] Body: {"name":"quiz time testing (Part 2)","type":"poll","content":{"pollQuestion":"Which planet is known as the Red Planet?","pollOptions":["Jupiter","Venus","Mars","Saturn"],"correctOption":2,"pollExplanation":"Mars appears reddish due to iron oxide (rust) on its surface."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-20T11:28:00.000Z"}
+[2025-12-20T11:25:48.490Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:25:48.496Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:25:48.498Z] [ROUTER] Body: {"name":"quiz time testing (Part 3)","type":"poll","content":{"pollQuestion":"In which year did India gain independence?","pollOptions":["1945","1947","1950","1930"],"correctOption":1,"pollExplanation":"India became independent from British rule on 15th August 1947."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-20T10:30:00.000Z"}
+[2025-12-20T11:25:48.499Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:25:48.505Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:25:48.507Z] [ROUTER] Body: {"name":"quiz time testing (Part 5)","type":"poll","content":{"pollQuestion":"Which of the following is a primary source of energy for Earth's climate system?","pollOptions":["Moon","Sun","Wind","Ocean currents"],"correctOption":1,"pollExplanation":"The Sun provides the primary energy that drives Earth's climate through solar radiation."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-20T09:54:00.000Z"}
+[2025-12-20T11:25:48.508Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:25:48.513Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:25:48.515Z] [ROUTER] Body: {"name":"quiz time testing (Part 4)","type":"poll","content":{"pollQuestion":"What is the chemical symbol for water?","pollOptions":["H₂O","CO₂","O₂","NaCl"],"correctOption":0,"pollExplanation":"Water is composed of two hydrogen atoms and one oxygen atom, hence H₂O."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-20T09:52:00.000Z"}
+[2025-12-20T11:25:48.516Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:25:48.580Z] [ROUTER] 📅 ScheduledAt received: 2025-12-20T11:26:00.000Z
+[2025-12-20T11:25:48.581Z] [ROUTER] ⏰ Calculated delay: 11420ms (0.19033333333333333 minutes)
+[2025-12-20T11:25:48.589Z] [ROUTER] 📅 ScheduledAt received: 2025-12-20T11:28:00.000Z
+[2025-12-20T11:25:48.590Z] [ROUTER] ⏰ Calculated delay: 131411ms (2.190183333333333 minutes)
+[2025-12-20T11:25:48.594Z] [ROUTER] 📅 ScheduledAt received: 2025-12-20T10:30:00.000Z
+[2025-12-20T11:25:48.595Z] [ROUTER] ⏰ Calculated delay: -3348594ms (-55.8099 minutes)
+[2025-12-20T11:25:48.601Z] [ROUTER] 📝 Task 7e27ea07-5f20-41e3-96f8-db95873af194 added to queue (delay: 11420ms)
+[2025-12-20T11:25:48.606Z] [ROUTER] 📝 Task 3a1d1763-8faa-4460-bc70-ad9537737ec2 added to queue (delay: 131411ms)
+[2025-12-20T11:25:48.609Z] [ROUTER] 📝 Task 8d227202-2bae-4bfc-93a4-4b9e7fcfc04d added to queue (delay: -3348594ms)
+[2025-12-20T11:25:48.659Z] [ROUTER] 📅 ScheduledAt received: 2025-12-20T09:52:00.000Z
+[2025-12-20T11:25:48.660Z] [ROUTER] ⏰ Calculated delay: -5628659ms (-93.81098333333333 minutes)
+[2025-12-20T11:25:48.664Z] [ROUTER] 📅 ScheduledAt received: 2025-12-20T09:54:00.000Z
+[2025-12-20T11:25:48.665Z] [ROUTER] ⏰ Calculated delay: -5508664ms (-91.81106666666666 minutes)
+[2025-12-20T11:25:48.680Z] [ROUTER] 📝 Task cbbf0388-8b22-4bbf-bc88-d90d25af983b added to queue (delay: -5628659ms)
+[2025-12-20T11:25:48.682Z] [ROUTER] 📝 Task 56d03725-94b3-443e-b4bf-311428e36940 added to queue (delay: -5508664ms)
+[2025-12-20T11:25:49.765Z] [PROCESSOR] ✅ Task 8d227202-2bae-4bfc-93a4-4b9e7fcfc04d finished: 0 sent, 1 failed
+[2025-12-20T11:25:51.300Z] [PROCESSOR] ✅ Task cbbf0388-8b22-4bbf-bc88-d90d25af983b finished: 0 sent, 1 failed
+[2025-12-20T11:25:51.540Z] [PROCESSOR] ✅ Task 56d03725-94b3-443e-b4bf-311428e36940 finished: 0 sent, 1 failed
+[2025-12-20T11:26:00.824Z] [PROCESSOR] ✅ Task 7e27ea07-5f20-41e3-96f8-db95873af194 finished: 0 sent, 1 failed
+[2025-12-20T11:28:00.555Z] [PROCESSOR] ✅ Task 3a1d1763-8faa-4460-bc70-ad9537737ec2 finished: 0 sent, 1 failed
+[2025-12-20T11:30:28.709Z] ✅ MongoDB connected successfully
+[2025-12-20T11:30:29.381Z] ✅ Background worker started
+[2025-12-20T11:30:29.392Z] 🚀 Server running on http://localhost:5000
+[2025-12-20T11:32:09.943Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:32:09.944Z] [ROUTER] Body: {"name":"quix (Part 1)","type":"poll","content":{"pollQuestion":"Who is known as the Father of the Indian Constitution?","pollOptions":["Mahatma Gandhi","B.R. Ambedkar","Jawaharlal Nehru","Sardar Vallabhbhai Patel"],"correctOption":1,"pollExplanation":"Dr. B.R. Ambedkar chaired the Drafting Committee and is widely recognized as the architect of the Constitution of India."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-20T11:35:00.000Z"}
+[2025-12-20T11:32:09.946Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:32:09.955Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:32:09.956Z] [ROUTER] Body: {"name":"quix (Part 3)","type":"poll","content":{"pollQuestion":"In which year did India gain independence?","pollOptions":["1945","1947","1950","1930"],"correctOption":1,"pollExplanation":"India became independent from British rule on 15th August 1947."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-20T10:30:00.000Z"}
+[2025-12-20T11:32:09.958Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:32:09.963Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:32:09.965Z] [ROUTER] Body: {"name":"quix (Part 2)","type":"poll","content":{"pollQuestion":"Which planet is known as the Red Planet?","pollOptions":["Jupiter","Venus","Mars","Saturn"],"correctOption":2,"pollExplanation":"Mars appears reddish due to iron oxide (rust) on its surface."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-20T11:40:00.000Z"}
+[2025-12-20T11:32:09.966Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:32:09.971Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:32:09.973Z] [ROUTER] Body: {"name":"quix (Part 4)","type":"poll","content":{"pollQuestion":"What is the chemical symbol for water?","pollOptions":["H₂O","CO₂","O₂","NaCl"],"correctOption":0,"pollExplanation":"Water is composed of two hydrogen atoms and one oxygen atom, hence H₂O."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-20T09:52:00.000Z"}
+[2025-12-20T11:32:09.975Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:32:09.981Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:32:09.982Z] [ROUTER] Body: {"name":"quix (Part 5)","type":"poll","content":{"pollQuestion":"Which of the following is a primary source of energy for Earth's climate system?","pollOptions":["Moon","Sun","Wind","Ocean currents"],"correctOption":1,"pollExplanation":"The Sun provides the primary energy that drives Earth's climate through solar radiation."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-20T09:54:00.000Z"}
+[2025-12-20T11:32:09.983Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:32:10.043Z] [ROUTER] 📅 ScheduledAt received: 2025-12-20T11:35:00.000Z
+[2025-12-20T11:32:10.044Z] [ROUTER] ⏰ Calculated delay: 169957ms (2.8326166666666666 minutes)
+[2025-12-20T11:32:10.051Z] [ROUTER] 📅 ScheduledAt received: 2025-12-20T10:30:00.000Z
+[2025-12-20T11:32:10.052Z] [ROUTER] ⏰ Calculated delay: -3730051ms (-62.167516666666664 minutes)
+[2025-12-20T11:32:10.056Z] [ROUTER] 📅 ScheduledAt received: 2025-12-20T11:40:00.000Z
+[2025-12-20T11:32:10.057Z] [ROUTER] ⏰ Calculated delay: 469944ms (7.832400000000001 minutes)
+[2025-12-20T11:32:10.062Z] [ROUTER] 📝 Task e3f67873-0495-4254-823f-d2bf81bbd108 added to queue (delay: 169957ms)
+[2025-12-20T11:32:10.065Z] [ROUTER] 📝 Task 852bf8ea-1f7b-44ee-8219-edcde761d1f1 added to queue (delay: -3730051ms)
+[2025-12-20T11:32:10.068Z] [ROUTER] 📝 Task f978899b-794e-4be9-be11-0f4e2ec463c6 added to queue (delay: 469944ms)
+[2025-12-20T11:32:10.116Z] [ROUTER] 📅 ScheduledAt received: 2025-12-20T09:52:00.000Z
+[2025-12-20T11:32:10.117Z] [ROUTER] ⏰ Calculated delay: -6010116ms (-100.1686 minutes)
+[2025-12-20T11:32:10.120Z] [ROUTER] 📅 ScheduledAt received: 2025-12-20T09:54:00.000Z
+[2025-12-20T11:32:10.121Z] [ROUTER] ⏰ Calculated delay: -5890120ms (-98.16866666666667 minutes)
+[2025-12-20T11:32:10.133Z] [ROUTER] 📝 Task 87f91b68-b890-4a44-8c3b-e2f4d2ae1652 added to queue (delay: -6010116ms)
+[2025-12-20T11:32:10.135Z] [ROUTER] 📝 Task 3cff50ba-14df-4862-a526-7b4d4a2207f2 added to queue (delay: -5890120ms)
+[2025-12-20T11:32:10.815Z] [PROCESSOR] ✅ Task 852bf8ea-1f7b-44ee-8219-edcde761d1f1 finished: 0 sent, 1 failed
+[2025-12-20T11:32:10.995Z] [PROCESSOR] ✅ Task 87f91b68-b890-4a44-8c3b-e2f4d2ae1652 finished: 0 sent, 1 failed
+[2025-12-20T11:32:11.173Z] [PROCESSOR] ✅ Task 3cff50ba-14df-4862-a526-7b4d4a2207f2 finished: 0 sent, 1 failed
+[2025-12-20T11:35:01.663Z] [PROCESSOR] ✅ Task e3f67873-0495-4254-823f-d2bf81bbd108 finished: 0 sent, 1 failed
+[2025-12-20T11:40:00.548Z] [PROCESSOR] ✅ Task f978899b-794e-4be9-be11-0f4e2ec463c6 finished: 0 sent, 1 failed
+[2025-12-20T11:40:06.636Z] ✅ MongoDB connected successfully
+[2025-12-20T11:40:07.397Z] ✅ Background worker started
+[2025-12-20T11:40:07.409Z] 🚀 Server running on http://localhost:5000
+[2025-12-20T11:41:25.421Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:41:25.422Z] [ROUTER] Body: {"name":"fhfh (Part 1)","type":"poll","content":{"pollQuestion":"Who is known as the Father of the Indian Constitution?","pollOptions":["Mahatma Gandhi","B.R. Ambedkar","Jawaharlal Nehru","Sardar Vallabhbhai Patel"],"correctOption":1,"pollExplanation":"Dr. B.R. Ambedkar chaired the Drafting Committee and is widely recognized as the architect of the Constitution of India."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-20T11:42:00.000Z"}
+[2025-12-20T11:41:25.424Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:41:25.432Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:41:25.434Z] [ROUTER] Body: {"name":"fhfh (Part 2)","type":"poll","content":{"pollQuestion":"Which planet is known as the Red Planet?","pollOptions":["Jupiter","Venus","Mars","Saturn"],"correctOption":2,"pollExplanation":"Mars appears reddish due to iron oxide (rust) on its surface."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-20T11:44:00.000Z"}
+[2025-12-20T11:41:25.435Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:41:25.439Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:41:25.441Z] [ROUTER] Body: {"name":"fhfh (Part 3)","type":"poll","content":{"pollQuestion":"In which year did India gain independence?","pollOptions":["1945","1947","1950","1930"],"correctOption":1,"pollExplanation":"India became independent from British rule on 15th August 1947."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-20T10:30:00.000Z"}
+[2025-12-20T11:41:25.442Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:41:25.446Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:41:25.447Z] [ROUTER] Body: {"name":"fhfh (Part 4)","type":"poll","content":{"pollQuestion":"What is the chemical symbol for water?","pollOptions":["H₂O","CO₂","O₂","NaCl"],"correctOption":0,"pollExplanation":"Water is composed of two hydrogen atoms and one oxygen atom, hence H₂O."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-20T09:52:00.000Z"}
+[2025-12-20T11:41:25.448Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:41:25.453Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:41:25.454Z] [ROUTER] Body: {"name":"fhfh (Part 5)","type":"poll","content":{"pollQuestion":"Which of the following is a primary source of energy for Earth's climate system?","pollOptions":["Moon","Sun","Wind","Ocean currents"],"correctOption":1,"pollExplanation":"The Sun provides the primary energy that drives Earth's climate through solar radiation."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-20T09:54:00.000Z"}
+[2025-12-20T11:41:25.455Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:41:25.504Z] [ROUTER] 📥 [FORCE SEQUENCE] Adding task e831d340-dc59-4f13-bc62-3a5dd47c1434 to In-Memory Queue
+[2025-12-20T11:41:25.505Z] [ROUTER] ⏰ Execution time: 2025-12-20T11:42:00.000Z (Delay: 34496ms)
+[2025-12-20T11:41:25.507Z] [ROUTER] ✅ Task e831d340-dc59-4f13-bc62-3a5dd47c1434 successfully queued in memory
+[2025-12-20T11:41:25.510Z] [ROUTER] 📥 [FORCE SEQUENCE] Adding task 111263c8-5789-46d0-abf3-8955e5e6a136 to In-Memory Queue
+[2025-12-20T11:41:25.511Z] [ROUTER] ⏰ Execution time: 2025-12-20T11:44:00.000Z (Delay: 154490ms)
+[2025-12-20T11:41:25.512Z] [ROUTER] ✅ Task 111263c8-5789-46d0-abf3-8955e5e6a136 successfully queued in memory
+[2025-12-20T11:41:25.516Z] [ROUTER] 📥 [FORCE SEQUENCE] Adding task d4c30c0c-4a0b-490f-bb57-d9a73a426d9e to In-Memory Queue
+[2025-12-20T11:41:25.517Z] [ROUTER] ⏰ Execution time: 2025-12-20T10:30:00.000Z (Delay: -4285516ms)
+[2025-12-20T11:41:25.518Z] [ROUTER] ✅ Task d4c30c0c-4a0b-490f-bb57-d9a73a426d9e successfully queued in memory
+[2025-12-20T11:41:25.539Z] [ROUTER] 📥 [FORCE SEQUENCE] Adding task be79002f-cae5-45d1-8dde-8bf9b3e3c2df to In-Memory Queue
+[2025-12-20T11:41:25.541Z] [ROUTER] ⏰ Execution time: 2025-12-20T09:52:00.000Z (Delay: -6565539ms)
+[2025-12-20T11:41:25.541Z] [ROUTER] ✅ Task be79002f-cae5-45d1-8dde-8bf9b3e3c2df successfully queued in memory
+[2025-12-20T11:41:25.545Z] [ROUTER] 📥 [FORCE SEQUENCE] Adding task eebdc8d9-15a2-4169-8ccb-2fd82d74fcec to In-Memory Queue
+[2025-12-20T11:41:25.546Z] [ROUTER] ⏰ Execution time: 2025-12-20T09:54:00.000Z (Delay: -6445545ms)
+[2025-12-20T11:41:25.547Z] [ROUTER] ✅ Task eebdc8d9-15a2-4169-8ccb-2fd82d74fcec successfully queued in memory
+[2025-12-20T11:42:02.887Z] [PROCESSOR] ✅ Task e831d340-dc59-4f13-bc62-3a5dd47c1434 finished: 0 sent, 1 failed
+[2025-12-20T11:42:04.121Z] [PROCESSOR] ✅ Task be79002f-cae5-45d1-8dde-8bf9b3e3c2df finished: 0 sent, 1 failed
+[2025-12-20T11:42:05.477Z] [PROCESSOR] ✅ Task eebdc8d9-15a2-4169-8ccb-2fd82d74fcec finished: 0 sent, 1 failed
+[2025-12-20T11:42:06.711Z] [PROCESSOR] ✅ Task d4c30c0c-4a0b-490f-bb57-d9a73a426d9e finished: 0 sent, 1 failed
+[2025-12-20T11:43:37.658Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:43:37.659Z] [ROUTER] Body: {"name":"trhytrt","type":"poll","content":{"pollQuestion":"Q2. Which planet is known as the Red Planet?","pollOptions":["Jupiter","Venus","Mars","Saturn"],"correctOption":2,"pollExplanation":"Mars appears reddish due to iron oxide (rust) on its surface."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-20T11:44:00.000Z"}
+[2025-12-20T11:43:37.660Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:43:37.669Z] [ROUTER] 📥 [FORCE SEQUENCE] Adding task 193794a7-64db-4817-a63c-1894eb7224f5 to In-Memory Queue
+[2025-12-20T11:43:37.670Z] [ROUTER] ⏰ Execution time: 2025-12-20T11:44:00.000Z (Delay: 22331ms)
+[2025-12-20T11:43:37.671Z] [ROUTER] ✅ Task 193794a7-64db-4817-a63c-1894eb7224f5 successfully queued in memory
+[2025-12-20T11:44:00.678Z] [PROCESSOR] ✅ Task 111263c8-5789-46d0-abf3-8955e5e6a136 finished: 0 sent, 1 failed
+[2025-12-20T11:44:01.950Z] [PROCESSOR] ✅ Task 193794a7-64db-4817-a63c-1894eb7224f5 finished: 0 sent, 1 failed
+[2025-12-20T11:44:23.609Z] ✅ MongoDB connected successfully
+[2025-12-20T11:44:31.027Z] ✅ MongoDB connected successfully
+[2025-12-20T11:44:31.705Z] ✅ Background worker started
+[2025-12-20T11:44:31.716Z] 🚀 Server running on http://localhost:5000
+[2025-12-20T11:44:54.283Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:44:54.284Z] [ROUTER] Body: {"name":"erdr","type":"poll","content":{"pollQuestion":"Q2. Which planet is known as the Red Planet?","pollOptions":["Jupiter","Venus","Mars","Saturn"],"correctOption":2,"pollExplanation":"Mars appears reddish due to iron oxide (rust) on its surface."},"folderIds":["69453f166011d0365283990a"],"scheduledAt":"2025-12-20T11:45:00.000Z"}
+[2025-12-20T11:44:54.286Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:44:54.333Z] [ROUTER] 📅 ScheduledAt received: 2025-12-20T11:45:00.000Z
+[2025-12-20T11:44:54.334Z] [ROUTER] ⏰ Calculated delay: 5667ms (0.09444999999999999 minutes)
+[2025-12-20T11:44:54.342Z] [ROUTER] 📝 Task 801d7646-aa4a-41b9-966e-a6f4bfbc3837 added to queue (delay: 5667ms)
+[2025-12-20T11:45:01.603Z] [PROCESSOR] ✅ Task 801d7646-aa4a-41b9-966e-a6f4bfbc3837 finished: 0 sent, 3 failed
+[2025-12-20T11:46:07.959Z] ✅ MongoDB connected successfully
+[2025-12-20T11:46:08.941Z] ✅ Background worker started
+[2025-12-20T11:46:08.971Z] 🚀 Server running on http://localhost:5000
+[2025-12-20T11:46:27.028Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:46:27.030Z] [ROUTER] Body: {"name":"yjyujku (Part 1)","type":"poll","content":{"pollQuestion":"Who is known as the Father of the Indian Constitution?","pollOptions":["Mahatma Gandhi","B.R. Ambedkar","Jawaharlal Nehru","Sardar Vallabhbhai Patel"],"correctOption":1,"pollExplanation":"Dr. B.R. Ambedkar chaired the Drafting Committee and is widely recognized as the architect of the Constitution of India."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-20T11:42:00.000Z"}
+[2025-12-20T11:46:27.031Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:46:27.039Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:46:27.041Z] [ROUTER] Body: {"name":"yjyujku (Part 2)","type":"poll","content":{"pollQuestion":"Which planet is known as the Red Planet?","pollOptions":["Jupiter","Venus","Mars","Saturn"],"correctOption":2,"pollExplanation":"Mars appears reddish due to iron oxide (rust) on its surface."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-20T11:44:00.000Z"}
+[2025-12-20T11:46:27.042Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:46:27.047Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:46:27.050Z] [ROUTER] Body: {"name":"yjyujku (Part 3)","type":"poll","content":{"pollQuestion":"In which year did India gain independence?","pollOptions":["1945","1947","1950","1930"],"correctOption":1,"pollExplanation":"India became independent from British rule on 15th August 1947."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-20T10:30:00.000Z"}
+[2025-12-20T11:46:27.051Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:46:27.057Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:46:27.059Z] [ROUTER] Body: {"name":"yjyujku (Part 4)","type":"poll","content":{"pollQuestion":"What is the chemical symbol for water?","pollOptions":["H₂O","CO₂","O₂","NaCl"],"correctOption":0,"pollExplanation":"Water is composed of two hydrogen atoms and one oxygen atom, hence H₂O."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-20T09:52:00.000Z"}
+[2025-12-20T11:46:27.061Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:46:27.065Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:46:27.066Z] [ROUTER] Body: {"name":"yjyujku (Part 5)","type":"poll","content":{"pollQuestion":"Which of the following is a primary source of energy for Earth's climate system?","pollOptions":["Moon","Sun","Wind","Ocean currents"],"correctOption":1,"pollExplanation":"The Sun provides the primary energy that drives Earth's climate through solar radiation."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-20T09:54:00.000Z"}
+[2025-12-20T11:46:27.069Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:46:27.142Z] [ROUTER] 📝 Task c23d41a1-c18c-48b6-84a8-d876744ed3d9 added to queue (delay: -267128ms)
+[2025-12-20T11:46:27.145Z] [ROUTER] 📝 Task 9c39d442-e9f6-417c-8a2d-7529f8f30a1d added to queue (delay: -147134ms)
+[2025-12-20T11:46:27.148Z] [ROUTER] 📝 Task 0ded3ae1-d9fa-4fb5-a58a-a1b250169ac5 added to queue (delay: -4587136ms)
+[2025-12-20T11:46:27.416Z] [ROUTER] 📝 Task bbc5035e-b98d-4305-9396-d057f772fb59 added to queue (delay: -6867412ms)
+[2025-12-20T11:46:27.418Z] [ROUTER] 📝 Task 0d4a6ced-f6f4-47ac-8639-b7ddba0fdc70 added to queue (delay: -6747415ms)
+[2025-12-20T11:46:28.092Z] [PROCESSOR] ✅ Task c23d41a1-c18c-48b6-84a8-d876744ed3d9 finished: 0 sent, 1 failed
+[2025-12-20T11:46:28.317Z] [PROCESSOR] ✅ Task 9c39d442-e9f6-417c-8a2d-7529f8f30a1d finished: 0 sent, 1 failed
+[2025-12-20T11:46:28.604Z] [PROCESSOR] ✅ Task 0ded3ae1-d9fa-4fb5-a58a-a1b250169ac5 finished: 0 sent, 1 failed
+[2025-12-20T11:46:28.826Z] [PROCESSOR] ✅ Task bbc5035e-b98d-4305-9396-d057f772fb59 finished: 0 sent, 1 failed
+[2025-12-20T11:46:29.049Z] [PROCESSOR] ✅ Task 0d4a6ced-f6f4-47ac-8639-b7ddba0fdc70 finished: 0 sent, 1 failed
+[2025-12-20T11:47:28.374Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:47:28.376Z] [ROUTER] Body: {"name":"ghj","type":"poll","content":{"pollQuestion":"Q2. Which planet is known as the Red Planet?","pollOptions":["Jupiter","Venus","Mars","Saturn"],"correctOption":2,"pollExplanation":"Mars appears reddish due to iron oxide (rust) on its surface."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-20T11:48:00.000Z"}
+[2025-12-20T11:47:28.377Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:47:28.394Z] [ROUTER] 📝 Task 0756dbe2-748c-444a-a71b-bb77971fa461 added to queue (delay: 31609ms)
+[2025-12-20T11:48:00.608Z] [PROCESSOR] ✅ Task 0756dbe2-748c-444a-a71b-bb77971fa461 finished: 0 sent, 1 failed
+[2025-12-20T11:49:34.660Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:49:34.661Z] [ROUTER] Body: {"name":"gjgjg (Part 1)","type":"poll","content":{"pollQuestion":"Who is known as the Father of the Indian Constitution?","pollOptions":["Mahatma Gandhi","B.R. Ambedkar","Jawaharlal Nehru","Sardar Vallabhbhai Patel"],"correctOption":1,"pollExplanation":"Dr. B.R. Ambedkar chaired the Drafting Committee and is widely recognized as the architect of the Constitution of India."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-20T11:51:00.000Z"}
+[2025-12-20T11:49:34.662Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:49:34.666Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:49:34.667Z] [ROUTER] Body: {"name":"gjgjg (Part 2)","type":"poll","content":{"pollQuestion":"Which planet is known as the Red Planet?","pollOptions":["Jupiter","Venus","Mars","Saturn"],"correctOption":2,"pollExplanation":"Mars appears reddish due to iron oxide (rust) on its surface."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-20T11:54:00.000Z"}
+[2025-12-20T11:49:34.668Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:49:34.672Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:49:34.673Z] [ROUTER] Body: {"name":"gjgjg (Part 3)","type":"poll","content":{"pollQuestion":"In which year did India gain independence?","pollOptions":["1945","1947","1950","1930"],"correctOption":1,"pollExplanation":"India became independent from British rule on 15th August 1947."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-20T12:30:00.000Z"}
+[2025-12-20T11:49:34.674Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:49:34.696Z] [ROUTER] 📝 Task 6fcd4aed-59ba-4719-bb7c-de1608943f5b added to queue (delay: 85309ms)
+[2025-12-20T11:49:34.698Z] [ROUTER] 📝 Task a0625b58-a621-453f-ba44-59cab2b191c7 added to queue (delay: 265308ms)
+[2025-12-20T11:49:34.700Z] [ROUTER] 📝 Task a5d18a9d-9cac-4026-8c78-a75fa3f3619f added to queue (delay: 2425306ms)
+[2025-12-20T11:51:00.805Z] [PROCESSOR] ✅ Task 6fcd4aed-59ba-4719-bb7c-de1608943f5b finished: 0 sent, 1 failed
+[2025-12-20T11:54:00.733Z] [PROCESSOR] ✅ Task a0625b58-a621-453f-ba44-59cab2b191c7 finished: 0 sent, 1 failed
+[2025-12-20T11:55:35.131Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:55:35.132Z] [ROUTER] Body: {"name":"rtrfht","type":"message","content":"{\"text\":\"fghfh\"}","folderIds":"[\"6946516cae67a92212fbffc0\"]"}
+[2025-12-20T11:55:35.134Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:55:35.149Z] [ROUTER] 📝 Task df0b7aa5-b81b-4614-b5d6-b90047d63f6a added to queue (delay: 0ms)
+[2025-12-20T11:55:35.675Z] [PROCESSOR] ✅ Task df0b7aa5-b81b-4614-b5d6-b90047d63f6a finished: 0 sent, 1 failed
+[2025-12-20T11:58:27.372Z] ✅ MongoDB connected successfully
+[2025-12-20T11:58:28.080Z] ✅ Background worker started
+[2025-12-20T11:58:28.103Z] 🚀 Server running on http://localhost:5000
+[2025-12-20T11:58:31.723Z] ✅ MongoDB connected successfully
+[2025-12-20T11:58:32.491Z] ✅ Background worker started
+[2025-12-20T11:58:32.503Z] 🚀 Server running on http://localhost:5000
+[2025-12-20T11:59:03.668Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T11:59:03.670Z] [ROUTER] Body: {"name":"hjkhjm","type":"message","content":"{\"text\":\"gfbgfbgf\"}","folderIds":"[\"6946516cae67a92212fbffc0\"]"}
+[2025-12-20T11:59:03.671Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T11:59:03.718Z] [ROUTER] 📝 Task 897ecdd4-5f9a-4e1f-bb7b-181d79826c32 added to queue (delay: 0ms)
+[2025-12-20T11:59:04.582Z] [PROCESSOR] ⚠️ Errors encountered during task 897ecdd4-5f9a-4e1f-bb7b-181d79826c32:
+[2025-12-20T11:59:04.583Z] [PROCESSOR]    - Failed to send to -1003675591778 via Bot API: Not Found
+[2025-12-20T11:59:04.584Z] [PROCESSOR] ✅ Task 897ecdd4-5f9a-4e1f-bb7b-181d79826c32 finished: 0 sent, 1 failed
+[2025-12-20T12:01:23.928Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-20T12:01:23.930Z] [ROUTER] Body: {"name":"hmhjmh","type":"message","content":"{\"text\":\"ghmghmghm\"}","folderIds":"[\"6946516cae67a92212fbffc0\"]"}
+[2025-12-20T12:01:23.932Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-20T12:01:23.949Z] [ROUTER] 📝 Task 3104de72-5bda-47c7-ba97-45bf166023d0 added to queue (delay: 0ms)
+[2025-12-20T12:01:24.452Z] [PROCESSOR] ⚠️ Errors encountered during task 3104de72-5bda-47c7-ba97-45bf166023d0:
+[2025-12-20T12:01:24.453Z] [PROCESSOR]    - Failed to send to -1003675591778 via Bot API: Not Found
+[2025-12-20T12:01:24.455Z] [PROCESSOR] ✅ Task 3104de72-5bda-47c7-ba97-45bf166023d0 finished: 0 sent, 1 failed
+[2025-12-22T08:47:40.805Z] ✅ MongoDB connected successfully
+[2025-12-22T08:47:51.358Z] ✅ Background worker started
+[2025-12-22T08:47:51.373Z] 🚀 Server running on http://localhost:5000
+[2025-12-22T08:49:40.885Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-22T08:49:40.886Z] [ROUTER] Body: {"name":"srff","type":"message","content":"{\"text\":\"sdfg\"}","folderIds":"[\"6946516cae67a92212fbffc0\"]"}
+[2025-12-22T08:49:40.888Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-22T08:49:40.931Z] [ROUTER] ⚠️ Failed to add to queue: Redis version needs to be greater or equal than 5.0.0 Current: 3.0.504
+[2025-12-22T08:49:40.932Z] [ROUTER] 🔄 Redis unavailable, processing immediate task directly (in-process)...
+[2025-12-22T08:49:44.357Z] [PROCESSOR] ✅ Task fafeb7c5-b1ea-49d6-bfcb-2e0f41442200 finished: 1 sent, 0 failed
+[2025-12-22T08:50:34.585Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-22T08:50:34.587Z] [ROUTER] Body: {"name":"hjghgfhgjh","type":"message","content":"{\"text\":\"dfgd\"}","folderIds":"[\"6946516cae67a92212fbffc0\"]"}
+[2025-12-22T08:50:34.588Z] [ROUTER] File: {"fieldname":"media","originalname":"Isha maam EMRS ANS key 2025 part 1 copy (1).jpg","encoding":"7bit","mimetype":"image/jpeg","destination":"uploads/","filename":"1766393434545-Isha maam EMRS ANS key 2025 part 1 copy (1).jpg","path":"uploads\\1766393434545-Isha maam EMRS ANS key 2025 part 1 copy (1).jpg","size":1582376}
+[2025-12-22T08:50:34.590Z] [ROUTER] ✅ Media detected and saved: /uploads/1766393434545-Isha maam EMRS ANS key 2025 part 1 copy (1).jpg
+[2025-12-22T08:50:34.627Z] [ROUTER] ⚠️ Failed to add to queue: Redis version needs to be greater or equal than 5.0.0 Current: 3.0.504
+[2025-12-22T08:50:34.630Z] [ROUTER] 🔄 Redis unavailable, processing immediate task directly (in-process)...
+[2025-12-22T08:50:54.804Z] [PROCESSOR] ✅ Task bdd8a7ac-502d-4338-9fd8-aa558ec5c9e7 finished: 1 sent, 0 failed
+[2025-12-22T08:51:10.053Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-22T08:51:10.055Z] [ROUTER] Body: {"name":"drgf","type":"poll","content":{"pollQuestion":"New Question","pollOptions":["Option A","Option B"],"correctOption":0,"pollExplanation":""},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":null}
+[2025-12-22T08:51:10.056Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-22T08:51:10.066Z] [ROUTER] ⚠️ Failed to add to queue: Redis version needs to be greater or equal than 5.0.0 Current: 3.0.504
+[2025-12-22T08:51:10.068Z] [ROUTER] 🔄 Redis unavailable, processing immediate task directly (in-process)...
+[2025-12-22T08:51:13.960Z] [PROCESSOR] ✅ Task 7762f5eb-01dc-41fa-8e7e-d0da0f5e89a5 finished: 1 sent, 0 failed
+[2025-12-22T08:52:07.616Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-22T08:52:07.617Z] [ROUTER] Body: {"name":"thffbdfgfd","type":"poll","content":{"pollQuestion":"New Question","pollOptions":["Option A","Option B"],"correctOption":0,"pollExplanation":""},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-22T08:53:00.000Z"}
+[2025-12-22T08:52:07.618Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-22T08:52:07.630Z] [ROUTER] ⚠️ Failed to add to queue: Redis version needs to be greater or equal than 5.0.0 Current: 3.0.504
+[2025-12-22T08:52:07.632Z] [ROUTER] ⏰ Redis unavailable, scheduling task in-process with delay 52368ms...
+[2025-12-22T08:53:00.007Z] [ROUTER] ⏰ In-process scheduler triggering task 11175442-58ee-4f1b-b695-3affdb7ef9c6
+[2025-12-22T08:53:03.550Z] [PROCESSOR] ✅ Task 11175442-58ee-4f1b-b695-3affdb7ef9c6 finished: 1 sent, 0 failed
+[2025-12-22T08:54:41.468Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-22T08:54:41.469Z] [ROUTER] Body: {"name":"quiz","type":"poll","content":{"pollQuestion":"Q1. Who is known as the Father of the Indian Constitution?","pollOptions":["Mahatma Gandhi","B.R. Ambedkar","Jawaharlal Nehru","Sardar Vallabhbhai Patel"],"correctOption":1,"pollExplanation":"Dr. B.R. Ambedkar chaired the Drafting Committee and is widely recognized as the architect of the Constitution of India."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-22T08:55:00.000Z"}
+[2025-12-22T08:54:41.471Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-22T08:54:41.514Z] [ROUTER] ⚠️ Failed to add to queue: Redis version needs to be greater or equal than 5.0.0 Current: 3.0.504
+[2025-12-22T08:54:41.516Z] [ROUTER] ⏰ Redis unavailable, scheduling task in-process with delay 18484ms...
+[2025-12-22T08:55:00.014Z] [ROUTER] ⏰ In-process scheduler triggering task 17b4e551-3cd5-498f-8201-ce78b8a2cebc
+[2025-12-22T08:55:03.243Z] [PROCESSOR] ✅ Task 17b4e551-3cd5-498f-8201-ce78b8a2cebc finished: 1 sent, 0 failed
+[2025-12-22T08:55:38.283Z] ✅ MongoDB connected successfully
+[2025-12-22T08:55:38.819Z] ✅ Background worker started
+[2025-12-22T08:55:38.831Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T06:27:09.989Z] ✅ MongoDB connected successfully
+[2025-12-23T06:27:18.462Z] ✅ Background worker started
+[2025-12-23T06:27:18.471Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T06:29:19.960Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-23T06:29:19.962Z] [ROUTER] Body: {"name":"esdf","type":"message","content":"{\"text\":\"sdfsd\"}","folderIds":"[\"6946516cae67a92212fbffc0\"]"}
+[2025-12-23T06:29:19.964Z] [ROUTER] File: {"fieldname":"media","originalname":"Isha maam EMRS ANS key 2025 part 1 copy (1).jpg","encoding":"7bit","mimetype":"image/jpeg","destination":"uploads/","filename":"1766471359936-Isha maam EMRS ANS key 2025 part 1 copy (1).jpg","path":"uploads\\1766471359936-Isha maam EMRS ANS key 2025 part 1 copy (1).jpg","size":1582376}
+[2025-12-23T06:29:19.965Z] [ROUTER] ✅ Media detected and saved: /uploads/1766471359936-Isha maam EMRS ANS key 2025 part 1 copy (1).jpg
+[2025-12-23T06:29:19.998Z] [ROUTER] ⚠️ Failed to add to queue: Redis version needs to be greater or equal than 5.0.0 Current: 3.0.504
+[2025-12-23T06:29:20.000Z] [ROUTER] 🔄 Redis unavailable, processing immediate task directly (in-process)...
+[2025-12-23T06:29:24.413Z] [PROCESSOR] ✅ Task f02cface-d8ec-4c56-b7cf-f065c47eae99 finished: 1 sent, 0 failed
+[2025-12-23T06:30:34.828Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-23T06:30:34.829Z] [ROUTER] Body: {"name":"fgfhggfg","type":"message","content":"{\"text\":\"fgbf\"}","folderIds":"[\"6946516cae67a92212fbffc0\"]","scheduledAt":"2025-12-23T06:34:00.000Z","expiryHours":"0.1"}
+[2025-12-23T06:30:34.830Z] [ROUTER] File: {"fieldname":"media","originalname":"pngwing.com.png","encoding":"7bit","mimetype":"image/png","destination":"uploads/","filename":"1766471434733-pngwing.com.png","path":"uploads\\1766471434733-pngwing.com.png","size":11456155}
+[2025-12-23T06:30:34.831Z] [ROUTER] ✅ Media detected and saved: /uploads/1766471434733-pngwing.com.png
+[2025-12-23T06:30:34.843Z] [ROUTER] ⚠️ Failed to add to queue: Redis version needs to be greater or equal than 5.0.0 Current: 3.0.504
+[2025-12-23T06:30:34.845Z] [ROUTER] ⏰ Redis unavailable, scheduling task in-process with delay 205155ms...
+[2025-12-23T06:34:00.001Z] [ROUTER] ⏰ In-process scheduler triggering task d68a1ab4-d08c-49d2-abef-af5a4d883d70
+[2025-12-23T06:34:04.664Z] [PROCESSOR] ⏳ Task d68a1ab4-d08c-49d2-abef-af5a4d883d70 has 0.1h expiry. Scheduling deletion...
+[2025-12-23T06:34:04.666Z] [PROCESSOR] ⚠️ Could not schedule expiry job: Redis version needs to be greater or equal than 5.0.0 Current: 3.0.504
+[2025-12-23T06:34:04.667Z] [PROCESSOR] ⚠️ Errors encountered during task d68a1ab4-d08c-49d2-abef-af5a4d883d70:
+[2025-12-23T06:34:04.669Z] [PROCESSOR]    - Failed to send to -1003675591778 via Bot API: Bad Request: file of size 11456155 bytes is too big for a photo; the maximum size is 10485760 bytes
+[2025-12-23T06:34:04.670Z] [PROCESSOR] ✅ Task d68a1ab4-d08c-49d2-abef-af5a4d883d70 finished: 0 sent, 1 failed
+[2025-12-23T06:48:02.244Z] ✅ MongoDB connected successfully
+[2025-12-23T06:48:10.648Z] ✅ Background worker started
+[2025-12-23T06:48:10.658Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T06:52:57.217Z] ✅ MongoDB connected successfully
+[2025-12-23T06:52:57.642Z] ✅ Background worker started
+[2025-12-23T06:52:57.650Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T06:53:53.168Z] ✅ MongoDB connected successfully
+[2025-12-23T06:53:53.613Z] ✅ Background worker started
+[2025-12-23T06:53:53.623Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T06:54:03.732Z] ✅ MongoDB connected successfully
+[2025-12-23T06:54:04.158Z] ✅ Background worker started
+[2025-12-23T06:54:04.168Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T06:54:31.525Z] ✅ MongoDB connected successfully
+[2025-12-23T06:54:32.073Z] ✅ Background worker started
+[2025-12-23T06:54:32.083Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T07:04:02.623Z] ✅ MongoDB connected successfully
+[2025-12-23T07:04:03.129Z] ✅ Background worker started
+[2025-12-23T07:04:03.140Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T07:04:16.103Z] ✅ MongoDB connected successfully
+[2025-12-23T07:04:16.593Z] ✅ Background worker started
+[2025-12-23T07:04:16.603Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T07:07:35.556Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-23T07:07:35.557Z] [ROUTER] Body: {"name":"Checking shcedule and expiry","type":"message","content":"{\"text\":\"fghghj\"}","folderIds":"[\"6946516cae67a92212fbffc0\"]","scheduledAt":"2025-12-23T07:09:00.000Z","expiryHours":"0.1"}
+[2025-12-23T07:07:35.559Z] [ROUTER] File: {"fieldname":"media","originalname":"pngwing.com.png","encoding":"7bit","mimetype":"image/png","destination":"uploads/","filename":"1766473655427-pngwing.com.png","path":"uploads\\1766473655427-pngwing.com.png","size":11456155}
+[2025-12-23T07:07:35.560Z] [ROUTER] ✅ Media detected and saved: /uploads/1766473655427-pngwing.com.png
+[2025-12-23T07:07:35.604Z] [ROUTER] 📝 Task 266abd0f-7a8b-48c1-ae2d-09ac5d86da98 added to queue (delay: 84402ms)
+[2025-12-23T07:09:03.534Z] [PROCESSOR] ⏳ Task 266abd0f-7a8b-48c1-ae2d-09ac5d86da98 has 0.1h expiry. Scheduling deletion...
+[2025-12-23T07:09:03.537Z] [PROCESSOR] ⚠️ Errors encountered during task 266abd0f-7a8b-48c1-ae2d-09ac5d86da98:
+[2025-12-23T07:09:03.539Z] [PROCESSOR]    - Failed to send to -1003675591778 via Bot API: Bad Request: file of size 11456155 bytes is too big for a photo; the maximum size is 10485760 bytes
+[2025-12-23T07:09:03.539Z] [PROCESSOR] ✅ Task 266abd0f-7a8b-48c1-ae2d-09ac5d86da98 finished: 0 sent, 1 failed
+[2025-12-23T07:10:53.922Z] ✅ MongoDB connected successfully
+[2025-12-23T07:10:54.567Z] ✅ Background worker started
+[2025-12-23T07:10:54.578Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T07:10:57.020Z] ✅ MongoDB connected successfully
+[2025-12-23T07:10:57.508Z] ✅ Background worker started
+[2025-12-23T07:10:57.517Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T07:12:24.612Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-23T07:12:24.613Z] [ROUTER] Body: {"name":"ergtrg","type":"message","content":"{\"text\":\"wefrwfr\"}","folderIds":"[\"6946516cae67a92212fbffc0\"]","scheduledAt":"2025-12-23T07:13:00.000Z","expiryHours":"0.1"}
+[2025-12-23T07:12:24.614Z] [ROUTER] File: {"fieldname":"media","originalname":"Isha maam EMRS ANS key 2025 part 1 copy (1).jpg","encoding":"7bit","mimetype":"image/jpeg","destination":"uploads/","filename":"1766473944586-Isha maam EMRS ANS key 2025 part 1 copy (1).jpg","path":"uploads\\1766473944586-Isha maam EMRS ANS key 2025 part 1 copy (1).jpg","size":1582376}
+[2025-12-23T07:12:24.616Z] [ROUTER] ✅ Media detected and saved: /uploads/1766473944586-Isha maam EMRS ANS key 2025 part 1 copy (1).jpg
+[2025-12-23T07:12:24.677Z] [ROUTER] 📝 Task f634b58a-f1b0-4c21-9e4c-7c14556804bb added to queue (delay: 35331ms)
+[2025-12-23T07:13:04.611Z] [PROCESSOR] ⏳ Task f634b58a-f1b0-4c21-9e4c-7c14556804bb has 0.1h expiry. Scheduling deletion...
+[2025-12-23T07:13:04.619Z] [PROCESSOR] ✅ Task f634b58a-f1b0-4c21-9e4c-7c14556804bb finished: 1 sent, 0 failed
+[2025-12-23T07:13:28.913Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-23T07:13:28.914Z] [ROUTER] Body: {"name":"gfghy","type":"poll","content":{"pollQuestion":"New Question","pollOptions":["Option A","Option B"],"correctOption":0,"pollExplanation":""},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-23T07:14:00.000Z"}
+[2025-12-23T07:13:28.915Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-23T07:13:28.928Z] [ROUTER] 📝 Task 08fd5681-61be-4cff-a5d0-69d6c8abf9a4 added to queue (delay: 31073ms)
+[2025-12-23T07:14:05.094Z] [PROCESSOR] ✅ Task 08fd5681-61be-4cff-a5d0-69d6c8abf9a4 finished: 1 sent, 0 failed
+[2025-12-23T07:21:48.407Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-23T07:21:48.409Z] [ROUTER] Body: {"name":"tfghtfh (Part 1)","type":"poll","content":{"pollQuestion":"Q1. Who is known as the Father of the Indian Constitution?","pollOptions":["Mahatma Gandhi","B.R. Ambedkar","Jawaharlal Nehru","Sardar Vallabhbhai Patel"],"correctOption":1,"pollExplanation":"Dr. B.R. Ambedkar chaired the Drafting Committee and is widely recognized as the architect of the Constitution of India."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-23T07:23:00.000Z"}
+[2025-12-23T07:21:48.410Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-23T07:21:48.414Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-23T07:21:48.415Z] [ROUTER] Body: {"name":"tfghtfh (Part 2)","type":"poll","content":{"pollQuestion":"Q2. Which planet is known as the Red Planet?","pollOptions":["Jupiter","Venus","Mars","Saturn"],"correctOption":2,"pollExplanation":"Mars appears reddish due to iron oxide (rust) on its surface."},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-23T07:24:00.000Z"}
+[2025-12-23T07:21:48.416Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-23T07:21:48.439Z] [ROUTER] 📝 Task 88bb0bbc-94df-46f2-b3e4-577cd9a5d57e added to queue (delay: 71566ms)
+[2025-12-23T07:21:48.442Z] [ROUTER] 📝 Task d879b85f-fd40-4ed6-92ee-0951e336c538 added to queue (delay: 131564ms)
+[2025-12-23T07:23:03.275Z] [PROCESSOR] ✅ Task 88bb0bbc-94df-46f2-b3e4-577cd9a5d57e finished: 1 sent, 0 failed
+[2025-12-23T07:24:04.019Z] [PROCESSOR] ✅ Task d879b85f-fd40-4ed6-92ee-0951e336c538 finished: 1 sent, 0 failed
