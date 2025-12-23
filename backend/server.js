@@ -23,8 +23,11 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Routes
 const apiRoutes = require('./routes');
 const analyticsRoutes = require('./routes/analyticsRoutes');
+const settingsRoutes = require('./routes/settingsRoutes'); // [NEW]
 app.use('/api', apiRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api/settings', settingsRoutes); // [NEW]
+
 
 // Health check
 app.get('/health', (req, res) => {

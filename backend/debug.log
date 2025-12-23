@@ -859,3 +859,33 @@
 [2025-12-23T10:58:40.206Z] [ROUTER] 📝 Task d4bda3f0-7df1-468f-86bc-b618e3aa8c3e added to queue (delay: 0ms)
 [2025-12-23T10:58:46.933Z] [PROCESSOR] 📊 Scheduled analytics tracking for 1 channel messages
 [2025-12-23T10:58:46.934Z] [PROCESSOR] ✅ Task d4bda3f0-7df1-468f-86bc-b618e3aa8c3e finished: 1 sent, 0 failed
+[2025-12-23T11:24:19.567Z] ✅ MongoDB connected successfully
+[2025-12-23T11:24:19.632Z] ✅ MongoDB connected successfully
+[2025-12-23T11:24:20.192Z] ✅ Background worker started
+[2025-12-23T11:24:20.206Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T11:24:20.259Z] ✅ Background worker started
+[2025-12-23T11:24:20.271Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T11:33:36.869Z] ✅ MongoDB connected successfully
+[2025-12-23T11:33:37.417Z] ✅ Background worker started
+[2025-12-23T11:33:37.432Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T11:40:25.627Z] ✅ MongoDB connected successfully
+[2025-12-23T11:40:25.680Z] ✅ MongoDB connected successfully
+[2025-12-23T11:40:25.701Z] ✅ MongoDB connected successfully
+[2025-12-23T11:40:26.574Z] ✅ Background worker started
+[2025-12-23T11:40:26.589Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T11:40:26.658Z] ✅ Background worker started
+[2025-12-23T11:40:26.673Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T11:40:26.682Z] ✅ Background worker started
+[2025-12-23T11:40:26.696Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T11:41:03.572Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-23T11:41:03.574Z] [ROUTER] Body: {"name":"Views Tracking message","type":"message","content":"{\"text\":\"Views Tracking message\"}","folderIds":"[\"6946516cae67a92212fbffc0\"]"}
+[2025-12-23T11:41:03.578Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-23T11:41:03.626Z] [ROUTER] 📝 Task cce2a268-913d-4383-b8a2-26ebe53799cd added to queue (delay: 0ms)
+[2025-12-23T11:41:07.588Z] [PROCESSOR] 📊 Scheduled analytics tracking for 1 channel messages
+[2025-12-23T11:41:07.590Z] [PROCESSOR] ✅ Task cce2a268-913d-4383-b8a2-26ebe53799cd finished: 1 sent, 0 failed
+[2025-12-23T11:41:26.534Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-23T11:41:26.535Z] [ROUTER] Body: {"name":"Message 2","type":"message","content":"{\"text\":\"Views Tracking message\"}","folderIds":"[\"6946516cae67a92212fbffc0\"]"}
+[2025-12-23T11:41:26.543Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-23T11:41:26.564Z] [ROUTER] 📝 Task 27ec9cd5-5d1a-4f2f-83e3-9eca8c6412e5 added to queue (delay: 0ms)
+[2025-12-23T11:41:29.723Z] [PROCESSOR] 📊 Scheduled analytics tracking for 1 channel messages
+[2025-12-23T11:41:29.725Z] [PROCESSOR] ✅ Task 27ec9cd5-5d1a-4f2f-83e3-9eca8c6412e5 finished: 1 sent, 0 failed

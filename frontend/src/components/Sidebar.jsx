@@ -1,6 +1,7 @@
-import { NavLink } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { getAuthStatus } from '../services/api'
+import axios from 'axios'
 import {
     LayoutDashboard,
     FolderKanban,
@@ -11,7 +12,9 @@ import {
     Zap,
     Unplug,
     UserCircle2,
-    ShieldCheck
+    ShieldCheck,
+    Settings,
+    LogOut
 } from 'lucide-react'
 
 const navItems = [
@@ -24,10 +27,23 @@ const navItems = [
 ]
 
 function Sidebar({ onOpenAuth }) {
+    const navigate = useNavigate()
+    const queryClient = useQueryClient()
+
     const { data: status, isLoading } = useQuery({
         queryKey: ['authStatus'],
         queryFn: getAuthStatus,
-        refetchInterval: 30000 // Refetch every 30 seconds
+        refetchInterval: 10000 // Refetch every 10 seconds
+    })
+
+    const logoutMutation = useMutation({
+        mutationFn: async () => {
+            await axios.post('http://localhost:5000/api/auth/logout')
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries(['authStatus'])
+            navigate('/login')
+        }
     })
 
     const isConnected = status?.connected
@@ -46,7 +62,7 @@ function Sidebar({ onOpenAuth }) {
             </div>
 
             {/* Navigation */}
-            <nav className="flex-1 space-y-1">
+            <nav className="flex-1 space-y-1 overflow-y-auto">
                 {navItems.map((item) => (
                     <NavLink
                         key={item.path}
@@ -63,18 +79,34 @@ function Sidebar({ onOpenAuth }) {
                         <span className="font-medium">{item.label}</span>
                     </NavLink>
                 ))}
-                <NavLink
-                    to="/analytics"
-                    className={({ isActive }) =>
-                        `flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${isActive
-                            ? 'bg-primary-500 text-white shadow-lg shadow-primary-500/30'
-                            : 'text-dark-400 hover:bg-dark-800 hover:text-white'
-                        }`
-                    }
-                >
-                    <BarChart3 className="w-5 h-5" />
-                    <span className="font-medium">Analytics</span>
-                </NavLink>
+
+                <div className="pt-4 mt-4 border-t border-white/5">
+                    <NavLink
+                        to="/analytics"
+                        className={({ isActive }) =>
+                            `flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${isActive
+                                ? 'bg-primary-500 text-white shadow-lg shadow-primary-500/30'
+                                : 'text-dark-400 hover:bg-dark-800 hover:text-white'
+                            }`
+                        }
+                    >
+                        <BarChart3 className="w-5 h-5" />
+                        <span className="font-medium">Analytics</span>
+                    </NavLink>
+
+                    <NavLink
+                        to="/settings"
+                        className={({ isActive }) =>
+                            `flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${isActive
+                                ? 'bg-primary-500/20 text-primary-400'
+                                : 'text-dark-400 hover:bg-dark-800 hover:text-white'
+                            }`
+                        }
+                    >
+                        <Settings className="w-5 h-5" />
+                        <span className="font-medium">Settings</span>
+                    </NavLink>
+                </div>
             </nav>
 
             {/* Connection Status Footer */}
@@ -88,8 +120,8 @@ function Sidebar({ onOpenAuth }) {
                         </div>
                     </div>
                 ) : isConnected ? (
-                    <div className="group cursor-default">
-                        <div className="flex items-center gap-3">
+                    <div className="group relative">
+                        <div className="flex items-center gap-3 mb-3">
                             <div className="relative">
                                 <div className="w-9 h-9 rounded-xl bg-green-500/10 flex items-center justify-center border border-green-500/20">
                                     <ShieldCheck className="w-5 h-5 text-green-400" />
@@ -99,14 +131,22 @@ function Sidebar({ onOpenAuth }) {
                             <div className="flex-1 min-w-0">
                                 <p className="text-sm font-bold truncate text-green-400">Connected</p>
                                 <p className="text-[10px] text-dark-400 font-medium truncate">
-                                    {status.firstName || status.username || 'User Account'}
+                                    {status.firstName || status.username || 'User Session'}
                                 </p>
                             </div>
                         </div>
+
+                        <button
+                            onClick={() => logoutMutation.mutate()}
+                            className="w-full flex items-center justify-center gap-2 py-2 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500 hover:text-white transition-all text-xs font-bold"
+                        >
+                            <LogOut className="w-3 h-3" />
+                            Log Out
+                        </button>
                     </div>
                 ) : (
                     <button
-                        onClick={onOpenAuth}
+                        onClick={() => navigate('/login')}
                         className="w-full group"
                     >
                         <div className="flex items-center gap-3 p-2 rounded-xl hover:bg-white/5 transition-all outline outline-1 outline-transparent hover:outline-white/5">

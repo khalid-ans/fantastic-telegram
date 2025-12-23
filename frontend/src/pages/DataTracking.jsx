@@ -33,9 +33,10 @@ function DataTracking() {
             forwards: msg.metrics?.forwards || 0,
             reactions: msg.metrics?.reactions || 0,
             comments: msg.metrics?.replies || 0,
-            lastUpdated: msg.metrics?.updatedAt || task.updatedAt || task.createdAt
+            lastUpdated: msg.metrics?.updatedAt || task.updatedAt || task.createdAt,
+            createdAt: task.createdAt // Maintain original creation time for sorting
         }))
-    ).sort((a, b) => new Date(b.lastUpdated) - new Date(a.lastUpdated))
+    ).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sort by Task Creation Time (Newest First)
 
     const handleDownload = async () => {
         try {
@@ -53,6 +54,22 @@ function DataTracking() {
             alert('Failed to download analytics. Please try again.')
         } finally {
             setIsDownloading(false)
+        }
+    }
+
+    const handleClearHistory = async () => {
+        if (!window.confirm('Are you sure you want to clear all tracking history? This cannot be undone.')) return
+
+        try {
+            const response = await fetch('http://localhost:5000/api/tasks/history', { method: 'DELETE' })
+            if (response.ok) {
+                refetch()
+            } else {
+                alert('Failed to clear history')
+            }
+        } catch (error) {
+            console.error('Clear failed:', error)
+            alert('Error clearing history')
         }
     }
 
@@ -122,6 +139,15 @@ function DataTracking() {
                 </div>
 
                 <div className="flex flex-wrap gap-3 w-full md:w-auto">
+                    <button
+                        onClick={handleClearHistory}
+                        disabled={flattenedData.length === 0}
+                        className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-red-500/10 hover:bg-red-500 hover:text-white transition-all font-bold text-red-400 border border-red-500/20 disabled:opacity-50"
+                        title="Clear History"
+                    >
+                        <RefreshCw className="w-5 h-5" />
+                        Clear History
+                    </button>
                     <button
                         onClick={handleSyncMetrics}
                         disabled={isSyncing || isLoading || tasks.length === 0}
@@ -277,11 +303,6 @@ function DataTracking() {
                     </table>
                 </div>
 
-                {flattenedData.length > 0 && (
-                    <div className="p-4 bg-dark-900/30 text-center border-t border-white/5">
-                        Showing {flattenedData.length} trackable entities. Engagement metrics are fetched directly from Telegram MTProto servers via your User Session.
-                    </div>
-                )}
             </section>
         </div>
     )

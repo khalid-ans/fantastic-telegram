@@ -212,4 +212,15 @@ router.post('/:taskId/update-metrics', async (req, res) => {
     }
 })
 
+// DELETE clear task history
+router.delete('/history', async (req, res) => {
+    try {
+        // Delete all tasks
+        const result = await Task.deleteMany({});
+        res.json({ message: `Deleted ${result.deletedCount} tasks` });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 module.exports = router;
