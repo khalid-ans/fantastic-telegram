@@ -83,7 +83,7 @@ function History() {
                             <th className="px-6 py-4 text-left text-xs font-bold text-dark-400 uppercase tracking-wider">Task</th>
                             <th className="px-6 py-4 text-left text-xs font-bold text-dark-400 uppercase tracking-wider">Type</th>
                             <th className="px-6 py-4 text-left text-xs font-bold text-dark-400 uppercase tracking-wider">Recipients</th>
-                            <th className="px-6 py-4 text-left text-xs font-bold text-dark-400 uppercase tracking-wider">Date</th>
+                            <th className="px-6 py-4 text-left text-xs font-bold text-dark-400 uppercase tracking-wider">Scheduled Time</th>
                             <th className="px-6 py-4 text-left text-xs font-bold text-dark-400 uppercase tracking-wider">Status</th>
                             <th className="px-6 py-4 text-right text-xs font-bold text-dark-400 uppercase tracking-wider">Actions</th>
                         </tr>
@@ -91,13 +91,13 @@ function History() {
                     <tbody className="divide-y divide-dark-700">
                         {isLoading ? (
                             <tr>
-                                <td colSpan="5" className="py-12 text-center">
+                                <td colSpan="6" className="py-12 text-center">
                                     <Loader2 className="w-8 h-8 animate-spin text-primary-400 mx-auto" />
                                 </td>
                             </tr>
                         ) : filteredTasks.length === 0 ? (
                             <tr>
-                                <td colSpan="5" className="py-12 text-center text-dark-400">
+                                <td colSpan="6" className="py-12 text-center text-dark-400">
                                     {search ? 'No tasks match your search.' : 'No broadcast history yet.'}
                                 </td>
                             </tr>
@@ -126,7 +126,14 @@ function History() {
                                     </td>
                                     <td className="px-6 py-4 font-bold">{task.recipientCount}</td>
                                     <td className="px-6 py-4 text-dark-400 text-sm">
-                                        {new Date(task.createdAt).toLocaleDateString()}
+                                        <div className="flex flex-col">
+                                            <span className="font-medium text-dark-200">
+                                                {new Date(task.scheduledAt || task.createdAt).toLocaleDateString()}
+                                            </span>
+                                            <span className="text-xs text-dark-500">
+                                                {new Date(task.scheduledAt || task.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                            </span>
+                                        </div>
                                     </td>
                                     <td className="px-6 py-4">
                                         <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold ${getStatusColor(task.status)}`}>
