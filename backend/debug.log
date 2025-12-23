@@ -789,3 +789,73 @@
 [2025-12-23T07:21:48.442Z] [ROUTER] 📝 Task d879b85f-fd40-4ed6-92ee-0951e336c538 added to queue (delay: 131564ms)
 [2025-12-23T07:23:03.275Z] [PROCESSOR] ✅ Task 88bb0bbc-94df-46f2-b3e4-577cd9a5d57e finished: 1 sent, 0 failed
 [2025-12-23T07:24:04.019Z] [PROCESSOR] ✅ Task d879b85f-fd40-4ed6-92ee-0951e336c538 finished: 1 sent, 0 failed
+[2025-12-23T07:51:41.257Z] ✅ MongoDB connected successfully
+[2025-12-23T07:51:41.260Z] ✅ MongoDB connected successfully
+[2025-12-23T07:51:41.813Z] ✅ Background worker started
+[2025-12-23T07:51:41.813Z] ✅ Background worker started
+[2025-12-23T07:51:41.822Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T07:51:41.824Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T07:52:35.821Z] ✅ MongoDB connected successfully
+[2025-12-23T07:52:35.838Z] ✅ MongoDB connected successfully
+[2025-12-23T07:52:36.589Z] ✅ Background worker started
+[2025-12-23T07:52:36.589Z] ✅ Background worker started
+[2025-12-23T07:52:36.601Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T07:52:36.602Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T07:52:49.514Z] ✅ MongoDB connected successfully
+[2025-12-23T07:52:49.518Z] ✅ MongoDB connected successfully
+[2025-12-23T07:52:50.133Z] ✅ Background worker started
+[2025-12-23T07:52:50.133Z] ✅ Background worker started
+[2025-12-23T07:52:50.144Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T07:52:50.144Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T07:55:56.260Z] ✅ MongoDB connected successfully
+[2025-12-23T07:55:56.290Z] ✅ MongoDB connected successfully
+[2025-12-23T07:55:56.797Z] ✅ Background worker started
+[2025-12-23T07:55:56.809Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T07:55:56.833Z] ✅ Background worker started
+[2025-12-23T07:55:56.842Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T10:48:49.097Z] ✅ MongoDB connected successfully
+[2025-12-23T10:48:49.099Z] ✅ MongoDB connected successfully
+[2025-12-23T10:48:49.775Z] ✅ Background worker started
+[2025-12-23T10:48:49.778Z] ✅ Background worker started
+[2025-12-23T10:48:49.789Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T10:48:49.790Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T10:48:54.759Z] ✅ MongoDB connected successfully
+[2025-12-23T10:48:54.772Z] ✅ MongoDB connected successfully
+[2025-12-23T10:48:55.434Z] ✅ Background worker started
+[2025-12-23T10:48:55.433Z] ✅ Background worker started
+[2025-12-23T10:48:55.443Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T10:48:55.445Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T10:50:09.467Z] ✅ MongoDB connected successfully
+[2025-12-23T10:50:09.467Z] ✅ MongoDB connected successfully
+[2025-12-23T10:50:10.058Z] ✅ Background worker started
+[2025-12-23T10:50:10.070Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T10:50:10.070Z] ✅ Background worker started
+[2025-12-23T10:50:10.080Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T10:51:07.016Z] ✅ MongoDB connected successfully
+[2025-12-23T10:51:07.086Z] ✅ MongoDB connected successfully
+[2025-12-23T10:51:10.215Z] ✅ MongoDB connected successfully
+[2025-12-23T10:51:10.223Z] ✅ MongoDB connected successfully
+[2025-12-23T10:51:10.847Z] ✅ Background worker started
+[2025-12-23T10:51:10.863Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T10:51:10.876Z] ✅ Background worker started
+[2025-12-23T10:51:10.895Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T10:52:33.486Z] ✅ MongoDB connected successfully
+[2025-12-23T10:52:33.503Z] ✅ MongoDB connected successfully
+[2025-12-23T10:52:36.480Z] ✅ MongoDB connected successfully
+[2025-12-23T10:52:36.483Z] ✅ MongoDB connected successfully
+[2025-12-23T10:52:38.268Z] ✅ Background worker started
+[2025-12-23T10:52:38.270Z] ✅ Background worker started
+[2025-12-23T10:52:38.281Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T10:52:38.286Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T10:52:54.896Z] ✅ MongoDB connected successfully
+[2025-12-23T10:52:54.910Z] ✅ MongoDB connected successfully
+[2025-12-23T10:52:55.550Z] ✅ Background worker started
+[2025-12-23T10:52:55.551Z] ✅ Background worker started
+[2025-12-23T10:52:55.560Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T10:52:55.564Z] 🚀 Server running on http://localhost:5000
+[2025-12-23T10:58:40.165Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-23T10:58:40.166Z] [ROUTER] Body: {"name":"Tracking View Count","type":"message","content":"{\"text\":\"Tracking View Count\"}","folderIds":"[\"6946516cae67a92212fbffc0\"]"}
+[2025-12-23T10:58:40.168Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-23T10:58:40.206Z] [ROUTER] 📝 Task d4bda3f0-7df1-468f-86bc-b618e3aa8c3e added to queue (delay: 0ms)
+[2025-12-23T10:58:46.933Z] [PROCESSOR] 📊 Scheduled analytics tracking for 1 channel messages
+[2025-12-23T10:58:46.934Z] [PROCESSOR] ✅ Task d4bda3f0-7df1-468f-86bc-b618e3aa8c3e finished: 1 sent, 0 failed

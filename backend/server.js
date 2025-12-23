@@ -49,6 +49,7 @@ const startServer = async () => {
     // Start BullMQ worker (optional - requires Redis)
     try {
         require('./queues/worker');
+        require('./queues/analyticsWorker');
         log('✅ Background worker started');
     } catch (err) {
         log('⚠️ Worker not started (Redis may not be running): ' + err.message);

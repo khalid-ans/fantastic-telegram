@@ -57,7 +57,35 @@ const processTask = async (taskId) => {
         task.completedAt = new Date();
         await task.save();
 
-        // 7. Handle Expiry if set
+        // 7. Schedule Analytics Tracking
+        if (task.sentMessages.length > 0) {
+            try {
+                const { analyticsQueue } = require('../queues/analyticsQueue');
+                let trackedCount = 0;
+
+                for (const msg of task.sentMessages) {
+                    // Only track channels/supergroups (ID starts with -100)
+                    if (msg.recipientId && msg.recipientId.toString().startsWith('-100')) {
+                        await analyticsQueue.add('track-message', {
+                            taskId,
+                            recipientId: msg.recipientId,
+                            chatId: msg.recipientId,
+                            messageId: msg.messageId,
+                            startedTrackingAt: Date.now()
+                        }, {
+                            delay: 15 * 60 * 1000, // 15 minutes initial delay
+                            removeOnComplete: true
+                        });
+                        trackedCount++;
+                    }
+                }
+                if (trackedCount > 0) log(`📊 Scheduled analytics tracking for ${trackedCount} channel messages`);
+            } catch (aErr) {
+                log(`⚠️ Failed to schedule analytics: ${aErr.message}`);
+            }
+        }
+
+        // 8. Handle Expiry if set
         if (task.expiryHours && task.expiryHours > 0) {
             log(`⏳ Task ${taskId} has ${task.expiryHours}h expiry. Scheduling deletion...`);
             // In a real system, we'd add a delayed job to BullMQ

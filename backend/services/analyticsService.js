@@ -1,34 +1,5 @@
-const { getClient } = require('./telegramService');
-const { Task } = require('../models');
-
 /**
- * Fetch stats for a list of message IDs from a specific chat (peer)
- * @param {string|number} peerId - The chat/channel ID
- * @param {Array<number>} messageIds - Array of message IDs
- */
-const getMessageStats = async (peerId, messageIds) => {
-    try {
-        const client = await getClient();
-        if (!client.connected) await client.connect();
-
-        const messages = await client.getMessages(peerId, { ids: messageIds });
-
-        return messages.map(msg => ({
-            id: msg.id,
-            views: msg.views || 0,
-            forwards: msg.forwards || 0,
-            replies: msg.replies?.replies || 0,
-            reactions: msg.reactions?.results?.reduce((acc, r) => acc + r.count, 0) || 0,
-            date: msg.date
-        }));
-    } catch (err) {
-        console.error(`Failed to fetch stats for peer ${peerId}:`, err.message);
-        return [];
-    }
-};
-
-/**
- * Get analytics for a specific task
+ * Get analytics for a specific task (from Database)
  */
 const getTaskAnalytics = async (taskId) => {
     const task = await Task.findOne({ taskId });
@@ -39,40 +10,41 @@ const getTaskAnalytics = async (taskId) => {
         totalViews: 0,
         totalForwards: 0,
         totalReplies: 0,
+        totalReactions: 0,
         messages: []
     };
 
-    // Group messages by recipient (peer) to start batch requests
-    // However, for broadcast, each recipient is a different peer. 
-    // We must iterate. This might be slow for large broadcasts.
-    // Optimization: Telegram API limits apply.
+    // Use stored metrics from database (populated by background worker)
+    for (const sentMsg of task.sentMessages) {
+        const metrics = sentMsg.metrics || {};
+        const views = metrics.views || 0;
+        const forwards = metrics.forwards || 0;
+        const replies = metrics.replies || 0;
+        const reactions = metrics.reactions || 0;
 
-    // For MVP, we'll fetch stats for up to 50 messages to avoid rate limits
-    const limit = 50;
-    const messagesToCheck = task.sentMessages.slice(0, limit);
+        stats.totalViews += views;
+        stats.totalForwards += forwards;
+        stats.totalReplies += replies;
+        stats.totalReactions += reactions;
 
-    for (const sentMsg of messagesToCheck) {
-        try {
-            const [msgData] = await getMessageStats(sentMsg.recipientId, [sentMsg.messageId]);
-            if (msgData) {
-                stats.totalViews += msgData.views;
-                stats.totalForwards += msgData.forwards;
-                stats.totalReplies += msgData.replies;
-                stats.messages.push({
-                    recipientId: sentMsg.recipientId,
-                    ...msgData
-                });
-            }
-        } catch (e) {
-            // Ignore individual fetch errors
-        }
+        stats.messages.push({
+            recipientId: sentMsg.recipientId,
+            id: sentMsg.messageId,
+            views,
+            forwards,
+            replies,
+            reactions,
+            lastSyncedAt: metrics.updatedAt
+        });
     }
 
     return {
         taskName: task.name,
         totalSent,
         recipientCount: task.recipientCount,
-        ...stats
+        ...stats,
+        // Calculate averages if needed
+        avgViews: totalSent > 0 ? (stats.totalViews / totalSent).toFixed(1) : 0
     };
 };
 
