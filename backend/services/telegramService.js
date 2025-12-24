@@ -1,6 +1,6 @@
 const { TelegramClient, Api } = require('telegram');
 const { StringSession } = require('telegram/sessions');
-const { Settings } = require('../models');
+const { Settings, Entity } = require('../models');
 
 // Configuration
 const apiId = parseInt(process.env.API_ID);
@@ -313,7 +313,37 @@ const deleteMessages = async (messages) => {
             console.log(`🗑️ Attempting to delete message ${msg.messageId} from ${msg.recipientId}`);
 
             // Resolve proper Telegram peer for the stored recipient id
-            const peer = await client.getInputEntity(msg.recipientId);
+            // Resolve proper Telegram peer for the stored recipient id
+            let peer;
+            try {
+                peer = await client.getInputEntity(msg.recipientId);
+            } catch (entityErr) {
+                console.log(`⚠️ ${entityErr.message}. Attempting DB fallback for ${msg.recipientId}...`);
+                const entity = await Entity.findOne({ telegramId: msg.recipientId });
+
+                if (entity && entity.accessHash) {
+                    const cleanId = msg.recipientId.replace('-100', ''); // Strip prefix for channels
+
+                    if (entity.type === 'channel') {
+                        peer = new Api.InputPeerChannel({
+                            channelId: BigInt(cleanId),
+                            accessHash: BigInt(entity.accessHash)
+                        });
+                    } else if (entity.type === 'user') {
+                        peer = new Api.InputPeerUser({
+                            userId: BigInt(msg.recipientId),
+                            accessHash: BigInt(entity.accessHash)
+                        });
+                    } else if (entity.type === 'group') {
+                        peer = new Api.InputPeerChat({
+                            chatId: BigInt(Math.abs(Number(msg.recipientId)))
+                        });
+                    }
+                    console.log(`✅ Resolved peer for ${msg.recipientId} from DB AccessHash`);
+                } else {
+                    throw new Error(`Entity ${msg.recipientId} not found in cache or DB with AccessHash`);
+                }
+            }
 
             let result;
 
@@ -362,13 +392,17 @@ const fetchDialogs = async () => {
 
         const dialogs = await client.getDialogs();
 
-        return dialogs.map(dialog => ({
+        const accessHash = dialog.entity?.accessHash
+            ? dialog.entity.accessHash.toString()
+            : (dialog.inputEntity?.accessHash ? dialog.inputEntity.accessHash.toString() : null);
+
+        return {
             telegramId: dialog.id.toString(),
             name: dialog.title || dialog.name || 'Unknown',
             username: dialog.entity?.username || null,
             type: dialog.isChannel ? 'channel' : dialog.isGroup ? 'group' : 'user',
-            accessHash: dialog.entity?.accessHash?.toString() || null
-        }));
+            accessHash: accessHash
+        }
     } catch (err) {
         console.error('Failed to fetch dialogs:', err.message);
         return [];

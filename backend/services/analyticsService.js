@@ -1,3 +1,5 @@
+const { Task } = require('../models');
+
 /**
  * Get analytics for a specific task (from Database)
  */

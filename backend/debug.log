@@ -889,3 +889,101 @@
 [2025-12-23T11:41:26.564Z] [ROUTER] 📝 Task 27ec9cd5-5d1a-4f2f-83e3-9eca8c6412e5 added to queue (delay: 0ms)
 [2025-12-23T11:41:29.723Z] [PROCESSOR] 📊 Scheduled analytics tracking for 1 channel messages
 [2025-12-23T11:41:29.725Z] [PROCESSOR] ✅ Task 27ec9cd5-5d1a-4f2f-83e3-9eca8c6412e5 finished: 1 sent, 0 failed
+[2025-12-24T10:00:46.390Z] ✅ MongoDB connected successfully
+[2025-12-24T10:00:55.977Z] ✅ Background worker started
+[2025-12-24T10:00:55.997Z] 🚀 Server running on http://localhost:5000
+[2025-12-24T10:03:26.056Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-24T10:03:26.058Z] [ROUTER] Body: {"name":"sending message","type":"message","content":"{\"text\":\"flow chart\"}","folderIds":"[\"6946516cae67a92212fbffc0\"]","scheduledAt":"2025-12-24T10:04:00.000Z","expiryHours":"0.1"}
+[2025-12-24T10:03:26.059Z] [ROUTER] File: {"fieldname":"media","originalname":"ChatGPT Image Dec 23, 2025, 02_15_16 PM.png","encoding":"7bit","mimetype":"image/png","destination":"uploads/","filename":"1766570606032-ChatGPT Image Dec 23, 2025, 02_15_16 PM.png","path":"uploads\\1766570606032-ChatGPT Image Dec 23, 2025, 02_15_16 PM.png","size":745295}
+[2025-12-24T10:03:26.060Z] [ROUTER] ✅ Media detected and saved: /uploads/1766570606032-ChatGPT Image Dec 23, 2025, 02_15_16 PM.png
+[2025-12-24T10:03:26.119Z] [ROUTER] 📝 Task bb565577-b87f-40f1-9131-18753da62663 added to queue (delay: 33890ms)
+[2025-12-24T10:04:07.051Z] [PROCESSOR] 📊 Scheduled analytics tracking for 1 channel messages
+[2025-12-24T10:04:07.053Z] [PROCESSOR] ⏳ Task bb565577-b87f-40f1-9131-18753da62663 has 0.1h expiry. Scheduling deletion...
+[2025-12-24T10:04:07.056Z] [PROCESSOR] ✅ Task bb565577-b87f-40f1-9131-18753da62663 finished: 1 sent, 0 failed
+[2025-12-24T10:05:36.753Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-24T10:05:36.755Z] [ROUTER] Body: {"name":"Sample Quiz","type":"poll","content":{"pollQuestion":"New Question","pollOptions":["Option A","Option B"],"correctOption":0,"pollExplanation":""},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-24T10:07:00.000Z"}
+[2025-12-24T10:05:36.756Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-24T10:05:36.775Z] [ROUTER] 📝 Task 494ddfe7-15ad-4e04-8185-9affbca775e2 added to queue (delay: 83228ms)
+[2025-12-24T10:07:10.745Z] [PROCESSOR] ⚠️ Errors encountered during task 494ddfe7-15ad-4e04-8185-9affbca775e2:
+[2025-12-24T10:07:10.812Z] [PROCESSOR]    - Failed to send to -1003675591778 via Bot API: fetch failed
+[2025-12-24T10:07:10.813Z] [PROCESSOR] ✅ Task 494ddfe7-15ad-4e04-8185-9affbca775e2 finished: 0 sent, 1 failed
+[2025-12-24T10:08:32.359Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-24T10:08:32.360Z] [ROUTER] Body: {"name":"jygjy","type":"poll","content":{"pollQuestion":"New Question","pollOptions":["Option A","Option B"],"correctOption":0,"pollExplanation":""},"folderIds":["6946516cae67a92212fbffc0"],"scheduledAt":"2025-12-24T10:09:00.000Z"}
+[2025-12-24T10:08:32.361Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-24T10:08:32.374Z] [ROUTER] 📝 Task 199b3dd3-3c8e-4baf-9a35-4cc6471d56ac added to queue (delay: 27628ms)
+[2025-12-24T10:09:03.209Z] [PROCESSOR] 📊 Scheduled analytics tracking for 1 channel messages
+[2025-12-24T10:09:03.210Z] [PROCESSOR] ✅ Task 199b3dd3-3c8e-4baf-9a35-4cc6471d56ac finished: 1 sent, 0 failed
+[2025-12-24T11:10:32.331Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-24T11:10:32.334Z] [ROUTER] Body: {"name":"ttlkhrgfr","type":"message","content":"{\"text\":\"f,mmnhfg\"}","folderIds":"[\"6946516cae67a92212fbffc0\"]","scheduledAt":"2025-12-24T11:11:00.000Z","expiryHours":"0.1"}
+[2025-12-24T11:10:32.335Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-24T11:10:32.348Z] [ROUTER] 📝 Task d982a54e-7033-4a0c-b95b-7e307fc71812 added to queue (delay: 27654ms)
+[2025-12-24T11:11:03.486Z] [PROCESSOR] 📊 Scheduled analytics tracking for 1 channel messages
+[2025-12-24T11:11:03.487Z] [PROCESSOR] ⏳ Task d982a54e-7033-4a0c-b95b-7e307fc71812 has 0.1h expiry. Scheduling deletion...
+[2025-12-24T11:11:03.491Z] [PROCESSOR] ✅ Task d982a54e-7033-4a0c-b95b-7e307fc71812 finished: 1 sent, 0 failed
+[2025-12-24T11:33:13.750Z] ✅ MongoDB connected successfully
+[2025-12-24T11:33:14.414Z] ✅ Background worker started
+[2025-12-24T11:33:14.425Z] 🚀 Server running on http://localhost:5000
+[2025-12-24T11:34:32.064Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-24T11:34:32.066Z] [ROUTER] Body: {"name":"Expiry message","type":"message","content":"{\"text\":\"Expiry message\"}","folderIds":"[\"6946516cae67a92212fbffc0\"]","expiryHours":"0.1"}
+[2025-12-24T11:34:32.067Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-24T11:34:32.115Z] [ROUTER] 📝 Task 98c4d720-ea8c-433c-ac6d-2e157221ecc9 added to queue (delay: 0ms)
+[2025-12-24T11:34:38.257Z] [PROCESSOR] 📊 Scheduled analytics tracking for 1 channel messages
+[2025-12-24T11:34:38.258Z] [PROCESSOR] ⏳ Task 98c4d720-ea8c-433c-ac6d-2e157221ecc9 has 0.1h expiry. Scheduling deletion...
+[2025-12-24T11:34:38.261Z] [PROCESSOR] ✅ Task 98c4d720-ea8c-433c-ac6d-2e157221ecc9 finished: 1 sent, 0 failed
+[2025-12-24T11:42:39.909Z] ✅ MongoDB connected successfully
+[2025-12-24T11:42:43.295Z] ✅ MongoDB connected successfully
+[2025-12-24T11:42:43.908Z] ✅ Background worker started
+[2025-12-24T11:42:43.922Z] 🚀 Server running on http://localhost:5000
+[2025-12-24T11:45:47.437Z] ✅ MongoDB connected successfully
+[2025-12-24T11:45:48.252Z] ✅ Background worker started
+[2025-12-24T11:45:48.269Z] 🚀 Server running on http://localhost:5000
+[2025-12-24T11:46:08.582Z] ✅ MongoDB connected successfully
+[2025-12-24T11:46:09.091Z] ✅ Background worker started
+[2025-12-24T11:46:09.105Z] 🚀 Server running on http://localhost:5000
+[2025-12-24T11:47:56.020Z] ✅ MongoDB connected successfully
+[2025-12-24T11:47:56.720Z] ✅ Background worker started
+[2025-12-24T11:47:56.736Z] 🚀 Server running on http://localhost:5000
+[2025-12-24T11:48:38.415Z] ✅ MongoDB connected successfully
+[2025-12-24T11:48:39.063Z] ✅ Background worker started
+[2025-12-24T11:48:39.084Z] 🚀 Server running on http://localhost:5000
+[2025-12-24T11:49:52.123Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-24T11:49:52.126Z] [ROUTER] Body: {"name":"ytjhty","type":"message","content":"{\"text\":\"yjyj\"}","folderIds":"[\"6946516cae67a92212fbffc0\"]"}
+[2025-12-24T11:49:52.139Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-24T11:49:52.248Z] [ROUTER] 📝 Task 96a4a9e5-6ec9-429f-9f0c-2768bd23b080 added to queue (delay: 0ms)
+[2025-12-24T11:49:55.366Z] [PROCESSOR] 📊 Scheduled analytics tracking for 1 channel messages
+[2025-12-24T11:49:55.368Z] [PROCESSOR] ✅ Task 96a4a9e5-6ec9-429f-9f0c-2768bd23b080 finished: 1 sent, 0 failed
+[2025-12-24T11:51:22.014Z] ✅ MongoDB connected successfully
+[2025-12-24T11:51:22.210Z] ✅ MongoDB connected successfully
+[2025-12-24T11:51:22.400Z] ✅ MongoDB connected successfully
+[2025-12-24T11:51:22.860Z] ✅ Background worker started
+[2025-12-24T11:51:22.880Z] 🚀 Server running on http://localhost:5000
+[2025-12-24T11:51:23.060Z] ✅ Background worker started
+[2025-12-24T11:51:23.086Z] 🚀 Server running on http://localhost:5000
+[2025-12-24T11:51:23.274Z] ✅ Background worker started
+[2025-12-24T11:51:23.290Z] 🚀 Server running on http://localhost:5000
+[2025-12-24T11:53:08.698Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-24T11:53:08.700Z] [ROUTER] Body: {"name":"gyjy","type":"message","content":"{\"text\":\"yjtyjt\"}","folderIds":"[\"6946516cae67a92212fbffc0\"]"}
+[2025-12-24T11:53:08.701Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-24T11:53:08.751Z] [ROUTER] 📝 Task 4062bbba-cc99-41ed-9b6f-d74b5c8bd309 added to queue (delay: 0ms)
+[2025-12-24T11:53:11.769Z] [PROCESSOR] 📊 Scheduled analytics tracking for 1 channel messages
+[2025-12-24T11:53:11.772Z] [PROCESSOR] ✅ Task 4062bbba-cc99-41ed-9b6f-d74b5c8bd309 finished: 1 sent, 0 failed
+[2025-12-24T11:55:02.258Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-24T11:55:02.260Z] [ROUTER] Body: {"name":"expiry","type":"message","content":"{\"text\":\"expiry\"}","folderIds":"[\"6946516cae67a92212fbffc0\"]","expiryHours":"0.1"}
+[2025-12-24T11:55:02.261Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-24T11:55:02.278Z] [ROUTER] 📝 Task 95ca8942-b386-45b0-a6e9-333ff943cd28 added to queue (delay: 0ms)
+[2025-12-24T11:55:05.014Z] [PROCESSOR] 📊 Scheduled analytics tracking for 1 channel messages
+[2025-12-24T11:55:05.016Z] [PROCESSOR] ⏳ Task 95ca8942-b386-45b0-a6e9-333ff943cd28 has 0.1h expiry. Scheduling deletion...
+[2025-12-24T11:55:05.020Z] [PROCESSOR] ✅ Task 95ca8942-b386-45b0-a6e9-333ff943cd28 finished: 1 sent, 0 failed
+[2025-12-24T11:56:12.378Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-24T11:56:12.379Z] [ROUTER] Body: {"name":"Manual delete","type":"message","content":"{\"text\":\"manually delete\"}","folderIds":"[\"6945388eb6180dc3896b08bb\"]"}
+[2025-12-24T11:56:12.382Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-24T11:56:12.394Z] [ROUTER] 📝 Task be117bd1-8ef3-4c31-b310-eacfe48ef50d added to queue (delay: 0ms)
+[2025-12-24T11:56:13.422Z] [PROCESSOR] ⚠️ Errors encountered during task be117bd1-8ef3-4c31-b310-eacfe48ef50d:
+[2025-12-24T11:56:13.423Z] [PROCESSOR]    - Failed to send to 93372553 via Bot API: Bad Request: chat not found
+[2025-12-24T11:56:13.427Z] [PROCESSOR] ✅ Task be117bd1-8ef3-4c31-b310-eacfe48ef50d finished: 0 sent, 1 failed
+[2025-12-24T11:59:33.566Z] [ROUTER] --- NEW SCHEDULE REQUEST ---
+[2025-12-24T11:59:33.570Z] [ROUTER] Body: {"name":"22","type":"message","content":"{\"text\":\"22\"}","folderIds":"[\"6946516cae67a92212fbffc0\"]"}
+[2025-12-24T11:59:33.587Z] [ROUTER] File: NO FILE ATTACHED
+[2025-12-24T11:59:33.629Z] [ROUTER] 📝 Task 7233f97b-9053-46de-9cff-b23aa901a90a added to queue (delay: 0ms)
+[2025-12-24T11:59:36.544Z] [PROCESSOR] 📊 Scheduled analytics tracking for 1 channel messages
+[2025-12-24T11:59:36.546Z] [PROCESSOR] ✅ Task 7233f97b-9053-46de-9cff-b23aa901a90a finished: 1 sent, 0 failed

@@ -90,6 +90,12 @@ function FolderManager() {
         }
     }
 
+    const [viewFolder, setViewFolder] = useState(null)
+
+    const folderEntities = viewFolder
+        ? entities.filter(e => viewFolder.entityIds.includes(e.telegramId))
+        : []
+
     return (
         <div className="space-y-8 animate-in">
             <header>
@@ -328,7 +334,8 @@ function FolderManager() {
                         {folders.map((folder) => (
                             <div
                                 key={folder._id}
-                                className="glass rounded-2xl p-5 hover:border-primary-500/20 transition-colors group"
+                                onClick={() => setViewFolder(folder)}
+                                className="glass rounded-2xl p-5 hover:border-primary-500/20 transition-colors group cursor-pointer active:scale-[0.98]"
                             >
                                 <div className="flex items-start justify-between mb-3">
                                     <div>
@@ -338,7 +345,10 @@ function FolderManager() {
                                         )}
                                     </div>
                                     <button
-                                        onClick={() => deleteMutation.mutate(folder._id)}
+                                        onClick={(e) => {
+                                            e.stopPropagation()
+                                            deleteMutation.mutate(folder._id)
+                                        }}
                                         disabled={deleteMutation.isPending}
                                         className="p-2 rounded-lg text-dark-400 hover:text-red-400 hover:bg-red-500/10 opacity-0 group-hover:opacity-100 transition-all"
                                     >
@@ -354,6 +364,58 @@ function FolderManager() {
                     </div>
                 )}
             </div>
+
+            {/* Folder Details Modal */}
+            {viewFolder && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+                    onClick={() => setViewFolder(null)}>
+                    <div className="bg-dark-900 border border-dark-700 rounded-2xl w-full max-w-lg max-h-[80vh] flex flex-col shadow-2xl animate-in zoom-in-95 duration-200"
+                        onClick={e => e.stopPropagation()}>
+                        <div className="p-6 border-b border-dark-700 flex items-center justify-between">
+                            <div>
+                                <h3 className="text-xl font-bold flex items-center gap-2">
+                                    <FolderPlus className="w-5 h-5 text-primary-400" />
+                                    {viewFolder.name}
+                                </h3>
+                                <p className="text-sm text-dark-400 mt-1">
+                                    {folderEntities.length} members
+                                </p>
+                            </div>
+                            <button onClick={() => setViewFolder(null)} className="p-2 rounded-lg hover:bg-dark-800 text-dark-400 hover:text-white transition-colors">
+                                <X className="w-5 h-5" />
+                            </button>
+                        </div>
+
+                        <div className="p-2 overflow-y-auto custom-scrollbar">
+                            {folderEntities.length > 0 ? (
+                                <div className="space-y-1">
+                                    {folderEntities.map((entity) => (
+                                        <div key={entity.telegramId} className="flex items-center gap-3 p-3 rounded-xl hover:bg-dark-800 border border-transparent hover:border-dark-700 transition-all group">
+                                            <div className="w-8 h-8 rounded-lg bg-dark-800 flex items-center justify-center text-dark-400 group-hover:bg-dark-700 group-hover:text-primary-400 transition-colors">
+                                                {getEntityIcon(entity.type)}
+                                            </div>
+                                            <div className="flex-1 min-w-0">
+                                                <p className="font-bold text-sm truncate text-white">{entity.name}</p>
+                                                {entity.username && (
+                                                    <p className="text-xs text-dark-400 truncate">@{entity.username}</p>
+                                                )}
+                                            </div>
+                                            <div className="text-[10px] font-bold uppercase tracking-widest text-dark-500 bg-dark-800 px-2 py-1 rounded-md">
+                                                {entity.type}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : (
+                                <div className="py-12 text-center text-dark-400">
+                                    <Users className="w-12 h-12 mx-auto mb-3 opacity-20" />
+                                    <p>No contacts in this folder.</p>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }
