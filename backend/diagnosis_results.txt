@@ -1,0 +1,28 @@
+🔍 Starting Diagnosis (Root)...
+✅ Connected to Telegram
+
+📋 Fetching Dialogs (Top 20)...
+[US] Name: "KK" | ID: 6667886102
+[CH] Name: "DEALS 4 U" | ID: -1002450708994
+[CH] Name: "Prodigy InfoTech" | ID: -1001738265951
+[CH] Name: "CouponzGuru India 🇮🇳" | ID: -1001433756370
+[US] Name: "Telegram" | ID: 777000
+[CH] Name: "Bottttt" | ID: -1003635220309
+[CH] Name: "Krishan Kumar - Jobs & Internships Updates" | ID: -1001515619731
+[CH] Name: "Freshershunt - Off Campus Drive Updates" | ID: -1001242584289
+[CH] Name: "Offerzone 2.0" | ID: -1001315464303
+[CH] Name: "TechSchoool" | ID: -1001987032592
+[CH] Name: "Testing group 2" | ID: -1003672332229
+[GR] Name: "Testing group 2" | ID: -5026402991
+[CH] Name: "Testing group 1" | ID: -1002508188906
+[GR] Name: "Testing group 1" | ID: -5099839599
+[US] Name: "Teaching Pariksha Bot" | ID: 8502452024
+[CH] Name: "Xtylishanmol4" | ID: -1002042308282
+[CH] Name: "Teaching Pariksha" | ID: -1001855885690
+[CH] Name: "GrowDealz - Shopping Deals & Offers" | ID: -1001293749899
+[GR] Name: "Test2" | ID: -5044671892
+[CH] Name: "test channel" | ID: -1003575871416
+
+🧪 Testing Minimal Poll Construction...
+POLL ID: 1766142893573
+✅ STRING SOLUTION QUIZ SENT SUCCESSFULLY!

@@ -1,0 +1,15 @@
+node_modules/
+.env
+dist/
+build/
+.DS_Store
+backend/uploads/
+backend/debug.log
+backend/debug_redis_test.js
+frontend/dist/
+__pycache__/
+*.pyc
+.env.*
+*.log
+.idea/
+.vscode/
