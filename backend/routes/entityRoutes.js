@@ -1,17 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const { Entity } = require('../models');
-const telegramService = require('../services/telegramService');
-const axios = require('axios');
+const { protect, authorize } = require('../middleware/auth');
 
-const PYTHON_BASE_URL = 'http://localhost:8000';
-
-// GET all entities
-router.get('/', async (req, res) => {
+// GET all entities (user specific)
+router.get('/', protect, async (req, res) => {
     try {
         const { type } = req.query;
 
-        const filter = type ? { type } : {};
+        const filter = { userId: req.user._id };
+        if (type) filter.type = type;
+
         const entities = await Entity.find(filter).sort({ name: 1 });
 
         res.json(entities);
@@ -20,10 +19,10 @@ router.get('/', async (req, res) => {
     }
 });
 
-// GET entity by Telegram ID
-router.get('/:telegramId', async (req, res) => {
+// GET entity by Telegram ID (user specific)
+router.get('/:telegramId', protect, async (req, res) => {
     try {
-        const entity = await Entity.findOne({ telegramId: req.params.telegramId });
+        const entity = await Entity.findOne({ telegramId: req.params.telegramId, userId: req.user._id });
 
         if (!entity) {
             return res.status(404).json({ error: 'Entity not found' });
@@ -35,13 +34,16 @@ router.get('/:telegramId', async (req, res) => {
     }
 });
 
-// POST sync from Telegram (fetch dialogs and save)
-router.post('/sync-telegram', async (req, res) => {
+// POST sync from Telegram (fetch dialogs and save) - Moderator/Admin only
+router.post('/sync-telegram', protect, authorize('admin', 'moderator'), async (req, res) => {
     try {
-        console.log('📡 Syncing entities from Telegram...');
+        console.log(`📡 Syncing entities from Telegram for user ${req.user.username}...`);
 
-        // Fetch dialogs from Telegram via Python Service (Source of Truth)
-        console.log(`📡 Fetching dialogs from ${PYTHON_BASE_URL}/dialogs...`);
+        // Note: For now, this still uses the global Python server.
+        // In a full implementation, we'd pass user-specific tokens to a worker or the python service.
+        const axios = require('axios');
+        const PYTHON_BASE_URL = 'http://localhost:8000';
+
         const response = await axios.get(`${PYTHON_BASE_URL}/dialogs`);
         const dialogs = response.data;
 
@@ -53,13 +55,14 @@ router.post('/sync-telegram', async (req, res) => {
 
         const activeTelegramIds = dialogs.map(d => d.telegramId);
 
-        // Save each dialog to database
+        // Save each dialog to database associated with current user
         for (const dialog of dialogs) {
             try {
                 await Entity.findOneAndUpdate(
-                    { telegramId: dialog.telegramId },
+                    { telegramId: dialog.telegramId, userId: req.user._id },
                     {
                         ...dialog,
+                        userId: req.user._id,
                         syncedAt: new Date()
                     },
                     { upsert: true, new: true }
@@ -70,26 +73,24 @@ router.post('/sync-telegram', async (req, res) => {
             }
         }
 
-        // Cleanup: Delete entities not in the active list
+        // Cleanup: Delete entities belonging to THIS user that are not in the active list
         const deleteResult = await Entity.deleteMany({
+            userId: req.user._id,
             telegramId: { $nin: activeTelegramIds }
         });
         results.deleted = deleteResult.deletedCount;
-
-        console.log(`✅ Synced ${results.synced} entities, Deleted ${results.deleted} stale entities`);
 
         res.json({
             message: 'Sync from Telegram completed',
             results
         });
     } catch (err) {
-        console.error('❌ Telegram sync error:', err.message);
         res.status(500).json({ error: err.message });
     }
 });
 
-// POST sync entities (upsert from frontend)
-router.post('/sync', async (req, res) => {
+// POST sync entities (upsert from frontend) - Moderator/Admin only
+router.post('/sync', protect, authorize('admin', 'moderator'), async (req, res) => {
     try {
         const { entities } = req.body;
 
@@ -106,9 +107,10 @@ router.post('/sync', async (req, res) => {
         for (const entity of entities) {
             try {
                 await Entity.findOneAndUpdate(
-                    { telegramId: entity.telegramId },
+                    { telegramId: entity.telegramId, userId: req.user._id },
                     {
                         ...entity,
+                        userId: req.user._id,
                         syncedAt: new Date()
                     },
                     { upsert: true, new: true }
@@ -128,11 +130,12 @@ router.post('/sync', async (req, res) => {
     }
 });
 
-// DELETE entity
-router.delete('/:telegramId', async (req, res) => {
+// DELETE entity - Moderator/Admin only
+router.delete('/:telegramId', protect, authorize('admin', 'moderator'), async (req, res) => {
     try {
         const entity = await Entity.findOneAndDelete({
-            telegramId: req.params.telegramId
+            telegramId: req.params.telegramId,
+            userId: req.user._id
         });
 
         if (!entity) {

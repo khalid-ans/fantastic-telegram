@@ -1,0 +1,22 @@
+{
+  "telegramConfig": {
+    "apiId": "",
+    "apiHash": "",
+    "botToken": "",
+    "sessionString": ""
+  },
+  "status": "pending",
+  "_id": "694f978231692049e442103f",
+  "username": "admin",
+  "password": "$2b$10$cmt4fwYs7BdBeJvZ7AwG1.Z.OGNSiWdondpX9Qcj6AQzsmEn.64iG",
+  "role": "admin",
+  "isApproved": true,
+  "phoneNumber": "+91 75582 23318",
+  "telegramSession": null,
+  "telegramApiId": "30997376",
+  "telegramApiHash": "84451276928623c888bf8aac144e7c6c",
+  "createdAt": "2025-12-27T08:23:30.715Z",
+  "__v": 0,
+  "lastActiveAt": "2025-12-27T13:11:33.909Z",
+  "telegramBotToken": "8249517940:AAGX-NLQZf-7uU_xDym57C83K_Cbft4LvBs"
+}

@@ -1,76 +1,162 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
+const { User } = require('../models');
+const { protect } = require('../middleware/auth');
 const axios = require('axios');
-const { Settings } = require('../models');
 
 const PYTHON_BASE_URL = 'http://localhost:8000';
 
-// POST /api/auth/send-code
-router.post('/send-code', async (req, res) => {
+/**
+ * Generate JWT token
+ */
+const generateToken = (id) => {
+    return jwt.sign({ id }, process.env.JWT_SECRET || 'fallback_secret', {
+        expiresIn: '30d'
+    });
+};
+
+/**
+ * @route   POST /api/auth/signup
+ * @desc    Register a new user
+ */
+router.post('/signup', async (req, res) => {
     try {
-        const { phoneNumber } = req.body;
-        console.log(`📱 Requesting code for ${phoneNumber} via Python Service...`);
+        const { username, password, role } = req.body;
 
-        const response = await axios.post(`${PYTHON_BASE_URL}/auth/request-code`, { phone: phoneNumber });
-        res.json(response.data);
-    } catch (err) {
-        console.error('Failed to send code:', err.response?.data || err.message);
-        res.status(err.response?.status || 500).json(err.response?.data || { error: err.message });
-    }
-});
-
-// POST /api/auth/sign-in
-router.post('/sign-in', async (req, res) => {
-    try {
-        console.log(`🔐 Signing in...`);
-        const response = await axios.post(`${PYTHON_BASE_URL}/auth/sign-in`, req.body);
-
-        // Save session string if returned (though Python manages session file now)
-        // We might just need the user info
-
-        res.json(response.data);
-    } catch (err) {
-        console.error('Sign in failed:', err.response?.data || err.message);
-        res.status(err.response?.status || 500).json(err.response?.data || { error: err.message });
-    }
-});
-
-// POST /api/auth/logout
-router.post('/logout', async (req, res) => {
-    try {
-        console.log(`🔓 Logging out...`);
-        const response = await axios.post(`${PYTHON_BASE_URL}/auth/logout`);
-        res.json(response.data);
-    } catch (err) {
-        console.error('Logout failed:', err.response?.data || err.message);
-        res.status(err.response?.status || 500).json(err.response?.data || { error: err.message });
-    }
-});
-
-// GET /api/auth/status
-router.get('/status', async (req, res) => {
-    try {
-        // Check Python Service Status
-        let pythonStatus = { configured: false, authorized: false };
-        try {
-            const pyRes = await axios.get(`${PYTHON_BASE_URL}/`);
-            pythonStatus = pyRes.data;
-        } catch (e) {
-            console.log("Python service unreachable");
+        // Check if user exists
+        const userExists = await User.findOne({ username });
+        if (userExists) {
+            return res.status(400).json({ error: 'User already exists' });
         }
 
-        // Check DB for Settings
-        const apiId = await Settings.findOne({ key: 'api_id' });
+        // Validate role (Admin cannot be created via signup)
+        if (role === 'admin') {
+            return res.status(400).json({ error: 'Admin users cannot be created via signup' });
+        }
 
-        res.json({
-            connected: pythonStatus.authorized, // True if user is logged in
-            configured: !!apiId || pythonStatus.configured, // True if API Keys exist
-            serviceRunning: !!pythonStatus.service
+        // Create user
+        const user = await User.create({
+            username,
+            password,
+            role: role || 'viewer',
+            status: role === 'moderator' ? 'pending' : 'approved'
+        });
+
+        res.status(201).json({
+            message: 'User registered successfully',
+            user: {
+                id: user._id,
+                username: user.username,
+                role: user.role,
+                status: user.status
+            }
         });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
 
-module.exports = router;
+/**
+ * @route   POST /api/auth/login
+ * @desc    Authenticate user & get token
+ */
+router.post('/login', async (req, res) => {
+    try {
+        const { username, password } = req.body;
 
+        // Find user
+        console.log(`🔑 Login attempt for user: ${username}`);
+        const user = await User.findOne({ username });
+
+        if (!user) {
+            console.warn(`❌ Login failed: User ${username} not found`);
+            return res.status(401).json({ error: 'Invalid username or password' });
+        }
+
+        if (!(await user.comparePassword(password))) {
+            console.warn(`❌ Login failed: Incorrect password for ${username}`);
+            return res.status(401).json({ error: 'Invalid username or password' });
+        }
+
+        console.log(`✅ Login successful for ${username}`);
+
+        res.json({
+            token: generateToken(user._id),
+            user: {
+                id: user._id,
+                username: user.username,
+                role: user.role,
+                status: user.status
+            }
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+/**
+ * @route   GET /api/auth/me
+ * @desc    Get current user profile
+ */
+router.get('/me', protect, async (req, res) => {
+    try {
+        const config = req.user.telegramConfig || {};
+        const apiId = config.apiId || req.user.telegramApiId;
+        const botToken = config.botToken || req.user.telegramBotToken;
+
+        res.json({
+            user: {
+                id: req.user._id,
+                username: req.user.username,
+                role: req.user.role,
+                status: req.user.status,
+                telegramConfigured: !!(apiId && botToken),
+                // Include config for frontend to populate settings
+                telegramConfig: req.user.telegramConfig,
+                telegramApiId: req.user.telegramApiId,
+                telegramApiHash: req.user.telegramApiHash,
+                telegramBotToken: req.user.telegramBotToken
+            }
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+/**
+ * @route   POST /api/auth/save-telegram-config (Moderator setup)
+ * @desc    Save Telegram API credentials for the current user
+ */
+router.post('/save-telegram-config', protect, async (req, res) => {
+    try {
+        const { apiId, apiHash, botToken } = req.body;
+
+        console.log(`💾 Saving Telegram config for user: ${req.user.username}`);
+
+        // Use set() to ensure Mongoose tracks the changes to the nested object
+        req.user.set('telegramConfig.apiId', apiId);
+        req.user.set('telegramConfig.apiHash', apiHash);
+        req.user.set('telegramConfig.botToken', botToken);
+
+        await req.user.save();
+
+        // Notify Python Service to setup credentials for this user
+        try {
+            console.log(`📣 Notifying Python service for user: ${req.user._id}`);
+            await axios.post(`${PYTHON_BASE_URL}/auth/setup`,
+                { api_id: apiId, api_hash: apiHash },
+                { headers: { 'X-User-Id': req.user._id.toString() } }
+            );
+        } catch (pyErr) {
+            console.error('Failed to notify Python service about credentials update:', pyErr.message);
+        }
+
+        res.json({ message: 'Telegram configuration saved' });
+    } catch (err) {
+        console.error('Error saving telegram config:', err.message);
+        res.status(500).json({ error: err.message });
+    }
+});
+
+module.exports = router;

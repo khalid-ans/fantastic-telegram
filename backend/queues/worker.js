@@ -1,8 +1,7 @@
 const { Worker } = require('bullmq');
 const { connection } = require('./broadcastQueue');
-const { Task, Folder, Entity } = require('../models');
+const { Task, User } = require('../models');
 const telegramService = require('../services/telegramService');
-
 const { processTask } = require('../services/taskProcessor');
 
 // Create worker
@@ -10,10 +9,20 @@ const broadcastWorker = new Worker('broadcast-queue', async (job) => {
     const { taskId } = job.data;
 
     if (job.name === 'expire') {
-        console.log(`⏳ Processing expiry for task: ${taskId}`);
+        console.log(`⏳ [Task:${taskId}] Processing expiry...`);
         const task = await Task.findOne({ taskId });
         if (task && task.sentMessages && task.sentMessages.length > 0) {
-            return await telegramService.deleteMessages(task.sentMessages);
+            const user = await User.findById(task.userId);
+            if (!user) throw new Error('User not found for expiring task');
+
+            const config = {
+                apiId: user.telegramConfig.apiId,
+                apiHash: user.telegramConfig.apiHash,
+                botToken: user.telegramConfig.botToken,
+                session: user.telegramConfig.sessionString
+            };
+
+            return await telegramService.deleteMessages(task.sentMessages, config);
         }
         return { message: 'No messages to expire' };
     }

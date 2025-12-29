@@ -6,6 +6,75 @@ const api = axios.create({
     baseURL: API_BASE_URL,
 })
 
+// Add Auth Interceptor
+api.interceptors.request.use((config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+}, (error) => {
+    return Promise.reject(error);
+});
+
+// Add Response Interceptor to handle global 401s (EXCEPT on login itself)
+api.interceptors.response.use((response) => {
+    return response;
+}, (error) => {
+    const isLoginPath = error.config?.url?.includes('/auth/login');
+
+    if (error.response?.status === 401 && !isLoginPath) {
+        console.warn('Session expired or unauthorized. Logging out...');
+        localStorage.removeItem('token');
+        if (!window.location.pathname.includes('/login')) {
+            window.location.href = '/login';
+        }
+    }
+    return Promise.reject(error);
+});
+
+// ============================================
+// Platform Auth API
+// ============================================
+export const login = async (username, password) => {
+    const { data } = await api.post('/auth/login', { username, password })
+    return data
+}
+
+export const register = async (userData) => {
+    const { data } = await api.post('/auth/signup', userData)
+    return data
+}
+
+export const getMe = async () => {
+    const { data } = await api.get('/auth/me')
+    return data
+}
+
+export const saveTelegramConfig = async (config) => {
+    const { data } = await api.post('/auth/save-telegram-config', config)
+    return data
+}
+
+// ============================================
+// Admin User API
+// ============================================
+export const getUsers = async () => {
+    const { data } = await api.get('/users')
+    return data
+}
+
+export const updateApproval = async (userId, isApproved) => {
+    const status = isApproved ? 'approved' : 'rejected'
+    const { data } = await api.patch(`/users/${userId}/status`, { status })
+    return data
+}
+
+export const deleteUser = async (userId) => {
+    const { data } = await api.delete(`/users/${userId}`)
+    return data
+}
+
 // ============================================
 // Folder API
 // ============================================
@@ -56,8 +125,9 @@ export const syncEntities = async (entities) => {
 // ============================================
 // Task API
 // ============================================
-export const getTasks = async () => {
-    const { data } = await api.get('/tasks')
+export const getTasks = async (userId = '') => {
+    const params = userId ? { userId } : {}
+    const { data } = await api.get('/tasks', { params })
     return data
 }
 
@@ -67,7 +137,6 @@ export const getTask = async (taskId) => {
 }
 
 export const scheduleTask = async (taskData) => {
-    // If taskData is FormData, let axios handle the Content-Type automatically (boundary)
     const { data } = await api.post('/tasks/schedule', taskData)
     return data
 }
@@ -82,21 +151,32 @@ export const updateTaskMetrics = async (taskId) => {
     return data
 }
 
-// ============================================
-// Auth API
-// ============================================
-export const sendAuthCode = async (phoneNumber) => {
-    const { data } = await api.post('/auth/send-code', { phoneNumber })
+export const clearHistory = async (all = false) => {
+    const params = all ? { all: 'true' } : {}
+    const { data } = await api.delete('/tasks/history', { params })
     return data
 }
 
-export const signIn = async (code) => {
-    const { data } = await api.post('/auth/sign-in', { code })
+// ============================================
+// Telegram Auth API (Microservice Bridge)
+// ============================================
+export const sendAuthCode = async (phoneNumber) => {
+    const { data } = await api.post('/telegram-auth/send-code', { phoneNumber })
+    return data
+}
+
+export const signInTelegram = async (phone, code, phoneCodeHash) => {
+    const { data } = await api.post('/telegram-auth/sign-in', { phone, code, phoneCodeHash })
     return data
 }
 
 export const getAuthStatus = async () => {
-    const { data } = await api.get('/auth/status')
+    const { data } = await api.get('/telegram-auth/status')
+    return data
+}
+
+export const logoutTelegram = async () => {
+    const { data } = await api.post('/telegram-auth/logout')
     return data
 }
 
@@ -108,6 +188,12 @@ export const exportAnalytics = async () => {
         responseType: 'blob'
     })
     return response.data
+}
+
+export const getGrowthMetrics = async ({ channelId, days }) => {
+    if (!channelId) return []
+    const { data } = await api.post('/analytics/growth', { channelId, days })
+    return data
 }
 
 export default api

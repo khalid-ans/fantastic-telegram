@@ -1,15 +1,24 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { getTasks, undoTask } from '../services/api'
-import { History as HistoryIcon, Clock, CheckCircle2, AlertCircle, Loader2, Search, RotateCcw } from 'lucide-react'
+import { getTasks, undoTask, getUsers } from '../services/api'
+import { History as HistoryIcon, Clock, CheckCircle2, AlertCircle, Loader2, Search, RotateCcw, Filter, User } from 'lucide-react'
 import { useState } from 'react'
+import { useAuth } from '../context/AuthContext'
 
 function History() {
+    const { isAdmin } = useAuth()
     const [search, setSearch] = useState('')
+    const [selectedUserId, setSelectedUserId] = useState('')
     const queryClient = useQueryClient()
 
+    const { data: users = [] } = useQuery({
+        queryKey: ['users'],
+        queryFn: getUsers,
+        enabled: isAdmin
+    })
+
     const { data: tasks = [], isLoading } = useQuery({
-        queryKey: ['tasks'],
-        queryFn: getTasks
+        queryKey: ['tasks', selectedUserId],
+        queryFn: () => getTasks(selectedUserId)
     })
 
     const filteredTasks = tasks.filter(task =>
@@ -64,15 +73,34 @@ function History() {
                     <p className="text-gray-500">Review and manage your previous broadcasts.</p>
                 </div>
 
-                <div className="relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                    <input
-                        type="text"
-                        placeholder="Search tasks..."
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                        className="pl-10 pr-4 py-2 rounded-xl bg-white border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 focus:outline-none w-64 shadow-sm transition-all text-gray-900 placeholder:text-gray-400"
-                    />
+                <div className="flex items-center gap-3">
+                    {isAdmin && (
+                        <div className="relative">
+                            <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                            <select
+                                value={selectedUserId}
+                                onChange={(e) => setSelectedUserId(e.target.value)}
+                                className="pl-9 pr-8 py-2 rounded-xl bg-white border border-gray-200 focus:border-primary-500 focus:outline-none text-sm text-gray-600 appearance-none min-w-[150px] shadow-sm"
+                            >
+                                <option value="">My Broadcasts</option>
+                                <option value="all">All Users</option>
+                                {users.map(u => (
+                                    <option key={u._id} value={u._id}>{u.username}</option>
+                                ))}
+                            </select>
+                        </div>
+                    )}
+
+                    <div className="relative">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <input
+                            type="text"
+                            placeholder="Search tasks..."
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                            className="pl-10 pr-4 py-2 rounded-xl bg-white border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 focus:outline-none w-64 shadow-sm transition-all text-gray-900 placeholder:text-gray-400"
+                        />
+                    </div>
                 </div>
             </header>
 

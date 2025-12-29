@@ -1,13 +1,74 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+
+// ============================================
+// User Schema (RBAC and Multi-tenancy)
+// ============================================
+const UserSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    role: {
+        type: String,
+        enum: ['admin', 'moderator', 'viewer'],
+        default: 'viewer'
+    },
+    status: {
+        type: String,
+        enum: ['pending', 'approved', 'rejected'],
+        default: 'pending'
+    },
+    // Telegram Configuration per User (Nested - New)
+    telegramConfig: {
+        apiId: { type: String, default: '' },
+        apiHash: { type: String, default: '' },
+        botToken: { type: String, default: '' },
+        sessionString: { type: String, default: '' }
+    },
+    // Legacy support for root-level fields
+    telegramApiId: { type: String },
+    telegramApiHash: { type: String },
+    telegramBotToken: { type: String },
+    telegramSession: { type: String },
+    phoneNumber: { type: String },
+
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
+});
+
+// Hash password before saving
+UserSchema.pre('save', async function () {
+    if (!this.isModified('password')) return;
+    this.password = await bcrypt.hash(this.password, 12);
+});
+
+// Compare password method
+UserSchema.methods.comparePassword = async function (candidatePassword) {
+    return await bcrypt.compare(candidatePassword, this.password);
+};
 
 // ============================================
 // Entity Schema (Telegram contacts/groups/channels)
 // ============================================
 const EntitySchema = new mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+        index: true
+    },
     telegramId: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     name: {
         type: String,
@@ -32,14 +93,22 @@ const EntitySchema = new mongoose.Schema({
     }
 });
 
+// Compound index to ensure telegramId is unique per user
+EntitySchema.index({ telegramId: 1, userId: 1 }, { unique: true });
+
 // ============================================
 // Folder Schema (Collections of entities)
 // ============================================
 const FolderSchema = new mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+        index: true
+    },
     name: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     description: {
         type: String,
@@ -58,10 +127,23 @@ const FolderSchema = new mongoose.Schema({
     }
 });
 
+// Compound index to ensure folder names are unique per user
+FolderSchema.index({ name: 1, userId: 1 }, { unique: true });
+
 // ============================================
 // Task Schema (Broadcast jobs)
 // ============================================
 const TaskSchema = new mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+        index: true
+    },
+    sentByUsername: {
+        type: String,
+        required: true
+    },
     taskId: {
         type: String,
         required: true,
@@ -133,7 +215,7 @@ const TaskSchema = new mongoose.Schema({
 });
 
 // ============================================
-// Settings Schema (Global configuration)
+// Settings Schema (Global configuration - Optional)
 // ============================================
 const SettingsSchema = new mongoose.Schema({
     key: {
@@ -149,9 +231,10 @@ const SettingsSchema = new mongoose.Schema({
 });
 
 // Create models
+const User = mongoose.model('User', UserSchema);
 const Entity = mongoose.model('Entity', EntitySchema);
 const Folder = mongoose.model('Folder', FolderSchema);
 const Task = mongoose.model('Task', TaskSchema);
 const Settings = mongoose.model('Settings', SettingsSchema);
 
-module.exports = { Entity, Folder, Task, Settings };
+module.exports = { User, Entity, Folder, Task, Settings };

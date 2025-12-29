@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const { Folder, Entity } = require('../models');
+const { protect } = require('../middleware/auth');
 
-// GET all folders
-router.get('/', async (req, res) => {
+// GET all folders (user specific)
+router.get('/', protect, async (req, res) => {
     try {
-        const folders = await Folder.find().sort({ createdAt: -1 });
+        const folders = await Folder.find({ userId: req.user._id }).sort({ createdAt: -1 });
         res.json(folders);
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -13,9 +14,9 @@ router.get('/', async (req, res) => {
 });
 
 // GET single folder by ID
-router.get('/:id', async (req, res) => {
+router.get('/:id', protect, async (req, res) => {
     try {
-        const folder = await Folder.findById(req.params.id);
+        const folder = await Folder.findOne({ _id: req.params.id, userId: req.user._id });
         if (!folder) {
             return res.status(404).json({ error: 'Folder not found' });
         }
@@ -26,7 +27,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // POST create new folder
-router.post('/', async (req, res) => {
+router.post('/', protect, async (req, res) => {
     try {
         const { name, description, entityIds } = req.body;
 
@@ -37,26 +38,27 @@ router.post('/', async (req, res) => {
         const folder = new Folder({
             name,
             description: description || '',
-            entityIds: entityIds || []
+            entityIds: entityIds || [],
+            userId: req.user._id
         });
 
         await folder.save();
         res.status(201).json(folder);
     } catch (err) {
         if (err.code === 11000) {
-            return res.status(400).json({ error: 'Folder name already exists' });
+            return res.status(400).json({ error: 'Folder name already exists for this account' });
         }
         res.status(500).json({ error: err.message });
     }
 });
 
 // PUT update folder
-router.put('/:id', async (req, res) => {
+router.put('/:id', protect, async (req, res) => {
     try {
         const { name, description, entityIds } = req.body;
 
-        const folder = await Folder.findByIdAndUpdate(
-            req.params.id,
+        const folder = await Folder.findOneAndUpdate(
+            { _id: req.params.id, userId: req.user._id },
             {
                 name,
                 description,
@@ -77,9 +79,9 @@ router.put('/:id', async (req, res) => {
 });
 
 // DELETE folder
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', protect, async (req, res) => {
     try {
-        const folder = await Folder.findByIdAndDelete(req.params.id);
+        const folder = await Folder.findOneAndDelete({ _id: req.params.id, userId: req.user._id });
 
         if (!folder) {
             return res.status(404).json({ error: 'Folder not found' });
@@ -92,16 +94,17 @@ router.delete('/:id', async (req, res) => {
 });
 
 // GET entities in a folder
-router.get('/:id/entities', async (req, res) => {
+router.get('/:id/entities', protect, async (req, res) => {
     try {
-        const folder = await Folder.findById(req.params.id);
+        const folder = await Folder.findOne({ _id: req.params.id, userId: req.user._id });
 
         if (!folder) {
             return res.status(404).json({ error: 'Folder not found' });
         }
 
         const entities = await Entity.find({
-            telegramId: { $in: folder.entityIds }
+            telegramId: { $in: folder.entityIds },
+            userId: req.user._id
         });
 
         res.json(entities);

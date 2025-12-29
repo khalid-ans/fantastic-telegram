@@ -13,3 +13,5 @@ __pycache__/
 *.log
 .idea/
 .vscode/
+*.session
+*.session-journal

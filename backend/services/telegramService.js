@@ -1,57 +1,29 @@
 const { TelegramClient, Api } = require('telegram');
 const { StringSession } = require('telegram/sessions');
-const { Settings } = require('../models');
-
-// Configuration
-const apiId = parseInt(process.env.API_ID);
-const apiHash = process.env.API_HASH;
-const botToken = process.env.BOT_TOKEN;
-
-// Session storage (In memory for now, session string will be persisted to database)
-let sessionString = null; // Initialize as null to force DB check
-let client = null;
 
 /**
- * Get or create Telegram client
- * @param {string} customSession Optional session string to override
+ * Get Telegram client for a specific user config
+ * @param {Object} config { apiId, apiHash, botToken, session }
  */
-const getClient = async (customSession = null) => {
-    // 1. Try to load session from Source of Truth (Database or Memory)
-    if (!customSession && !sessionString) {
-        const dbSession = await Settings.findOne({ key: 'telegram_session' });
-        if (dbSession && dbSession.value) {
-            sessionString = dbSession.value;
-            console.log('📦 Loaded Telegram User session from database');
-        } else if (process.env.TELEGRAM_SESSION) {
-            sessionString = process.env.TELEGRAM_SESSION;
-            console.log('📦 Loaded Telegram User session from .env');
-        }
+const getClient = async (config) => {
+    const { apiId, apiHash, botToken, session } = config;
+
+    if (!apiId || !apiHash) {
+        throw new Error("Telegram API ID and Hash are required. Please configure them in Settings.");
     }
 
-    const activeSession = customSession || sessionString;
-
-    // 2. If we have an active client already, reuse it
-    if (client && client.connected && !customSession) {
-        return client;
-    }
-
-    // 3. Disconnect old client if we are establishing a new one
-    if (client) {
-        try { await client.disconnect(); } catch (e) { }
-    }
-
-    // 4. Case A: Establish User Client (Prioritized for Analytics/Dialogs)
-    if (activeSession) {
-        client = new TelegramClient(new StringSession(activeSession), apiId, apiHash, {
+    // Case A: Establish User Client (Prioritized for Analytics/Dialogs)
+    if (session) {
+        const client = new TelegramClient(new StringSession(session), parseInt(apiId), apiHash, {
             connectionRetries: 5,
         });
         await client.connect();
         return client;
     }
 
-    // 5. Case B: Establish Bot Client (Fallback for basic metadata if no user logged in)
+    // Case B: Establish Bot Client (Fallback)
     if (botToken) {
-        client = new TelegramClient(new StringSession(""), apiId, apiHash, {
+        const client = new TelegramClient(new StringSession(""), parseInt(apiId), apiHash, {
             connectionRetries: 5,
         });
         await client.start({
@@ -60,113 +32,18 @@ const getClient = async (customSession = null) => {
         return client;
     }
 
-    // 6. Case C: Empty client
-    client = new TelegramClient(new StringSession(""), apiId, apiHash, {
+    // Case C: Empty client
+    const client = new TelegramClient(new StringSession(""), parseInt(apiId), apiHash, {
         connectionRetries: 5,
     });
     return client;
 };
 
 /**
- * Step 1: Send verification code to phone number
+ * Send broadcast messages or polls via Bot API
  */
-const sendCode = async (phoneNumber) => {
-    // ... existing implementation ...
-    const tempClient = new TelegramClient(new StringSession(""), apiId, apiHash, {
-        connectionRetries: 5,
-    });
-    await tempClient.connect();
-
-    const { phoneCodeHash } = await tempClient.sendCode(
-        { apiId, apiHash },
-        phoneNumber
-    );
-
-    client = tempClient;
-    return phoneCodeHash;
-};
-
-/**
- * Step 2: Sign in with the verification code
- */
-const signIn = async (phoneNumber, phoneCodeHash, phoneCode) => {
-    if (!client) {
-        // Should rely on temp client from sendCode, or create new one
-        client = new TelegramClient(new StringSession(""), apiId, apiHash, {
-            connectionRetries: 5,
-        });
-        await client.connect();
-    }
-
-    try {
-        await client.invoke(new Api.auth.SignIn({
-            phoneNumber: phoneNumber,
-            phoneCodeHash: phoneCodeHash,
-            phoneCode: phoneCode,
-        }));
-
-        // Save session
-        sessionString = client.session.save();
-
-        // Persist to DB
-        await Settings.findOneAndUpdate(
-            { key: 'telegram_session' },
-            { value: sessionString },
-            { upsert: true, new: true }
-        );
-
-        console.log('✅ User signed in successfully');
-        return sessionString;
-    } catch (err) {
-        console.error('Sign in error:', err);
-        throw err;
-    }
-};
-
-/**
- * Check connection status and return user/bot info
- */
-const getStatus = async () => {
-    try {
-        const client = await getClient();
-        if (!client && !botToken) return { connected: false, error: "No session or token found" };
-
-        if (client && !client.connected) await client.connect();
-
-        const me = await client.getMe();
-        const isUserSession = !!sessionString || !!process.env.TELEGRAM_SESSION;
-
-        if (!me) {
-            return {
-                connected: false,
-                mode: isUserSession ? 'User (Session present but invalid)' : 'Anonymous',
-                botApiStatus: !!botToken ? 'Configured' : 'Missing'
-            };
-        }
-
-        return {
-            connected: true,
-            user: {
-                firstName: me.firstName,
-                lastName: me.lastName,
-                username: me.username,
-                phone: me.phone,
-                id: me.id.toString(),
-                isBot: me.bot || false
-            },
-            mode: isUserSession ? 'User (Permanent)' : 'Bot (Limited)',
-            botApiStatus: !!botToken ? 'Configured' : 'Missing'
-        };
-    } catch (err) {
-        console.error('Status check failed:', err.message);
-        return { connected: false, error: err.message };
-    }
-};
-
-/**
- * Send broadcast messages or polls via Bot API (more reliable for groups)
- */
-const sendBroadcast = async (recipientIds, type, content) => {
+const sendBroadcast = async (recipientIds, type, content, config) => {
+    const { botToken } = config;
     const results = {
         success: 0,
         failed: 0,
@@ -175,7 +52,7 @@ const sendBroadcast = async (recipientIds, type, content) => {
     };
 
     if (!botToken) {
-        throw new Error("BOT_TOKEN is missing. Bot API sending requires a token.");
+        throw new Error("Bot Token is missing for this user. Please configure it in Settings.");
     }
 
     const trimmedToken = botToken.trim();
@@ -195,38 +72,27 @@ const sendBroadcast = async (recipientIds, type, content) => {
 
             if (type === 'message') {
                 if (content.mediaUrl) {
-                    // Remove leading slash if present to avoid absolute path issues on Windows
                     const relativeMediaUrl = content.mediaUrl.startsWith('/') ? content.mediaUrl.slice(1) : content.mediaUrl;
                     const filePath = path.join(__dirname, '..', relativeMediaUrl);
 
                     if (fs.existsSync(filePath)) {
                         const ext = path.extname(filePath).toLowerCase();
-                        let mediaType = 'document'; // Default to document
+                        let mediaType = 'document';
                         let fieldName = 'document';
 
                         const stats = fs.statSync(filePath);
                         const fileSizeInBytes = stats.size;
-                        const ONE_MB = 1024 * 1024;
-                        const MAX_PHOTO_SIZE = 10 * ONE_MB;
 
-                        if (['.jpg', '.jpeg', '.png', '.gif', '.webp'].includes(ext)) {
-                            if (fileSizeInBytes > MAX_PHOTO_SIZE) {
-                                console.log(`⚠️ Image > 10MB (${(fileSizeInBytes / ONE_MB).toFixed(2)} MB), sending as document to bypass limit.`);
-                                mediaType = 'document';
-                                fieldName = 'document';
-                            } else {
-                                mediaType = 'photo';
-                                fieldName = 'photo';
-                            }
+                        if (['.jpg', '.jpeg', '.png', '.gif', '.webp'].includes(ext) && fileSizeInBytes < 10 * 1024 * 1024) {
+                            mediaType = 'photo';
+                            fieldName = 'photo';
                         } else if (['.mp4', '.mov', '.avi'].includes(ext)) {
                             mediaType = 'video';
                             fieldName = 'video';
                         }
 
-
                         endpoint = `${baseUrl}/send${mediaType.charAt(0).toUpperCase() + mediaType.slice(1)}`;
 
-                        // Use global FormData (Node 18+)
                         formData = new FormData();
                         formData.append('chat_id', recipientId);
                         formData.append('caption', content.text || '');
@@ -236,7 +102,6 @@ const sendBroadcast = async (recipientIds, type, content) => {
                         formData.append(fieldName, blob, path.basename(filePath));
                         isMultipart = true;
                     } else {
-                        // Fallback to text if file missing
                         endpoint = `${baseUrl}/sendMessage`;
                         payload.text = (content.text || '') + "\n\n(Error: Media file not found)";
                     }
@@ -254,14 +119,9 @@ const sendBroadcast = async (recipientIds, type, content) => {
                 payload.explanation = content.pollExplanation || "";
             }
 
-            console.log(`📡 Bot API: Sending ${type} to ${recipientId}...`);
-
             let res;
             if (isMultipart) {
-                res = await fetch(endpoint, {
-                    method: 'POST',
-                    body: formData
-                });
+                res = await fetch(endpoint, { method: 'POST', body: formData });
             } else {
                 res = await fetch(endpoint, {
                     method: 'POST',
@@ -273,27 +133,20 @@ const sendBroadcast = async (recipientIds, type, content) => {
             const data = await res.json();
 
             if (data.ok) {
-                console.log(`✅ Bot API Success: ${recipientId}, msgId: ${data.result.message_id}`);
                 results.success++;
                 results.sentMessages.push({
                     recipientId: recipientId.toString(),
                     messageId: data.result.message_id
                 });
             } else {
-                const errorDescription = data.description || "Unknown Bot API error";
-                const errorCode = data.error_code || "N/A";
-                console.error(`❌ Bot API Error for ${recipientId}: [${errorCode}] ${errorDescription}`);
-                throw new Error(errorDescription);
+                throw new Error(data.description || "Unknown Bot API error");
             }
 
-            // Rate limiting delay
             await new Promise(resolve => setTimeout(resolve, 2000));
 
         } catch (err) {
             results.failed++;
-            const errorMsg = `Failed to send to ${recipientId} via Bot API: ${err.message}`;
-            results.errors.push(errorMsg);
-            console.error(errorMsg);
+            results.errors.push(err.message);
         }
     }
     return results;
@@ -302,113 +155,79 @@ const sendBroadcast = async (recipientIds, type, content) => {
 /**
  * Delete specific messages (Undo/Expiry)
  */
-const deleteMessages = async (messages) => {
-    const client = await getClient();
+const deleteMessages = async (messages, config) => {
+    const client = await getClient(config);
     if (!client.connected) await client.connect();
 
     const results = { success: 0, failed: 0, errors: [] };
 
     for (const msg of messages) {
         try {
-            console.log(`🗑️ Attempting to delete message ${msg.messageId} from ${msg.recipientId}`);
-
-            // Resolve proper Telegram peer for the stored recipient id
             const peer = await client.getInputEntity(msg.recipientId);
 
-            let result;
-
-            // Check if this is a channel/supergroup or regular chat
-            // Channels and supergroups use InputPeerChannel
             if (peer.className === 'InputPeerChannel') {
-                console.log(`📢 Deleting from channel/supergroup: ${msg.recipientId}`);
-                result = await client.invoke(
+                await client.invoke(
                     new Api.channels.DeleteMessages({
                         channel: peer,
                         id: [msg.messageId]
                     })
                 );
             } else {
-                // Regular chats, private messages, and groups use messages.DeleteMessages
-                console.log(`💬 Deleting from regular chat/group: ${msg.recipientId}`);
-                result = await client.invoke(
+                await client.invoke(
                     new Api.messages.DeleteMessages({
                         id: [msg.messageId],
-                        revoke: true  // This deletes for everyone, not just the sender
+                        revoke: true
                     })
                 );
             }
-
-            console.log(`✅ Successfully deleted message ${msg.messageId} from ${msg.recipientId}`, result);
             results.success++;
         } catch (err) {
-            const errorMsg = `Failed to delete message ${msg.messageId} for ${msg.recipientId}: ${err.message}`;
-            console.error('❌', errorMsg);
             results.failed++;
-            results.errors.push(errorMsg);
+            results.errors.push(err.message);
         }
     }
-
-    console.log(`🗑️ Delete operation completed: ${results.success} succeeded, ${results.failed} failed`);
+    await client.disconnect();
     return results;
 };
 
 /**
- * Fetch all dialogs (contacts, groups, channels)
+ * Fetch and update engagement metrics using Python Service
  */
-const fetchDialogs = async () => {
+const updateMetrics = async (taskId, userId) => {
     try {
-        const client = await getClient();
-        if (!client.connected) await client.connect();
-
-        const dialogs = await client.getDialogs();
-
-        return dialogs.map(dialog => ({
-            telegramId: dialog.id.toString(),
-            name: dialog.title || dialog.name || 'Unknown',
-            username: dialog.entity?.username || null,
-            type: dialog.isChannel ? 'channel' : dialog.isGroup ? 'group' : 'user',
-            accessHash: dialog.entity?.accessHash?.toString() || null
-        }));
-    } catch (err) {
-        console.error('Failed to fetch dialogs:', err.message);
-        return [];
-    }
-};
-
-/**
- * Fetch and update engagement metrics for a task using MTProto user client
- */
-const updateMetrics = async (taskId) => {
-    try {
-        const { Task } = require('../models');
+        const { Task, User } = require('../models');
         const task = await Task.findOne({ taskId });
-        if (!task || !task.sentMessages.length) return { success: false, error: "Task or messages not found" };
+        if (!task || !task.sentMessages.length) return { success: false, error: "Task not found" };
 
-        // Prepare batch payload
-        const payload = task.sentMessages.map(msg => ({
-            recipientId: msg.recipientId,
-            messageId: msg.messageId
-        }));
+        const user = await User.findById(userId || task.userId);
+        if (!user) return { success: false, error: "User not found" };
 
-        console.log(`📊 Fetching batch analytics for ${payload.length} messages from Python Service...`);
+        const payload = {
+            items: task.sentMessages.map(msg => ({
+                recipientId: msg.recipientId,
+                messageId: msg.messageId
+            }))
+        };
 
-        let batchData = {};
-        try {
-            const response = await fetch('http://localhost:8000/analytics/batch', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-            batchData = await response.json();
-        } catch (err) {
-            console.error('❌ Failed to fetch analytics from Python:', err.message);
-            throw err;
+        // Include credentials for multi-tenancy
+        if (user.telegramConfig && user.telegramConfig.apiId) {
+            payload.api_id = user.telegramConfig.apiId;
+            payload.api_hash = user.telegramConfig.apiHash;
         }
+
+        const response = await fetch('http://localhost:8000/analytics/batch', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-User-Id': user._id.toString()
+            },
+            body: JSON.stringify(payload)
+        });
+        const batchData = await response.json();
 
         let updatedCount = 0;
         for (const msg of task.sentMessages) {
             const metrics = batchData[msg.messageId.toString()];
-
             if (metrics) {
                 msg.metrics.views = metrics.views;
                 msg.metrics.forwards = metrics.forwards;
@@ -421,10 +240,8 @@ const updateMetrics = async (taskId) => {
         }
 
         if (updatedCount > 0) {
-            console.log(`💾 Saving ${updatedCount} metric updates to database...`);
-            task.markModified('sentMessages'); // Explicitly mark array as modified
+            task.markModified('sentMessages');
             await task.save();
-            console.log('✅ Database save completed');
         }
 
         return { success: true, updatedCount };
@@ -436,11 +253,7 @@ const updateMetrics = async (taskId) => {
 
 module.exports = {
     getClient,
-    sendCode,
-    signIn,
-    getStatus,
     sendBroadcast,
-    fetchDialogs,
     deleteMessages,
     updateMetrics
 };

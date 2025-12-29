@@ -8,22 +8,38 @@ const TRACKING_DURATION_MS = 48 * 60 * 60 * 1000; // 48 hours
 const SYNC_INTERVAL_MS = 30 * 60 * 1000; // 30 minutes
 
 const analyticsWorker = new Worker('analytics-queue', async (job) => {
-    const { taskId, recipientId, chatId, messageId, startedTrackingAt } = job.data;
+    const { taskId, userId, recipientId, chatId, messageId, startedTrackingAt } = job.data;
 
     try {
-        console.log(`🔍 Syncing analytics for Msg ${messageId} (Task ${taskId})`);
+        console.log(`🔍 [User:${userId}] Syncing analytics for Msg ${messageId} (Task ${taskId})`);
 
-        // 1. Fetch from Python Service
+        // Fetch user config for credentials
+        const { User } = require('../models');
+        const user = await User.findById(userId);
+        if (!user) throw new Error('User not found');
+
+        const params = {
+            chat_id: recipientId || chatId,
+            message_id: messageId
+        };
+
+        // Include credentials for multi-tenancy
+        if (user.telegramConfig && user.telegramConfig.apiId) {
+            params.api_id = user.telegramConfig.apiId;
+            params.api_hash = user.telegramConfig.apiHash;
+        }
+
+        // 1. Fetch from Python Service with User header and credentials
         const response = await axios.get(PYTHON_SERVICE_URL, {
-            params: { chat_id: chatId, message_id: messageId }
+            params,
+            headers: { 'X-User-Id': userId.toString() }
         });
 
         const stats = response.data;
-        // Expected: { views, forwards, replies, reactions }
 
         // 2. Update Database
         await Task.updateOne(
-            { taskId: taskId, "sentMessages.recipientId": recipientId },
+            { taskId: taskId, "sentMessages.recipientId": recipientId || chatId },
             {
                 $set: {
                     "sentMessages.$.metrics.views": stats.views,
@@ -35,7 +51,7 @@ const analyticsWorker = new Worker('analytics-queue', async (job) => {
             }
         );
 
-        console.log(`✅ Updated stats for Msg ${messageId}: Views=${stats.views}`);
+        console.log(`✅ [User:${userId}] Updated stats for Msg ${messageId}`);
 
         // 3. Reschedule if within window
         const now = Date.now();
@@ -45,19 +61,11 @@ const analyticsWorker = new Worker('analytics-queue', async (job) => {
             await analyticsQueue.add('track-message', job.data, {
                 delay: SYNC_INTERVAL_MS
             });
-            console.log(`⏳ Rescheduled next sync in 30m`);
-        } else {
-            console.log(`🛑 Tracking finished for Msg ${messageId} (48h limit)`);
         }
 
     } catch (error) {
         console.error(`❌ Analytics sync failed for Msg ${messageId}:`, error.message);
-        // Fail silently/softly as per requirement (don't crash system, maybe retry handled by BullMQ default?)
-        // BullMQ will retry if we throw. Let's throw to allow retries for temporary network glitches,
-        // but maybe limit retries in Queue settings.
-        // For 'Channel not found' (404), maybe strictly stop?
         if (error.response && error.response.status === 404) {
-            console.error("⚠️ Message/Channel not found. Stopping tracking.");
             return;
         }
         throw error;
@@ -65,7 +73,7 @@ const analyticsWorker = new Worker('analytics-queue', async (job) => {
 }, {
     connection,
     limiter: {
-        max: 10, // Avoid spamming Telethon
+        max: 10,
         duration: 1000
     }
 });

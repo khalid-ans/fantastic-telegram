@@ -1,36 +1,45 @@
+import { useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import api, { updateTaskMetrics } from '../services/api'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts'
-import { Download, BarChart2, Eye, Share2, MessageSquare, Loader2, Heart, RefreshCw, Send, CheckCircle2, AlertCircle } from 'lucide-react'
+import api, { updateTaskMetrics, getEntities, getUsers, getTasks, exportAnalytics, getGrowthMetrics } from '../services/api'
+import { useAuth } from '../context/AuthContext'
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, ComposedChart, Area } from 'recharts'
+import { Download, BarChart2, Eye, Share2, MessageSquare, Loader2, Heart, RefreshCw, Send, CheckCircle2, AlertCircle, TrendingUp, Users, Filter } from 'lucide-react'
 
-// New API function for this page
-const getAnalytics = async () => {
-    // For MVP, we fetch all tasks to show aggregate data since we don't have a separate "getAllAnalytics" endpoint yet
-    // In a real app, this should be a dedicated endpoint
-    const res = await api.get('/tasks')
-    return res.data
-}
 
-const exportDatasheet = async () => {
-    try {
-        const response = await api.get('/analytics/export', { responseType: 'blob' })
-        const url = window.URL.createObjectURL(new Blob([response.data]))
-        const link = document.createElement('a')
-        link.href = url
-        link.setAttribute('download', 'broadcast-analytics.csv')
-        document.body.appendChild(link)
-        link.click()
-        link.remove()
-    } catch (error) {
-        console.error('Export failed:', error)
-    }
-}
 
 function Analytics() {
+    const { isAdmin } = useAuth()
     const queryClient = useQueryClient()
-    const { data: tasks = [], isLoading } = useQuery({
-        queryKey: ['tasks'],
-        queryFn: getAnalytics
+    const [selectedChannel, setSelectedChannel] = useState('')
+    const [dateRange, setDateRange] = useState(30)
+    const [selectedUserId, setSelectedUserId] = useState('')
+
+    // Queries
+    const { data: users = [] } = useQuery({
+        queryKey: ['users'],
+        queryFn: getUsers,
+        enabled: isAdmin
+    })
+
+    const { data: tasks = [], isLoading: isLoadingTasks } = useQuery({
+        queryKey: ['tasks', selectedUserId],
+        queryFn: () => getTasks(selectedUserId)
+    })
+
+    const { data: channels = [] } = useQuery({
+        queryKey: ['entities', 'channel'],
+        queryFn: () => getEntities('channel')
+    })
+
+    // Auto-select first channel if available
+    if (channels.length > 0 && !selectedChannel) {
+        setSelectedChannel(channels[0].telegramId)
+    }
+
+    const { data: growthData = [], isLoading: isLoadingGrowth } = useQuery({
+        queryKey: ['growth', selectedChannel, dateRange],
+        queryFn: () => getGrowthMetrics({ channelId: selectedChannel, days: dateRange }),
+        enabled: !!selectedChannel
     })
 
     const refreshMutation = useMutation({
@@ -40,7 +49,7 @@ function Analytics() {
         }
     })
 
-    if (isLoading) {
+    if (isLoadingTasks) {
         return (
             <div className="flex items-center justify-center h-96">
                 <Loader2 className="w-8 h-8 animate-spin text-primary-500" />
@@ -60,10 +69,6 @@ function Analytics() {
         }))
 
     // Calculate aggregate MTProto stats
-    const totalSent = tasks.reduce((acc, t) => acc + (t.results?.success || 0), 0)
-    const totalFailed = tasks.reduce((acc, t) => acc + (t.results?.failed || 0), 0)
-
-    // Sum metrics from all messages in all tasks
     let totalViews = 0
     let totalForwards = 0
     let totalReplies = 0
@@ -78,25 +83,126 @@ function Analytics() {
         })
     })
 
-    const totalBroadcasts = tasks.length
-
     return (
-        <div className="space-y-8 animate-in">
-            <header className="flex justify-between items-end">
+        <div className="space-y-8 animate-in pb-10">
+            <header className="flex flex-col md:flex-row justify-between items-end gap-4">
                 <div>
                     <h1 className="text-3xl font-extrabold mb-2 text-gray-900">Analytics & Data</h1>
                     <p className="text-gray-500">Track performance and engagement of your broadcasts.</p>
                 </div>
-                <button
-                    onClick={exportDatasheet}
-                    className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary-500 hover:bg-primary-600 font-bold transition-colors text-white shadow-lg shadow-primary-500/20"
-                >
-                    <Download className="w-5 h-5" />
-                    Export Datasheet
-                </button>
+                <div className="flex items-center gap-3">
+                    {isAdmin && (
+                        <div className="relative">
+                            <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                            <select
+                                value={selectedUserId}
+                                onChange={(e) => setSelectedUserId(e.target.value)}
+                                className="pl-9 pr-8 py-2 rounded-xl bg-white border border-gray-200 focus:border-primary-500 focus:outline-none text-sm text-gray-600 appearance-none min-w-[150px] shadow-sm"
+                            >
+                                <option value="">My Analytics</option>
+                                <option value="all">Global Analytics</option>
+                                {users.map(u => (
+                                    <option key={u._id} value={u._id}>{u.username}</option>
+                                ))}
+                            </select>
+                        </div>
+                    )}
+                    <button
+                        onClick={async () => {
+                            try {
+                                const blob = await exportAnalytics()
+                                const url = window.URL.createObjectURL(new Blob([blob]))
+                                const link = document.createElement('a')
+                                link.href = url
+                                link.setAttribute('download', 'broadcast-analytics.csv')
+                                document.body.appendChild(link)
+                                link.click()
+                                link.remove()
+                            } catch (e) {
+                                console.error('Export failed:', e)
+                                alert('Failed to export data')
+                            }
+                        }}
+                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary-500 hover:bg-primary-600 font-bold transition-colors text-white shadow-lg shadow-primary-500/20"
+                    >
+                        <Download className="w-5 h-5" />
+                        Export Datasheet
+                    </button>
+                </div>
             </header>
 
-            {/* Key Metrics */}
+            {/* Growth Analytics Card */}
+            <div className="bg-white p-6 rounded-2xl card-shadow border border-gray-100">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                    <div>
+                        <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                            <TrendingUp className="w-6 h-6 text-green-600" />
+                            Community Growth
+                        </h3>
+                        <p className="text-sm text-gray-500">Track joins, leaves, and invitations over time.</p>
+                    </div>
+
+                    <div className="flex gap-2">
+                        <select
+                            className="bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5"
+                            value={selectedChannel}
+                            onChange={(e) => setSelectedChannel(e.target.value)}
+                        >
+                            <option value="">Select Channel</option>
+                            {channels.map(c => (
+                                <option key={c.telegramId} value={c.telegramId}>{c.name}</option>
+                            ))}
+                        </select>
+
+                        <select
+                            className="bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5"
+                            value={dateRange}
+                            onChange={(e) => setDateRange(Number(e.target.value))}
+                        >
+                            <option value={7}>Last 7 Days</option>
+                            <option value={30}>Last 30 Days</option>
+                            <option value={90}>Last 90 Days</option>
+                        </select>
+                    </div>
+                </div>
+
+                {isLoadingGrowth ? (
+                    <div className="h-80 flex items-center justify-center bg-gray-50 rounded-xl">
+                        <Loader2 className="w-8 h-8 animate-spin text-gray-400" />
+                    </div>
+                ) : growthData.length > 0 ? (
+                    <div className="h-80 w-full min-h-[320px]">
+                        <ResponsiveContainer width="100%" height="100%">
+                            <ComposedChart data={growthData}>
+                                <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" vertical={false} />
+                                <XAxis
+                                    dataKey="date"
+                                    stroke="#9ca3af"
+                                    tick={{ fill: '#6b7280', fontSize: 12 }}
+                                    tickFormatter={(val) => val.split('-').slice(1).join('/')}
+                                />
+                                <YAxis stroke="#9ca3af" tick={{ fill: '#6b7280', fontSize: 12 }} />
+                                <Tooltip
+                                    contentStyle={{ backgroundColor: '#fff', border: 'none', borderRadius: '12px', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}
+                                    itemStyle={{ fontSize: '13px', fontWeight: 600 }}
+                                    labelStyle={{ color: '#9ca3af', marginBottom: '4px' }}
+                                />
+                                <Bar dataKey="joined" name="New Members" fill="#22c55e" radius={[4, 4, 0, 0]} barSize={20} />
+                                <Bar dataKey="left" name="Left" fill="#ef4444" radius={[4, 4, 0, 0]} barSize={20} />
+                                <Line type="monotone" dataKey="invited" name="Invited via Link" stroke="#3b82f6" strokeWidth={3} dot={{ r: 4, fill: '#3b82f6', strokeWidth: 2, stroke: '#fff' }} />
+                            </ComposedChart>
+                        </ResponsiveContainer>
+                    </div>
+                ) : (
+                    <div className="h-80 flex flex-col items-center justify-center bg-gray-50 rounded-xl text-gray-400">
+                        <Users className="w-12 h-12 mb-2 opacity-20" />
+                        <p>No growth data available for this period.</p>
+                        <p className="text-xs mt-1">Make sure the account is an Admin of the selected channel.</p>
+                    </div>
+                )}
+            </div>
+
+            {/* Key Metrics Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div className="bg-white p-6 rounded-2xl border-l-4 border-blue-500 card-shadow">
                     <div className="flex items-center gap-2 text-gray-500 mb-2">
@@ -135,7 +241,7 @@ function Analytics() {
                     <div className="h-80 w-full min-h-[320px]">
                         <ResponsiveContainer width="100%" height="100%">
                             <BarChart data={chartData}>
-                                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" vertical={false} />
                                 <XAxis dataKey="date" stroke="#9ca3af" tick={{ fill: '#6b7280' }} />
                                 <YAxis stroke="#9ca3af" tick={{ fill: '#6b7280' }} />
                                 <Tooltip

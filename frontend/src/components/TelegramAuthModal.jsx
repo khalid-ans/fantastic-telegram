@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
 import { X, Phone, Key, Loader2, CheckCircle2, AlertCircle } from 'lucide-react'
-import { sendAuthCode, signIn, getAuthStatus } from '../services/api'
+import { sendAuthCode, signInTelegram, getAuthStatus } from '../services/api'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 function TelegramAuthModal({ isOpen, onClose }) {
     const [step, setStep] = useState(1) // 1: Phone, 2: Code
     const [phoneNumber, setPhoneNumber] = useState('')
     const [verificationCode, setVerificationCode] = useState('')
+    const [phoneCodeHash, setPhoneCodeHash] = useState('')
     const [error, setError] = useState(null)
     const queryClient = useQueryClient()
 
@@ -17,15 +18,16 @@ function TelegramAuthModal({ isOpen, onClose }) {
 
     const sendCodeMutation = useMutation({
         mutationFn: sendAuthCode,
-        onSuccess: () => {
+        onSuccess: (data) => {
             setStep(2)
+            setPhoneCodeHash(data.phoneCodeHash)
             setError(null)
         },
         onError: (err) => setError(err.response?.data?.error || err.message)
     })
 
     const signInMutation = useMutation({
-        mutationFn: signIn,
+        mutationFn: ({ phone, code, phoneCodeHash }) => signInTelegram(phone, code, phoneCodeHash),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['authStatus'] })
             queryClient.invalidateQueries({ queryKey: ['entities'] })
@@ -46,7 +48,7 @@ function TelegramAuthModal({ isOpen, onClose }) {
     const handleSignIn = (e) => {
         e.preventDefault()
         if (!verificationCode) return
-        signInMutation.mutate(verificationCode)
+        signInMutation.mutate({ phone: phoneNumber, code: verificationCode, phoneCodeHash })
     }
 
     return (

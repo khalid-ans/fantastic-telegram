@@ -1,22 +1,31 @@
 import { useQuery } from '@tanstack/react-query'
-import { getTasks, exportAnalytics, updateTaskMetrics } from '../services/api'
+import { getTasks, exportAnalytics, updateTaskMetrics, getUsers } from '../services/api'
+import { useAuth } from '../context/AuthContext'
 import {
     Eye, Forward, MessageSquare, Heart,
     TrendingUp, RefreshCw, Download, Calendar,
-    User, Hash, CheckCircle, Shield
+    User, Hash, CheckCircle, Shield, Filter
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 
 function DataTracking() {
+    const { isAdmin } = useAuth()
     const [isDownloading, setIsDownloading] = useState(false)
     const [isSyncing, setIsSyncing] = useState(false)
     const [syncProgress, setSyncProgress] = useState({ current: 0, total: 0 })
     const [syncingTaskId, setSyncingTaskId] = useState(null)
+    const [selectedUserId, setSelectedUserId] = useState('')
+
+    const { data: users = [] } = useQuery({
+        queryKey: ['users'],
+        queryFn: getUsers,
+        enabled: isAdmin
+    })
 
     const { data: tasks = [], refetch, isLoading } = useQuery({
-        queryKey: ['tasks'],
-        queryFn: getTasks
+        queryKey: ['tasks', selectedUserId],
+        queryFn: () => getTasks(selectedUserId)
     })
 
     const completedTasks = tasks.filter(t => t.status === 'completed' || t.status === 'partially_completed')
@@ -63,15 +72,11 @@ function DataTracking() {
         if (!window.confirm('Are you sure you want to clear all tracking history? This cannot be undone.')) return
 
         try {
-            const response = await fetch('http://localhost:5000/api/tasks/history', { method: 'DELETE' })
-            if (response.ok) {
-                refetch()
-            } else {
-                alert('Failed to clear history')
-            }
+            await api.clearHistory(isAdmin) // Admin can clear all if they want, but here we just clear their view (as per backend logic)
+            refetch()
         } catch (error) {
             console.error('Clear failed:', error)
-            alert('Error clearing history')
+            alert('Error clearing history: ' + (error.response?.data?.error || error.message))
         }
     }
 
@@ -169,6 +174,22 @@ function DataTracking() {
                 </div>
 
                 <div className="flex flex-wrap gap-3 w-full md:w-auto">
+                    {isAdmin && (
+                        <div className="relative">
+                            <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                            <select
+                                value={selectedUserId}
+                                onChange={(e) => setSelectedUserId(e.target.value)}
+                                className="pl-9 pr-8 h-12 rounded-xl bg-white border border-gray-200 focus:border-primary-500 focus:outline-none text-sm text-gray-600 appearance-none min-w-[150px] shadow-sm"
+                            >
+                                <option value="">My Tracking</option>
+                                <option value="all">Global Tracking</option>
+                                {users.map(u => (
+                                    <option key={u._id} value={u._id}>{u.username}</option>
+                                ))}
+                            </select>
+                        </div>
+                    )}
                     <button
                         onClick={handleClearHistory}
                         disabled={flattenedData.length === 0}

@@ -16,9 +16,35 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());
-app.use(express.json());
+// Middleware (Security)
+// 1. CORS (Strict Origin) - Must be first
+app.use(cors()); // Allow all for debugging
+
+// 2. Body Parser
+app.use(express.json({ limit: '10kb' }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// 3. Security Middleware (DISABLED)
+// const helmet = require('helmet');
+// app.use(helmet({
+//     contentSecurityPolicy: false,
+//     crossOriginResourcePolicy: false,
+//     crossOriginEmbedderPolicy: false
+// }));
+
+// 4. Data Sanitization (DISABLED)
+// const mongoSanitize = require('express-mongo-sanitize');
+// app.use(mongoSanitize());
+
+// 5. Rate Limiting (DISABLED)
+// const rateLimit = require('express-rate-limit');
+// const limiter = rateLimit({
+//     windowMs: 15 * 60 * 1000, // 15 mins
+//     max: 100, // Limit each IP to 100 requests per window
+//     standardHeaders: true,
+//     legacyHeaders: false,
+// });
+// app.use('/api', limiter);
 
 // Routes
 const apiRoutes = require('./routes');
@@ -51,9 +77,9 @@ const startServer = async () => {
 
     // Start BullMQ worker (optional - requires Redis)
     try {
-        // require('./queues/worker');
-        // require('./queues/analyticsWorker');
-        log('✅ Background worker started (DISABLED)');
+        require('./queues/worker');
+        require('./queues/analyticsWorker');
+        log('✅ Background worker started');
     } catch (err) {
         log('⚠️ Worker not started (Redis may not be running): ' + err.message);
     }
